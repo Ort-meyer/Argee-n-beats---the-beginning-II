@@ -5,6 +5,7 @@ using UnityEngine;
 public class FollowNavigationAgent : MonoBehaviour {
     public GameObject navigation;
     public float acceleration; // Units/second
+    public float maxSpeed; // units/second
     private Vector3 totalForce;
 	// Use this for initialization
 	void Start () {
@@ -26,6 +27,12 @@ public class FollowNavigationAgent : MonoBehaviour {
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().AddForce(totalForce, ForceMode.Acceleration);
+        Rigidbody myBody = GetComponent<Rigidbody>();
+        myBody.AddForce(totalForce, ForceMode.Acceleration);
+        totalForce = Vector3.zero;
+        if (myBody.velocity.magnitude > maxSpeed)
+        {
+            myBody.velocity = myBody.velocity.normalized * maxSpeed;
+        }
     }
 }
