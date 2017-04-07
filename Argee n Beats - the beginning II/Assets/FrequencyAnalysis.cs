@@ -4,59 +4,70 @@ using UnityEngine;
 
 public class FrequencyAnalysis : MonoBehaviour
 {
-    private bool didOnce;
-    private AudioSource m_source;
+    public GameObject m_source1;
+    public GameObject m_source2;
+
+    private float windowDuration = 0.2f;
+
+    bool recording1;
+
+    float threshold;
+
     // Use this for initialization
     void Start()
     {
-        didOnce = false;
-        AudioSource source = GetComponent<AudioSource>();
-        source.clip = Microphone.Start("", false, 10, 44100);
-
+        recording1 = true;
+        m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 1, 44100);
+        Invoke("Sample1", 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.G))
+        float[] data = new float[1024];
+        if (recording1 == false)
         {
-            ////GetComponent<AudioSource>().Play();
-            //float[] spectrum = new float[256];
-            //GetComponent<AudioSource>().GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
-            //
-            //float max = 0;
-            //for (int i = 1; i < spectrum.Length - 1; i++)
-            //{
-            //    if (spectrum[i - 1] > max)
-            //        max = spectrum[i - 1];
-            //
-            //
-            //
-            //    Debug.DrawLine(new Vector3(i - 1, spectrum[i] + 10, 0), new Vector3(i, spectrum[i + 1] + 10, 0), Color.red,5);
-            //    Debug.DrawLine(new Vector3(i - 1, Mathf.Log(spectrum[i - 1]) + 10, 2), new Vector3(i, Mathf.Log(spectrum[i]) + 10, 2), Color.cyan,5);
-            //    Debug.DrawLine(new Vector3(Mathf.Log(i - 1), spectrum[i - 1] - 10, 1), new Vector3(Mathf.Log(i), spectrum[i] - 10, 1), Color.green,5);
-            //    Debug.DrawLine(new Vector3(Mathf.Log(i - 1), Mathf.Log(spectrum[i - 1]), 3), new Vector3(Mathf.Log(i), Mathf.Log(spectrum[i]), 3), Color.blue,5);
-            //}
-            //print(max);
-            if (didOnce == false)
-            {
-                InvokeRepeating("Check", 0, 1);
-                didOnce = true;
-            }
+            m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
+            AnalyzeSound(data);
         }
+        else
+        {
+            m_source2.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
+            AnalyzeSound(data);
+        }
+
     }
 
-    private void Check()
+    private void Sample1()
     {
-        float[] spectrum = new float[256];
-        GetComponent<AudioSource>().GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
-        float max = 0;
-        for (int i = 0; i < spectrum.Length; i++)
-        {
-            if (spectrum[i] > max)
-                max = spectrum[i - 1];
-        }
-        print(max*10000);
+        recording1 = false;
+        m_source2.GetComponent<AudioSource>().clip = Microphone.Start("", false, 1, 44100);
+        m_source1.GetComponent<AudioSource>().Play();
+        Invoke("Sample2", windowDuration);
     }
 
+    private void Sample2()
+    {
+        recording1 = true;
+        m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 1, 44100);
+        m_source2.GetComponent<AudioSource>().Play();
+        Invoke("Sample1", windowDuration);
+    }
+
+    private void AnalyzeSound(float[] data)
+    {
+        float packageData = 0;
+        float highest = 0;
+        int highestFreq = 0;
+        for (int i = 0; i < data.Length; i++)
+        {
+            if(data[i] > highest)
+            {
+                highest = data[i];
+                highestFreq = i;
+            }
+            packageData += System.Math.Abs(data[i]);
+        }
+        Debug.Log(highestFreq * (21000/1024));
+    }
 }
