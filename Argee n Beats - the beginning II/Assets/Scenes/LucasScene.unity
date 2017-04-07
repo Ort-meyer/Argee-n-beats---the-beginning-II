@@ -209,34 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0708d1916fd832478e2b649ec5d572e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetLookAt: {fileID: 0}
-  m_distance: 0
-  m_distanceMin: 3
-  m_distanceMax: 10
-  m_distanceSmooth: 0.05
-  m_XMouseSense: 5
-  m_YMouseSense: 5
-  m_mouseWheelSense: 5
-  m_XSmooth: 0.05
-  m_YSmooth: 0.1
-  m_YMinLimit: -40
-  m_YMaxLimit: 80
-  m_occlusionDistanceStep: 0.5
-  m_maxOcclusionChecks: 10
-  m_distanceResumeSmooth: 1
-  m_aiming: 0
-  m_mouseX: 0
-  m_mouseY: 10
-  m_velX: 0
-  m_velY: 0
-  m_velZ: 0
-  m_velDistance: 0
-  m_startDistance: 0
-  m_desiredDistance: 0
-  m_distanceSmoothForOcclusion: 0
-  m_preOccludedDistance: 0
-  m_position: {x: 0, y: 0, z: 0}
-  m_desiredPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &886621253
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,10 +402,10 @@ GameObject:
   - component: {fileID: 1745963916}
   - component: {fileID: 1745963915}
   - component: {fileID: 1745963914}
-  - component: {fileID: 1745963913}
   - component: {fileID: 1745963912}
   - component: {fileID: 1745963911}
   - component: {fileID: 1745963910}
+  - component: {fileID: 1745963913}
   m_Layer: 2
   m_Name: PlaceHolderPlayerController
   m_TagString: Player
@@ -483,24 +455,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cdb8c5c237bb34cbf42a754f8cbb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!143 &1745963913
-CharacterController:
+--- !u!54 &1745963913
+Rigidbody:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 143210565636436280, guid: 673abaf83fbf67d4ca9e81e396008015,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1745963909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &1745963914
 MonoBehaviour:
   m_ObjectHideFlags: 0

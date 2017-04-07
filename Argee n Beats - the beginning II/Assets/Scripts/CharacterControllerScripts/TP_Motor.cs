@@ -102,7 +102,7 @@ public class TP_Motor : MonoBehaviour {
         }
 
         // Move the Character in World space
-        TP_Controller.m_characterController.Move(m_moveVector * Time.deltaTime);
+        TP_Controller.m_rigidBodyController.velocity = (m_moveVector * Time.deltaTime);
     }
 
     void ApplyGravity()
@@ -111,7 +111,7 @@ public class TP_Motor : MonoBehaviour {
         {
             m_moveVector = new Vector3(m_moveVector.x, m_moveVector.y - m_gravity * Time.deltaTime, m_moveVector.z);
         }
-        if (TP_Controller.m_characterController.isGrounded && m_moveVector.y < -1)
+        if (TP_Controller.Instance.IsGrounded() && m_moveVector.y < -1)
         {
             m_moveVector = new Vector3(m_moveVector.x, -1, m_moveVector.z);
         }
@@ -119,7 +119,7 @@ public class TP_Motor : MonoBehaviour {
 
     bool ApplySlide()
     {
-        if (!TP_Controller.m_characterController.isGrounded)
+        if (!TP_Controller.Instance.IsGrounded())
         {
             return true;
         }
@@ -159,7 +159,7 @@ public class TP_Motor : MonoBehaviour {
 
     public void Jump()
     {
-        if (TP_Controller.m_characterController.isGrounded)
+        if (TP_Controller.Instance.IsGrounded())
         {
             m_verticalVel = m_jumpSpeed;
         }

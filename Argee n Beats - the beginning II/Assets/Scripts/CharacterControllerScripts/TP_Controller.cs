@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TP_Controller : MonoBehaviour {
 
-    public static CharacterController m_characterController;
+    public static Rigidbody m_rigidBodyController;
     public static TP_Controller Instance;
 
 
 	// Use this for initialization
 	void Awake () {
-        m_characterController = GetComponent<CharacterController>();
+        m_rigidBodyController = GetComponent<Rigidbody>();
         Instance = this;
         TP_Camera.UseExistingOrCreateNewMainCamera();
 	}
@@ -70,6 +70,11 @@ public class TP_Controller : MonoBehaviour {
         }
     }
 
+    public bool IsGrounded()
+    {
+        RaycastHit t_info;
+        return Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.1f);
+    }
     void ShootArrow()
     {
         //RangeCombatScript.m_instance.ShootArrow();
