@@ -1,1 +1,0 @@
-Tag 0 DynamicObject : För objekt som ska kunna flyga runt gubben.
