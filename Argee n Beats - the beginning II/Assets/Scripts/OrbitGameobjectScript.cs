@@ -31,8 +31,9 @@ public class OrbitGameobjectScript : MonoBehaviour {
             //Transform t_tempTrans = GetComponentInChildren<Transform>();
 
         }
-        print(gameObject.transform.GetChild(0).name);
-        Transform t_tempTrans = gameObject.transform.GetChild(0).transform.RotateAround(gameObject.transform, 10f);
+        //print(gameObject.transform.GetChild(0).name);
+        //transform
+        /*Transform t_tempTrans =*/ //gameObject.transform.GetChild(0).transform.RotateAround(gameObject.transform.position, 10f);
         //gameObject.transform.position += new Vector3(0,0, 0.1f);
     }
 
