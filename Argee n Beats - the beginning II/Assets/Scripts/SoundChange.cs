@@ -6,7 +6,9 @@ public class SoundChange : MonoBehaviour {
 
     //RenderTexture renderTexture;
     Texture2D texture;
-    public float radius;
+    public const int bufferSize = 32;
+    Color[] colors = new Color[bufferSize * bufferSize];
+    public float radius = 1.0f; // Scale for object(TODO could use scale instead if objects default to 1 in size?)
 
 	// Use this for initialization
 	void Start () {
@@ -25,22 +27,27 @@ public class SoundChange : MonoBehaviour {
 
     public void ColorByPosition(Vector3 pos)
     {
-        for (int x = 0; x < 32; x++)
+        for (int x = 0; x < bufferSize; x++)
         {
-            for (int y = 0; y < 32; y++)
+            for (int y = 0; y < bufferSize; y++)
             {
-                int val = Random.Range(0, 10);
-                if (val < 5)
+                float divVal = (bufferSize / 2.0f) - 0.5f;
+                Vector3 pixelWPos = transform.position + new Vector3(((x / divVal) - 1.0f), 0, ((y / divVal) - 1.0f)) * radius; // -15 ->
+                float length = (pos - pixelWPos).magnitude;
+
+                // effective should come from manager
+                float effectiveRange = 5;
+
+                // This should deal with only updating upwards as well
+                if (length < effectiveRange)
                 {
-                    texture.SetPixel(0, 0, Color.blue);
-                }
-                else
-                {
-                    texture.SetPixel(0, 0, Color.red);
+                    // Check value
+                    colors[x + bufferSize * y] = new Color(1,1,1);
                 }
             }
         }
 
+        texture.SetPixels(colors);
 
         texture.Apply();
     }

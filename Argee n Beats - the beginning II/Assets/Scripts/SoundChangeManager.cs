@@ -11,7 +11,7 @@ public class SoundChangeManager : MonoBehaviour {
 
     void Awake()
     {
-        if (scManager)
+        if (scManager == null)
         {
             scManager = this;
         }
