@@ -24,9 +24,18 @@ public class InputManager : MonoBehaviour {
         foreach (var item in col)
         {
             SoundAnalysisNotPlayer sanp = item.GetComponent<SoundAnalysisNotPlayer>();
+            // We look in current and parent for a soundAnalysis!
             if (sanp)
             {
                 soundAffectors.Add(sanp);
+            }
+            else
+            {
+                sanp = item.transform.parent.GetComponent<SoundAnalysisNotPlayer>();
+                if (sanp)
+                {
+                    soundAffectors.Add(sanp);
+                }
             }
         }
     }
@@ -35,8 +44,31 @@ public class InputManager : MonoBehaviour {
 	void Update () {
         if(freqAn.IsKeyRecording() == false)
         {
+            // Previous
+            List<SoundAnalysisNotPlayer> soundAffectorsOld = new List<SoundAnalysisNotPlayer>(soundAffectors);
+
             // Particle effect the close ones
             GetAllCloseSoundeffectors();
+
+            // Stop and start new
+            foreach (var item in soundAffectors)
+            {
+                if (soundAffectorsOld.Contains(item))
+                {
+                    soundAffectorsOld.Remove(item);
+                    // Nothing
+                }
+                else
+                {
+                    // Start
+                    item.GetComponent<ParticleSystemManager>().Activate(0);
+                }
+            }
+
+            foreach (var item in soundAffectorsOld)
+            {
+                item.GetComponent<ParticleSystemManager>().Deactivate(0);
+            }
         }
 
         // Update keycodes from input
@@ -48,19 +80,22 @@ public class InputManager : MonoBehaviour {
 
             // Apply affect to objects
             Invoke("FinishRecording", 2 + 0.1f);
+
+
         }
 		
 	}
 
     void FinishRecording()
     {
-        Debug.Log("Finish Recording");
+        Debug.Log("Finish Recording: " + soundAffectors.Count);
         freqAn.FinishKeyPressRecording();
 
         // Save Place recording
         foreach (var item in soundAffectors)
         {
             item.StartPlaying();
+            item.GetComponent<ParticleSystemManager>().Activate(1);
         }
     }
 }

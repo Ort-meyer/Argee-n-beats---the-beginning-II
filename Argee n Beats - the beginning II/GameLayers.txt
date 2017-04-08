@@ -1,2 +1,3 @@
 PlayerOnly - only collides with the player.
 Player - Layer which only the player(s) have.
+SoundAffectors - Sound Affectors
