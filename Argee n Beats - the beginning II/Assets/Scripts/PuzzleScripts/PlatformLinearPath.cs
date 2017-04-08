@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlatformLinearPath : MonoBehaviour {
     public Rigidbody o_rigidbody;
     public float speedF = 100;
+    Vector3 momentum = Vector3.zero;
 
     public Transform[] paths_t;
     Transform currPath = null;
@@ -23,8 +24,12 @@ public class PlatformLinearPath : MonoBehaviour {
         {
             return;
         }
+
         Vector3 dir = (currPath.position - o_rigidbody.position).normalized;
-        o_rigidbody.MovePosition(o_rigidbody.position + dir * Time.fixedDeltaTime * speedF); //flytta den från den gamla positionen
+
+        momentum = Vector3.Lerp(momentum, dir, Time.fixedDeltaTime);
+                    
+        o_rigidbody.MovePosition(o_rigidbody.position + momentum * Time.fixedDeltaTime * speedF); //flytta den från den gamla positionen
 	}
 
     public void MoveTo(int index)

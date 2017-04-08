@@ -65,7 +65,6 @@ public class Trigger : MonoBehaviour {
             b = GetTriggered();
         }
 
-        print(b);
         ToggleTrigger(b);
     }
 
