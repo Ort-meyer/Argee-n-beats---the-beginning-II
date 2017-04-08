@@ -32,7 +32,7 @@ public class FrequencyAnalysis : MonoBehaviour
     void Update()
     {
         m_frameIter++;
-        if (m_frameIter > m_framesToAvrage)
+        if (m_frameIter >= m_framesToAvrage)
             m_frameIter = 0;
 
 
