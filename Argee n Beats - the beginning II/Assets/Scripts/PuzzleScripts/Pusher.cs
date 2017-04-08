@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pusher : MonoBehaviour {
-    [System.NonSerialized]
     public bool activated = false;
+    public bool pushAway = false;
+    public ForceMode forceMode = ForceMode.Force;
 
     public float pushForce = 100;
 	// Use this for initialization
 	void Start () {
-        activated = false;
 	}
 	
     void OnTriggerStay(Collider c)
@@ -21,7 +21,16 @@ public class Pusher : MonoBehaviour {
 
         if(o_r != null)
         {
-            o_r.AddForce(transform.up * pushForce * Time.deltaTime, ForceMode.Force);
+            if(pushAway)
+            {
+                Vector3 tSameY = new Vector3(transform.position.x, c.transform.position.y, transform.position.z);
+                Vector3 dir = (c.transform.position - tSameY).normalized;
+                o_r.AddForce(dir * pushForce * Time.deltaTime, forceMode);
+            }
+            else
+            {
+                o_r.AddForce(transform.up * pushForce * Time.deltaTime, forceMode);
+            }
         }
     }
 
