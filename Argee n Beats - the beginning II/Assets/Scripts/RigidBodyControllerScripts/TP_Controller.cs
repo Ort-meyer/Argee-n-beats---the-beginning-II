@@ -64,12 +64,6 @@ public class TP_Controller : MonoBehaviour {
         }
         TP_Animator.m_instance.DetermineCurrentMoveDirection();
     }
-    void HandleDrag()
-    {
-        Vector3 velocityInPlane = Vector3.ProjectOnPlane(m_rigidBodyController.velocity, new Vector3(0, 1, 0));
-        m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
-
-    }
     void HandleActionInput()
     {
        if (Input.GetButton("Jump"))

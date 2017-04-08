@@ -23,7 +23,10 @@ public class TP_Motor : MonoBehaviour {
     private float m_currentDashSpeed = 0f;
     private float m_dashCooldownTimer = 0;
     private Vector3 m_slideDirection;
-    
+
+    private bool m_isJumping = false;
+    private float m_slideYReducer = 1;
+    private float slideIncreaser = 1;
     public float slidingForceMultiplier = 5;
     public Vector3 m_moveVector { get; set; }
 	public float m_verticalVel { get; set; }
@@ -107,7 +110,15 @@ public class TP_Motor : MonoBehaviour {
         Vector3 xzmovement =  new Vector3(m_moveVector.x, 0, m_moveVector.z);
         HandleDrag();
         TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.deltaTime, ForceMode.VelocityChange);
-        TP_Controller.m_rigidBodyController.AddForce(0, m_moveVector.y, 0, ForceMode.VelocityChange);
+        if(m_isJumping)
+        {
+            TP_Controller.m_rigidBodyController.AddForce(0, m_moveVector.y, 0, ForceMode.VelocityChange);
+            m_isJumping = false;
+        }
+        else
+        {
+            TP_Controller.m_rigidBodyController.AddForce(0, m_moveVector.y * Time.deltaTime, 0, ForceMode.VelocityChange);
+        }
     }
     void HandleDrag()
     {
@@ -127,33 +138,38 @@ public class TP_Motor : MonoBehaviour {
             bool hit = Physics.Raycast(transform.position, -transform.up, out t_info, 4.6f, layer);
             //bool hit = Physics.SphereCast(transform.position, 1f, -transform.up, out t_info, 0.6f, layer);
             //m_slideDirection = new Vector3(t_collisionNormal.x, -t_collisionNormal.y, t_collisionNormal.z);
+            print(t_collisionNormal);
             if (t_collisionNormal.y < m_slideThreshold)
             {
-                //if (m_moveVector.magnitude < 0.01f)
-                //{
-                //    return;
-                //
-                //}
+                //Project movevector on plane that we collided with. If slope (normal y<slidevaluethign)
+                //Multiply Y component of the projected movevector with a variable that is reduced every frame we are not grounded.
 
-                float slidingForce = (1 - (t_info.normal.y / 0.7f)) * slidingForceMultiplier;
-                TP_Controller.m_rigidBodyController.AddForce(Vector3.down * slidingForce);
-                print("Im sliding");
-                //Vector3 t_velInPlane = Vector3.ProjectOnPlane(TP_Controller.m_rigidBodyController.velocity, t_info.normal);
-                //TP_Controller.m_rigidBodyController.AddForce(-1*Vector3.up* 5,ForceMode.Force);
-                if (TP_Controller.m_rigidBodyController.velocity.y < 0)
+                //If on ground. Reset variable that reduces the Y component
+
+                Vector3 t_projectedMoveVec = Vector3.ProjectOnPlane(m_moveVector, t_info.normal);
+                m_moveVector = new Vector3(t_projectedMoveVec.x, t_projectedMoveVec.y * m_slideYReducer, t_projectedMoveVec.z);
+                print("Im Sliding " + m_moveVector.y);
+                if (m_slideYReducer > 0.0001)
                 {
-                    return;
+                    m_slideYReducer -= 0.01f;
                 }
+                float slidingForce = (1 - (t_info.normal.y / 0.7f)) * slidingForceMultiplier;
+                TP_Controller.m_rigidBodyController.AddForce(Vector3.down * Time.deltaTime * slidingForce * slideIncreaser);
+                slideIncreaser += 5;
                 TP_Controller.m_rigidBodyController.AddForce(TP_Controller.m_rigidBodyController.velocity*-1 * TP_Motor.m_instance.m_linearDrag,ForceMode.VelocityChange);
-
-                //TP_Controller.m_rigidBodyController.AddForce(-TP_Controller.m_rigidBodyController.velocity * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
-                //m_slideDirection = new Vector3(t_info.normal.x, -t_info.normal.y, t_info.normal.z);
-                //m_slideDirection = Vector3.ProjectOnPlane(m_slideDirection, t_hitInfo.normal);
+                
                 Debug.DrawRay(t_info.point, m_slideDirection, Color.blue);
                 Debug.DrawRay(transform.position, TP_Controller.m_rigidBodyController.velocity * 100, Color.yellow);
                 Debug.DrawRay(t_info.point, t_info.normal, Color.red);
                 return;
             }
+            else
+            {
+                m_slideYReducer = 1f; slideIncreaser = 1f;
+            }
+
+
+
         }
         Vector3 velocityInPlane = Vector3.ProjectOnPlane(TP_Controller.m_rigidBodyController.velocity, new Vector3(0, 1, 0));
         TP_Controller.m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
@@ -223,6 +239,7 @@ public class TP_Motor : MonoBehaviour {
         if (TP_Controller.Instance.IsGrounded())
         {
             m_verticalVel = m_jumpSpeed;
+            m_isJumping = true;
         }
     }
     void SnapAlignCharacterWithCamera()
