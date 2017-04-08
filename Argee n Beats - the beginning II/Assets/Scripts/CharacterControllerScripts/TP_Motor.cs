@@ -87,7 +87,7 @@ public class TP_Motor : MonoBehaviour {
         // multiply normalised movevec with movespeed
         if (!m_isDashing)
         {
-            m_moveVector *= MoveSpeed();
+            m_moveVector *= MoveSpeed()*40;
         }
         HandleDash();
         //Reapply Vertical Vel MoveVector.y
