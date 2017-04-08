@@ -16,11 +16,6 @@ public class FollowNavigationAgent : MonoBehaviour {
 	void Start () {
         navigation.GetComponent<NavMeshAgent>().speed = maxSpeed+2.0f;
         navigation.GetComponent<NavMeshAgent>().acceleration = acceleration;
-        AttackBase attacker = GetComponent<AttackBase>();
-        if (attacker != null)
-        {
-            navigation.GetComponent<NavMeshAgent>().stoppingDistance = attacker.attackDistance;
-        }
         standardSpeed = maxSpeed;
         standardAcceleration = acceleration;
     }

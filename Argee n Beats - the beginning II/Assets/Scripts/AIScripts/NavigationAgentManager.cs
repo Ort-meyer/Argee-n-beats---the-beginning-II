@@ -11,7 +11,6 @@ public class NavigationAgentManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame
@@ -29,11 +28,27 @@ public class NavigationAgentManager : MonoBehaviour {
     public void SetTargetObject(GameObject newTarget)
     {
         target = newTarget;
+        targetPosition = Vector3.zero;
     }
 
     public void SetTargetPosition(Vector3 position)
     {
         target = null;
         targetPosition = position;
+    }
+
+    public bool ReachedTarget()
+    {
+        bool reachedTarget = true;
+        if (target != null)
+        {
+            reachedTarget = (target.transform.position - this.transform.position).magnitude <= agent.stoppingDistance;
+        }
+        else if (target == null && targetPosition != Vector3.zero)
+        {
+            float distance = (targetPosition - this.transform.position).magnitude;
+            reachedTarget = (targetPosition - this.transform.position).magnitude <= agent.stoppingDistance;
+        }
+        return reachedTarget;
     }
 }

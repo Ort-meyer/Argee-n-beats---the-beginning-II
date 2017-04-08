@@ -14,8 +14,13 @@ public class AttackBase : MonoBehaviour {
 	// Use this for initialization
 	protected void BaseStart () {
         attackTimer = 1/attackSpeed;
-        objectToAttack = GameObject.FindGameObjectWithTag("Player");
-	}
+
+        GameObject navigation = GetComponent<FollowNavigationAgent>().navigation;
+        if (navigation != null)
+        {
+            navigation.GetComponent<NavMeshAgent>().stoppingDistance = attackDistance;
+        }
+    }
 	
 	// Update is called once per frame
 	protected void BaseUpdate() {
