@@ -41,14 +41,13 @@ public class FrequencyAnalysis : MonoBehaviour
         return m_keyPressRecording;
     }
 
-    public void StartRecording()
+    public void StartRecording(int time)
     {
         AudioSource audio = GetComponent<AudioSource>();
         // User wants to record a sound
         m_keyPressRecording = true;
         audio.Stop();
-        audio.clip = Microphone.Start(null, false, 2, 44100);
-        Invoke("FinishKeyPressRecording", 2 + 0.1f);
+        audio.clip = Microphone.Start(null, false, time, 44100);
     }
 
     // Update is called once per frame
@@ -83,7 +82,7 @@ public class FrequencyAnalysis : MonoBehaviour
         //Debug.Log(m_currentFrequency);
     }
 
-    private void FinishKeyPressRecording()
+    public void FinishKeyPressRecording()
     {
         m_keyPressRecording = false;
         // Hope this copy works
@@ -144,7 +143,7 @@ public class FrequencyAnalysis : MonoBehaviour
         }
 
         float ampl = 0;
-        Debug.Log(sum);
+        //Debug.Log(sum);
         ampl = sum/ m_maxAmplitude;
         if (ampl > 1)
             ampl = 1;

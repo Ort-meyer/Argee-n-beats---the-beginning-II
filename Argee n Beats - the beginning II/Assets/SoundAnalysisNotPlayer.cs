@@ -27,11 +27,6 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartPlaying();
-        }
-
         m_frameIter++;
         if (m_frameIter >= m_framesToAvrage)
             m_frameIter = 0;

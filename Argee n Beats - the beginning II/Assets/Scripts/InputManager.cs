@@ -39,14 +39,27 @@ public class InputManager : MonoBehaviour {
         }
 
         // Update keycodes from input
-        if (Input.GetKeyDown(KeyCode.G) && freqAn.IsKeyRecording() == false)
+        if (Input.GetKeyDown(KeyCode.G) && freqAn.IsKeyRecording() == false && soundAffectors.Count > 0)
         {
+            Debug.Log("Recording");
             // Check if we have any Sound object close()
-            freqAn.StartRecording();
+            freqAn.StartRecording(2);
 
             // Apply affect to objects
-
+            Invoke("FinishRecording", 2 + 0.1f);
         }
 		
 	}
+
+    void FinishRecording()
+    {
+        Debug.Log("Finish Recording");
+        freqAn.FinishKeyPressRecording();
+
+        // Save Place recording
+        foreach (var item in soundAffectors)
+        {
+            item.StartPlaying();
+        }
+    }
 }
