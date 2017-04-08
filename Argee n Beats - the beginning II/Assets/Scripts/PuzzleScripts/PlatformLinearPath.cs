@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformLinearPath : MonoBehaviour {
+    int initTimes = 0;
+
     public Rigidbody o_rigidbody;
     public bool useForce = false;
     public float speedF = 100;
@@ -22,11 +24,17 @@ public class PlatformLinearPath : MonoBehaviour {
         {
             o_rigidbody.isKinematic = false;
         }
+
+        initTimes++;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if(Vector3.Distance(o_rigidbody.position, currPath.position) < 0.5f)
+
+        if (initTimes == 0 || currPath == null)
+            return;
+
+        if (Vector3.Distance(o_rigidbody.position, currPath.position) < 0.5f)
         {
             o_rigidbody.velocity = o_rigidbody.velocity * 0.4f; //slöa ned den
             return;
