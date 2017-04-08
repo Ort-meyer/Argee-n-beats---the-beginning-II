@@ -12,7 +12,7 @@ public class FrequencyAnalysis : MonoBehaviour
     public int m_momentaryFrequency;
     public float m_currentAmplitude;
     public float m_momentaryAmplitude;
-    public float m_maxAmplitude = 4;
+    public float m_maxAmplitude = 100;
 
     public int m_keyPressRecordDuration = 2;
     private bool m_keyPressRecording = false;

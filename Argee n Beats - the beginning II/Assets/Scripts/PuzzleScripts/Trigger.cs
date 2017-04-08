@@ -7,13 +7,19 @@ using UnityEngine.EventSystems;
 public class Trigger : MonoBehaviour {
     int initTimes = 0;
 
-    [HideInInspector]
+    [System.NonSerialized]
     public bool isTriggered;
-    public bool continous = false; //om true så kallar den kommandot hela tiden
+    public bool continous = false; //om true så kallar den kommandot hela tiden, bör vara iklickad om man kör med ljud
     public float collisionExtent = 5;
 
     [Range(0.0f, 1.0f)]
     public float req_Amplitude = 0.0f;
+
+    //switch
+    public bool switchTriggered = false; //ändrar state till motsatt istället för satta, som en spak
+    public float switchCD = 1.0f;
+    public float switchTimer = 0.0f;
+    //switch
     public LayerMask collisionMask;
 
     public ParticleSystem psActivated;
@@ -48,7 +54,54 @@ public class Trigger : MonoBehaviour {
     {
         if (initTimes == 0) return;
 
-        ToggleTrigger(GetTriggered());
+        bool b;
+
+        if (switchTriggered)
+        {
+            b = GetTriggeredSwitch();
+        }
+        else
+        {
+            b = GetTriggered();
+        }
+
+        print(b);
+        ToggleTrigger(b);
+    }
+
+    public bool GetTriggeredSwitch()
+    {
+        if (switchTimer > Time.time)
+        {
+            return isTriggered; //ingen ändring
+        }
+
+        switchTimer = Time.time + switchCD;
+
+
+        Collider[] col = Physics.OverlapBox(transform.position, new Vector3(collisionExtent, collisionExtent, collisionExtent), Quaternion.identity, collisionMask);
+        if (col.Length > 0)
+        {
+            float bestAmplitude = -Mathf.Infinity;
+            if (req_Amplitude > 0) //använd amplitud, annars räcker det att du står i collidern
+            {
+                for (int i = 0; i < col.Length; i++)
+                {
+                    FrequencyAnalysis fA = col[i].GetComponent<FrequencyAnalysis>();
+                    if (fA != null)
+                    {
+                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_currentAmplitude);
+                    }
+                }
+
+                if (bestAmplitude < req_Amplitude) //inte tillräkligt med amplitud
+                {
+                    return isTriggered;
+                }
+                return !isTriggered;
+            }
+        }
+        return isTriggered;
     }
 
     public bool GetTriggered()
@@ -57,7 +110,7 @@ public class Trigger : MonoBehaviour {
         if (col.Length > 0)
         {
             float bestAmplitude = -Mathf.Infinity;
-            if(req_Amplitude > 0) //använd amplitud
+            if(req_Amplitude > 0) //använd amplitud, annars räcker det att du står i collidern
             {
                 for(int i = 0; i < col.Length; i++)
                 {
@@ -106,6 +159,11 @@ public class Trigger : MonoBehaviour {
             {
                 ExitTrigger();
             }
+            else if(continous) //maybe?
+            {
+                ExitTrigger();
+            }
+
             if (psActivated != null)
             {
                 psActivated.Stop();

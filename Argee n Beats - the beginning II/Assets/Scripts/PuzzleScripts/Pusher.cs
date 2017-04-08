@@ -7,7 +7,6 @@ public class Pusher : MonoBehaviour {
     public bool activated = false;
 
     public float pushForce = 100;
-    public float maxVel = 100;
 	// Use this for initialization
 	void Start () {
         activated = false;
