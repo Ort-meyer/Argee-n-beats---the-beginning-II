@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478226696988508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.56, y: -1.29, z: -9.187166}
+  m_LocalPosition: {x: 0, y: 1, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4394723667104324}
@@ -230,13 +230,14 @@ MonoBehaviour:
   m_slideSpeed: 8
   m_gravity: 21
   m_terminalVel: 100
-  m_slideThreshold: 0.1
+  m_slideThreshold: 0.5
   m_maxControllableSlideMagnitude: 0.4
   m_dashCoolDown: 1
   m_dashSpeedImpulse: 50
   m_dashSpeedFalloff: 100
   m_isDashing: 0
   m_linearDrag: 0.9
+  slidingForceMultiplier: 100
 --- !u!114 &114432778355116488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,7 +255,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478226696988508}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 505d92dde1d098749833b5a3440752b5, type: 3}
   m_Name: 
