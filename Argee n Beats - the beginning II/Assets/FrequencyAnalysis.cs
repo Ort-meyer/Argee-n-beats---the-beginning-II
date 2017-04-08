@@ -17,24 +17,36 @@ public class FrequencyAnalysis : MonoBehaviour
     void Start()
     {
         recording1 = true;
-        m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 1, 44100);
-        Invoke("Sample1", 2);
+        //m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 100, 44100);
+        //m_source1.GetComponent<AudioSource>().loop = true;
+        AudioSource audio = m_source1.GetComponent<AudioSource>();
+        audio.clip = Microphone.Start(null, true, 100, 44100);
+        audio.loop = true;
+        while (!(Microphone.GetPosition(null) > 0)) { }
+        Microphone.GetPosition(null);
+        audio.Play();
+
+        //Invoke("Sample1", 2);
     }
 
     // Update is called once per frame
     void Update()
     {
         float[] data = new float[1024];
-        if (recording1 == false)
-        {
-            m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
-            AnalyzeSound(data);
-        }
-        else
-        {
-            m_source2.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
-            AnalyzeSound(data);
-        }
+        //m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
+        //m_source1.GetComponent<AudioSource>().Play();
+        m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
+        AnalyzeSound(data);
+        //if (recording1 == false)
+        //{
+        //    m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
+        //    AnalyzeSound(data);
+        //}
+        //else
+        //{
+        //    m_source2.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
+        //    AnalyzeSound(data);
+        //}
 
     }
 
@@ -61,13 +73,13 @@ public class FrequencyAnalysis : MonoBehaviour
         int highestFreq = 0;
         for (int i = 0; i < data.Length; i++)
         {
-            if(data[i] > highest)
+            if (data[i] > highest)
             {
                 highest = data[i];
                 highestFreq = i;
             }
             packageData += System.Math.Abs(data[i]);
         }
-        Debug.Log(highestFreq * (21000/1024));
+        Debug.Log(highestFreq * (21000 / 1024));
     }
 }
