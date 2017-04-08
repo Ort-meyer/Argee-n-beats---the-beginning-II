@@ -34,29 +34,6 @@ public class Pusher : MonoBehaviour {
         }
     }
 
-    void OnColliderEnter(Collision c)
-    {
-        if (!activated)
-            return;
-
-        Rigidbody o_r = c.gameObject.GetComponent<Rigidbody>();
-
-        if (o_r != null)
-        {
-            if (pushAway)
-            {
-                Vector3 dir = (c.contacts[0].point - transform.position).normalized;
-                o_r.AddForce(dir * pushForce, forceMode);
-                print("hej");
-            }
-            else
-            {
-                o_r.AddForce(transform.up * pushForce, forceMode);
-                print("hej");
-            }
-        }
-    }
-
     public void Toggle(bool b)
     {
         activated = b;
