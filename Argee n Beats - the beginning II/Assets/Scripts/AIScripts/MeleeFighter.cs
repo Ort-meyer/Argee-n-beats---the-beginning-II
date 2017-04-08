@@ -12,7 +12,7 @@ public class MeleeFighter : AttackBase {
 	// Update is called once per frame
 	void Update () {
         base.BaseUpdate();
-        if (attackTimer <= 0 && (transform.position - objectToAttack.transform.position).magnitude <= attackDistance)
+        if (base.CanIAttackTarget())
         {
             attackTimer = 1/attackSpeed;
             MakeAttack();

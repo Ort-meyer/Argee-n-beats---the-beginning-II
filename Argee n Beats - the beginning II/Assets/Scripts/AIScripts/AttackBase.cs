@@ -14,10 +14,16 @@ public class AttackBase : MonoBehaviour {
 	// Use this for initialization
 	protected void BaseStart () {
         attackTimer = 1/attackSpeed;
+        objectToAttack = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	protected void BaseUpdate() {
         attackTimer -= Time.deltaTime;
+    }
+
+    protected bool CanIAttackTarget()
+    {
+        return attackTimer <= 0 && objectToAttack != null && (transform.position - objectToAttack.transform.position).magnitude <= attackDistance;
     }
 }

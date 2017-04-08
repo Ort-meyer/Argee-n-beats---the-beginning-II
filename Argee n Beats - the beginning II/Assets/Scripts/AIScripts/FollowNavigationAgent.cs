@@ -7,6 +7,10 @@ public class FollowNavigationAgent : MonoBehaviour {
     public GameObject navigation;
     public float acceleration; // Units/second
     public float maxSpeed; // units/second
+
+    private float standardSpeed;
+    private float standardAcceleration;
+
     private Vector3 totalForce;
 	// Use this for initialization
 	void Start () {
@@ -17,6 +21,8 @@ public class FollowNavigationAgent : MonoBehaviour {
         {
             navigation.GetComponent<NavMeshAgent>().stoppingDistance = attacker.attackDistance;
         }
+        standardSpeed = maxSpeed;
+        standardAcceleration = acceleration;
     }
 
     void OnEnable()
@@ -41,7 +47,7 @@ public class FollowNavigationAgent : MonoBehaviour {
         {
             totalForce += direction * acceleration * Time.deltaTime;
         }
-        if (distance < 0.3)
+        if (distance < 0.1)
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -64,5 +70,21 @@ public class FollowNavigationAgent : MonoBehaviour {
         {
             myBody.velocity = myBody.velocity.normalized * maxSpeed;
         }
+    }
+
+    public void ChangeSpeedAndAcceleration(float newSpeed, float newAcceleration)
+    {
+        acceleration = newAcceleration;
+        maxSpeed = newSpeed;
+        navigation.GetComponent<NavMeshAgent>().speed = maxSpeed + 2.0f;
+        navigation.GetComponent<NavMeshAgent>().acceleration = acceleration;
+    }
+
+    public void ResetSpeedAndAcceleration()
+    {
+        maxSpeed = standardSpeed;
+        acceleration = standardAcceleration;
+        navigation.GetComponent<NavMeshAgent>().speed = maxSpeed + 2.0f;
+        navigation.GetComponent<NavMeshAgent>().acceleration = acceleration;
     }
 }
