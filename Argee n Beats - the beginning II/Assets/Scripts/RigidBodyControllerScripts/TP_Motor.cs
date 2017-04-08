@@ -54,7 +54,7 @@ public class TP_Motor : MonoBehaviour {
 
     }
 
-    void HandleDash()
+    void HandleDash(ref Vector3 t_moveVector)
     {
         if (m_dashCooldownTimer > 0f)
         {
@@ -65,7 +65,7 @@ public class TP_Motor : MonoBehaviour {
             //not dashing
             return;
         }
-        m_moveVector += m_dashDirection * m_currentDashSpeed;
+        t_moveVector += m_dashDirection * m_currentDashSpeed;
         m_currentDashSpeed -= m_dashSpeedFalloff * Time.deltaTime;
         if (m_currentDashSpeed < m_forwardSpeed)
         {
@@ -77,12 +77,13 @@ public class TP_Motor : MonoBehaviour {
     void ProcessMotion()
     {
         // Transform MoveVector to Wolrd Space
-        m_moveVector = transform.TransformDirection(m_moveVector);
+        Vector3 t_moveVector = transform.TransformDirection(m_moveVector);
+        //m_moveVector = transform.TransformDirection(m_moveVector);
 
         // Normalize movevec if mag > 1
-        if (m_moveVector.magnitude > 1)
+        if (t_moveVector.magnitude > 1)
         {
-            m_moveVector = Vector3.Normalize(m_moveVector);
+            t_moveVector = Vector3.Normalize(t_moveVector);
         }
 
             // Apply Sliding if applicable
@@ -91,11 +92,11 @@ public class TP_Motor : MonoBehaviour {
         // multiply normalised movevec with movespeed
         if (!m_isDashing)
         {
-            m_moveVector *= MoveSpeed();
+            t_moveVector *= MoveSpeed();
         }
-        HandleDash();
+        HandleDash(ref t_moveVector);
         //Reapply Vertical Vel MoveVector.y
-        m_moveVector = new Vector3(m_moveVector.x, m_verticalVel, m_moveVector.z);
+        t_moveVector = new Vector3(t_moveVector.x, m_verticalVel, t_moveVector.z);
 
         //if (test)
         //{
@@ -106,21 +107,23 @@ public class TP_Motor : MonoBehaviour {
         //}
 
         // Move the Character in World space
-        //TP_Controller.m_rigidBodyController.velocity = (m_moveVector * Time.deltaTime);
-        Vector3 xzmovement =  new Vector3(m_moveVector.x, 0, m_moveVector.z);
-        HandleDrag();
+        //TP_Controller.m_rigidBodyController.velocity = (t_moveVector * Time.deltaTime);
+        Vector3 xzmovement =  new Vector3(t_moveVector.x, 0, t_moveVector.z);
+        HandleDrag(ref t_moveVector);
         TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.deltaTime, ForceMode.VelocityChange);
+        Debug.DrawLine(transform.position, transform.position + t_moveVector * 100);
         if(m_isJumping)
         {
-            TP_Controller.m_rigidBodyController.AddForce(0, m_moveVector.y, 0, ForceMode.VelocityChange);
+            print("jumping");
+            TP_Controller.m_rigidBodyController.AddForce(0, t_moveVector.y, 0, ForceMode.VelocityChange);
             m_isJumping = false;
         }
         else
         {
-            TP_Controller.m_rigidBodyController.AddForce(0, m_moveVector.y * Time.deltaTime, 0, ForceMode.VelocityChange);
+            TP_Controller.m_rigidBodyController.AddForce(0, t_moveVector.y * Time.deltaTime, 0, ForceMode.VelocityChange);
         }
     }
-    void HandleDrag()
+    void HandleDrag(ref Vector3 t_moveVector)
     {
         //IF du slidar ner för en vägg. Return. How fix?
 
@@ -146,9 +149,9 @@ public class TP_Motor : MonoBehaviour {
 
                 //If on ground. Reset variable that reduces the Y component
 
-                Vector3 t_projectedMoveVec = Vector3.ProjectOnPlane(m_moveVector, t_info.normal);
-                m_moveVector = new Vector3(t_projectedMoveVec.x, t_projectedMoveVec.y * m_slideYReducer, t_projectedMoveVec.z);
-                print("Im Sliding " + m_moveVector.y);
+                Vector3 t_projectedMoveVec = Vector3.ProjectOnPlane(t_moveVector, t_info.normal);
+                t_moveVector = new Vector3(t_projectedMoveVec.x, t_projectedMoveVec.y * m_slideYReducer, t_projectedMoveVec.z);
+                print("Im Sliding " + t_moveVector.y);
                 if (m_slideYReducer > 0.0001)
                 {
                     m_slideYReducer -= 0.01f;
@@ -171,6 +174,7 @@ public class TP_Motor : MonoBehaviour {
 
 
         }
+        print("NotSliding");
         Vector3 velocityInPlane = Vector3.ProjectOnPlane(TP_Controller.m_rigidBodyController.velocity, new Vector3(0, 1, 0));
         TP_Controller.m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
 

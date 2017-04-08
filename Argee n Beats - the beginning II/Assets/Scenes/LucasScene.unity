@@ -162,6 +162,31 @@ Prefab:
       propertyPath: slidingForceMultiplier
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 54425746214871872, guid: 673abaf83fbf67d4ca9e81e396008015,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432778355116488, guid: 673abaf83fbf67d4ca9e81e396008015,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
+        type: 2}
+      propertyPath: m_forwardSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
+        type: 2}
+      propertyPath: m_backwardSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
+        type: 2}
+      propertyPath: m_strafingSpeed
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 673abaf83fbf67d4ca9e81e396008015, type: 2}
   m_IsPrefabParent: 0
