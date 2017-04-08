@@ -4,89 +4,69 @@ using UnityEngine;
 
 public class FrequencyAnalysis : MonoBehaviour
 {
-    //public GameObject m_source1;
-    //public GameObject m_source2;
-
-    private float windowDuration = 0.2f;
-
-    private int recordingDuration = 10;
+    public AudioClip m_recordedClip;
+    
+    private int recordingDuration = 5;
 
     public int m_currentFrequency;
     public float m_currentAmplitude;
-
     public float m_maxAmplitude = 4;
 
-    bool recording1;
-
-    float threshold;
+    public int m_keyPressRecordDuration = 2;
+    private bool m_keyPressRecording = false;
 
     // Use this for initialization
     void Start()
     {
-        //m_maxAmplitude = 4;
-        //m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 100, 44100);
-        //m_source1.GetComponent<AudioSource>().loop = true;
-        //AudioSource audio = m_source1.GetComponent<AudioSource>();
-        //audio.clip = Microphone.Start(null, true, recordingDuration, 44100);
-        //audio.loop = true;
-        //while (!(Microphone.GetPosition(null) > 0)) { }
-        //Microphone.GetPosition(null);
-        //audio.Play();
+        //m_maxAmplitude = 4; FOr some reason it appears as though this needs to be set here...
         InvokeRepeating("ResetMic", 0, recordingDuration);
-        //Invoke("Sample1", 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float[] data = new float[1024];
-        float[] amplitudeData = new float[1024];
-        //m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
-        //m_source1.GetComponent<AudioSource>().Play();
-        GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
-        GetComponent<AudioSource>().GetOutputData(amplitudeData, 0);
-        AnalyzeSound(data);
-        AnalyzeAmplitude(amplitudeData);
+        AudioSource audio = GetComponent<AudioSource>();
 
-        //if (recording1 == false)
-        //{
-        //    m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
-        //    AnalyzeSound(data);
-        //}
-        //else
-        //{
-        //    m_source2.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
-        //    AnalyzeSound(data);
-        //}
+        // User wants to record a sound
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            m_keyPressRecording = true;
+            audio.Stop();
+            audio.clip = Microphone.Start(null, false, 2, 44100);
+            Invoke("FinishKeyPressRecording", 2 + 0.1f);
+        }
+        // Stop analyzing when we're recording from key press
+        if (!m_keyPressRecording)
+        {
+            float[] data = new float[1024];
+            float[] amplitudeData = new float[1024];
+            audio.GetSpectrumData(data, 0, FFTWindow.Rectangular);
+            audio.GetOutputData(amplitudeData, 0);
+            AnalyzeSound(data);
+            AnalyzeAmplitude(amplitudeData);
+        }
 
+    }
+
+    private void FinishKeyPressRecording()
+    {
+        m_keyPressRecording = false;
+        // Hope this copy works
+        m_recordedClip = GetComponent<AudioSource>().clip;
     }
 
     private void ResetMic()
     {
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.clip = Microphone.Start(null, true, recordingDuration, 44100);
-        audio.loop = true;
-        while (!(Microphone.GetPosition(null) > 0)) { }
-        Microphone.GetPosition(null);
-        audio.Play();
+        if (!m_keyPressRecording)
+        {
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.clip = Microphone.Start(null, true, recordingDuration, 44100);
+            audio.loop = true;
+            while (!(Microphone.GetPosition(null) > 0)) { }
+            Microphone.GetPosition(null);
+            audio.Play();
+        }
     }
-    //
-    //
-    //private void Sample1()
-    //{
-    //    recording1 = false;
-    //    m_source2.GetComponent<AudioSource>().clip = Microphone.Start("", false, 1, 44100);
-    //    m_source1.GetComponent<AudioSource>().Play();
-    //    Invoke("Sample2", windowDuration);
-    //}
-    //
-    //private void Sample2()
-    //{
-    //    recording1 = true;
-    //    m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 1, 44100);
-    //    m_source2.GetComponent<AudioSource>().Play();
-    //    Invoke("Sample1", windowDuration);
-    //}
 
     private void AnalyzeSound(float[] data)
     {
