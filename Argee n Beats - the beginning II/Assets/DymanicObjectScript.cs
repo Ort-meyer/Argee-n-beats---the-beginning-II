@@ -51,7 +51,7 @@ public class DymanicObjectScript : MonoBehaviour {
                 //gameObject.GetComponent<Rigidbody>().AddForce((GameObject.Find("GoalTarget").GetComponent<Transform>().position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude*2);
                 if(t_vectorBetween.magnitude<m_radius)
                 {
-                    print(t_vectorBetween.magnitude);
+                    //print(t_vectorBetween.magnitude);
                     //print(t_vectorBetween.magnitude / m_radius);
                     //print((Mathf.Log10(t_vectorBetween.magnitude / m_radius)));
                     //print((1 * (t_targetTransform.position - gameObject.transform.position) * (Mathf.Log10(t_vectorBetween.magnitude / m_radius)) * 1000).magnitude);
