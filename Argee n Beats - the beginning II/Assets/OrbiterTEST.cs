@@ -2,46 +2,81 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrbiterTEST : MonoBehaviour {
+public class OrbiterTEST : MonoBehaviour
+{
 
     public GameObject m_target;
+    public float m_orbitRadius;
+    public float m_dragForce;
 
-    //public float distance = 2;
-    //public float speed = 1;
-    //public float orbitalAngleX = 0;
-    //public float orbitalAngleY = 0;
-    //
-    //private float progress = 0;
-    //
-    //private Vector3 orbitalVectorStart = new Vector3(0,0,1);
-    //private Vector3 orbitalVectorUp = new Vector3(0, 1, 0);
 
-    public float m_anglePerFrame = 10;
 
-    float m_angle = 0;
-	// Use this for initialization
-	void Start ()
+    private bool m_inOrbit;
+    private Vector3 m_prevVecBetween;
+    
+    
+    // Use this for initialization
+    void Start()
     {
-
+        m_inOrbit = false;
         //orbitalVectorStart = Quaternion.AngleAxis(orbitalAngleX, new Vector3(1, 0, 0)) * orbitalVectorStart;
         //orbitalVectorUp = Quaternion.AngleAxis(orbitalAngleX, new Vector3(1, 0, 0)) * orbitalVectorUp;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-       // m_angle += m_anglePerFrame;
-        transform.RotateAround(m_target.transform.position, new Vector3(0, 1, 0), m_anglePerFrame);
-        //transform.RotateAround(m_target.transform.position, new Vector3(0, 1, 0), m_anglePerFrame);
-        //transform.Rotate(new Vector3(0, 1, 0), m_angle);
-        //orbitalVectorStart = Quaternion.AngleAxis(orbitalAngleX, new Vector3(1, 0, 0)) * new Vector3(0,0,1);
-        //orbitalVectorUp = Quaternion.AngleAxis(orbitalAngleX, new Vector3(1, 0, 0)) * new Vector3(0,1,0);
-        //progress += speed;
-        //if (progress > 360)
+        Transform t_targetTransform = m_target.transform;
+        Rigidbody t_targetRigid =m_target.GetComponent<Rigidbody>();
+
+        Rigidbody t_myBody = GetComponent<Rigidbody>();
+
+        Vector3 t_vectorBetween = -1 * (gameObject.transform.position - t_targetTransform.position).normalized;
+        Vector3 t_crossResultNorm = Vector3.Cross(t_targetTransform.up, t_vectorBetween).normalized;
+        Vector3 t_goalPos = t_crossResultNorm * m_orbitRadius + t_targetTransform.position;
+
+        Vector3 t_totalForce = new Vector3(0, 0, 0);
+
+        if (t_vectorBetween.magnitude > m_prevVecBetween.magnitude)
+        {
+            m_inOrbit = true;
+            //m_gravForce = Mathf.Pow(gameObject.GetComponent<Rigidbody>().velocity.magnitude, 2f) / t_vectorBetween.magnitude;
+
+        }
+
+        if (m_inOrbit)
+        {
+
+            //if (t_vectorBetween.magnitude < m_radius)
+            //{
+            //    m_enterOrbit = false;
+            //    //gameObject.GetComponent<Rigidbody>().AddForce((gameObject.transform.position - t_targetTransform.position) * (-1*Mathf.Log10(t_vectorBetween.magnitude/m_radius)));
+            //    //den bragameObject.GetComponent<Rigidbody>().AddForce(1*(t_targetTransform.position - gameObject.transform.position) * (Mathf.Log10(t_vectorBetween.magnitude/m_radius))*150);
+            //    gameObject.GetComponent<Rigidbody>().AddForce((t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude * m_veloMultiplier);
+            //    //gameObject.GetComponent<Rigidbody>().AddForce((t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude*2);
+            //}
+            //else
+            //{
+            //    gameObject.GetComponent<Rigidbody>().AddForce((t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude * m_veloMultiplier);
+            //}
+
+        }
+        else
+        {
+            t_totalForce += (t_goalPos - gameObject.transform.position).normalized * m_dragForce;
+
+        }
+        t_myBody.AddForce(t_totalForce);
+        m_prevVecBetween = t_vectorBetween;
+
+
+        //if (gameObject.GetComponent<Rigidbody>().velocity.magnitude - t_targetTransform > m_veloMaxSpeed)
+        //if (gameObject.GetComponent<Rigidbody>().velocity.magnitude > m_veloMaxSpeed)
         //{
-        //    progress = 360 - progress;
+        //    print("nu går det undan");
+        //    float t_veloFactor = gameObject.GetComponent<Rigidbody>().velocity.magnitude / m_veloMaxSpeed;
+        //    gameObject.GetComponent<Rigidbody>().AddForce(-1 * (gameObject.GetComponent<Rigidbody>().velocity / t_veloFactor));
         //}
-        //Vector3 orbitalVector = Quaternion.AngleAxis(progress, orbitalVectorUp) * orbitalVectorStart;
-        //transform.position = m_target.transform.position + orbitalVector;
+        //}
     }
 }

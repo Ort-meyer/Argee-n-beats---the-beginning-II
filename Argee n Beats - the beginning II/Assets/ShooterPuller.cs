@@ -34,7 +34,7 @@ public class ShooterPuller : MonoBehaviour
             int fireFactor = 0;
             float dot = Vector3.Dot(lineBetween, cameraTarget);
             float derp = freqAnalys.m_currentAmplitude;
-            Debug.Log(derp);
+            //Debug.Log(derp);
             //Debug.Log(dot);
             if (freqAnalys.m_currentFrequency > m_threshold)
             {
