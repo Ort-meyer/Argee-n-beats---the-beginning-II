@@ -8,10 +8,11 @@ public class InputManager : MonoBehaviour {
 
     List<SoundAnalysisNotPlayer> soundAffectors = new List<SoundAnalysisNotPlayer>();
     float range = 2.0f;
-    LayerMask collisionMask = LayerMask.GetMask("SoundAffectors");
+    LayerMask collisionMask;
 
 	// Use this for initialization
 	void Start () {
+        collisionMask = LayerMask.GetMask("SoundAffectors");
         freqAn = GetComponent<FrequencyAnalysis>();
 	}
 
