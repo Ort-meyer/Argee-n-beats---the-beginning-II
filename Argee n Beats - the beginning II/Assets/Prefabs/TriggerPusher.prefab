@@ -129,8 +129,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1509581638714972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.72, z: 0}
-  m_LocalScale: {x: 1, y: 3.3140876, z: 1}
+  m_LocalPosition: {x: 0, y: -0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1.1886444, z: 1}
   m_Children: []
   m_Father: {fileID: 4763185288235238}
   m_RootOrder: 1
@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997396133843980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -133.08, y: -90.68, z: -138.72}
+  m_LocalPosition: {x: -84.85, y: -34.57, z: -141.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4132959617341878}
@@ -231,10 +231,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d141eae0e765cce498665d4cdf36414e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTriggered: 0
-  continous: 0
+  continous: 1
   collisionExtent: 5
   req_Amplitude: 0.136
+  switchTriggered: 0
+  switchCD: 1
+  switchTimer: 0
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
@@ -284,8 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0416171438a124188aa16b6f8bbc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 3000
-  maxVel: 100
+  pushForce: 10000
 --- !u!136 &136895204598160278
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -399,7 +400,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       minMaxState: 3
-      scalar: 12
+      scalar: 35
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -417,7 +418,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.8333333
+          value: 0.71428573
           inSlope: 0
           outSlope: 0
           tangentMode: 0
