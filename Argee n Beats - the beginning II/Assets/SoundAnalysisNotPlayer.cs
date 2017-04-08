@@ -2,40 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundAnalysisNotPlayer : MonoBehaviour {
+public class SoundAnalysisNotPlayer : MonoBehaviour
+{
 
     public GameObject m_playerObject;
     public float m_currentFrequency = 0;
     public float m_currentAmplitude = 0;
     public float m_maxAmplitude;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
-        m_maxAmplitude = m_playerObject.GetComponent<FrequencyAnalysis>().m_maxAmplitude;	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        m_maxAmplitude = m_playerObject.GetComponent<FrequencyAnalysis>().m_maxAmplitude;
+    }
+
+    // Update is called once per frame
+    void Update()
     {
+        
         AudioSource audio = GetComponent<AudioSource>();
-        if(Input.GetKeyUp(KeyCode.Y))
-        {
-            //audio.clip = Instantiate(m_playerObject.GetComponent<FrequencyAnalysis>().m_recordedClip);
-            //audio.clip = Instantiate(m_playerObject.GetComponent<AudioSource>().clip);
-            audio.clip = m_playerObject.GetComponent<FrequencyAnalysis>().m_recordedClip;
-            audio.loop = true;
-            audio.Play();
-
-
-        }
-
         float[] data = new float[1024];
         float[] amplitudeData = new float[1024];
         audio.GetSpectrumData(data, 0, FFTWindow.Rectangular);
         audio.GetOutputData(amplitudeData, 0);
         AnalyzeSound(data);
         AnalyzeAmplitude(amplitudeData);
+    }
+
+    public void StartPlaying()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.clip = m_playerObject.GetComponent<FrequencyAnalysis>().m_recordedClip;
+        audio.loop = true;
+        audio.Play();
     }
 
     private void AnalyzeSound(float[] data)
