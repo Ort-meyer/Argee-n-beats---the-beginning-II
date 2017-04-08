@@ -75,6 +75,18 @@ public class TP_Controller : MonoBehaviour {
                 ShootArrow();
             }
         }
+        if (Input.GetKeyUp("y"))
+        {
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            Cursor.visible = !Cursor.visible;
+        }
     }
 
     public bool IsGrounded()
