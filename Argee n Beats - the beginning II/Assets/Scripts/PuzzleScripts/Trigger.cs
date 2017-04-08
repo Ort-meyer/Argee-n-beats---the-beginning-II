@@ -11,6 +11,7 @@ public class Trigger : MonoBehaviour {
     public bool isTriggered;
     public bool continous = false; //om true så kallar den kommandot hela tiden
     public float collisionExtent = 5;
+    public float req_Amplitude = 0.0f;
     public LayerMask collisionMask;
 
     public ParticleSystem psActivated;
@@ -53,6 +54,23 @@ public class Trigger : MonoBehaviour {
         Collider[] col = Physics.OverlapBox(transform.position, new Vector3(collisionExtent, collisionExtent, collisionExtent), Quaternion.identity, collisionMask);
         if (col.Length > 0)
         {
+            float bestAmplitude = -Mathf.Infinity;
+            if(req_Amplitude > 0) //använd amplitud
+            {
+                for(int i = 0; i < col.Length; i++)
+                {
+                    FrequencyAnalysis fA = col[i].GetComponent<FrequencyAnalysis>();
+                    if(fA != null)
+                    {
+                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_currentAmplitude);
+                    }
+                }
+
+                if(bestAmplitude < req_Amplitude) //inte tillräkligt med amplitud
+                {
+                    return false;
+                }
+            }
             return true;
         }
         return false;
