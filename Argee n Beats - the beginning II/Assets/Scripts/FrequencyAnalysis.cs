@@ -9,7 +9,9 @@ public class FrequencyAnalysis : MonoBehaviour
     private int recordingDuration = 5;
 
     public int m_currentFrequency;
+    public int m_momentaryFrequency;
     public float m_currentAmplitude;
+    public float m_momentaryAmplitude;
     public float m_maxAmplitude = 4;
 
     public int m_keyPressRecordDuration = 2;
@@ -96,7 +98,7 @@ public class FrequencyAnalysis : MonoBehaviour
         }
 
         m_freqValues[m_frameIter] = highestFreq * (21000 / 1024);
-
+        m_momentaryFrequency = (int)m_freqValues[m_frameIter];
         float avrage = 0;
         // Get the avrage of the past number of frames
         for (int i = 0; i < m_framesToAvrage; i++)
@@ -124,6 +126,7 @@ public class FrequencyAnalysis : MonoBehaviour
         if (ampl > 1)
             ampl = 1;
         m_amplitudeValues[m_frameIter] = ampl;
+        m_momentaryAmplitude = m_amplitudeValues[m_frameIter];
 
         // Get the avrage of the past number of frames
         float avrage = 0;
