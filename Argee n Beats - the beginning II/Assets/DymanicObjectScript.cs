@@ -85,8 +85,8 @@ public class DymanicObjectScript : MonoBehaviour {
         {
             m_enterOrbit = false;
         }
-        //if (gameObject.GetComponent<Rigidbody>().velocity.magnitude > m_veloMaxSpeed)
-        if (gameObject.GetComponent<Rigidbody>().velocity.magnitude - t_targetTransform > m_veloMaxSpeed)
+        //if (gameObject.GetComponent<Rigidbody>().velocity.magnitude - t_targetTransform > m_veloMaxSpeed)
+        if (gameObject.GetComponent<Rigidbody>().velocity.magnitude > m_veloMaxSpeed)
             {
                 print("nu går det undan");
             float t_veloFactor = gameObject.GetComponent<Rigidbody>().velocity.magnitude / m_veloMaxSpeed;
