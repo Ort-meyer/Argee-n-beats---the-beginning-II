@@ -23,6 +23,7 @@ public class FollowNavigationAgent : MonoBehaviour {
     {
         totalForce = Vector3.zero;
         navigation.transform.position = this.transform.position;
+        navigation.GetComponent<NavMeshAgent>().Warp(this.transform.position);
         GetComponent<Rigidbody>().angularDrag = 0.05f;
     }
 	
