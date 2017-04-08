@@ -25,11 +25,34 @@ public class Pusher : MonoBehaviour {
             {
                 Vector3 tSameY = new Vector3(transform.position.x, c.transform.position.y, transform.position.z);
                 Vector3 dir = (c.transform.position - tSameY).normalized;
-                o_r.AddForce(dir * pushForce * Time.deltaTime, forceMode);
+                o_r.AddForce(dir * pushForce, forceMode);
             }
             else
             {
-                o_r.AddForce(transform.up * pushForce * Time.deltaTime, forceMode);
+                o_r.AddForce(transform.up * pushForce, forceMode);
+            }
+        }
+    }
+
+    void OnColliderEnter(Collision c)
+    {
+        if (!activated)
+            return;
+
+        Rigidbody o_r = c.gameObject.GetComponent<Rigidbody>();
+
+        if (o_r != null)
+        {
+            if (pushAway)
+            {
+                Vector3 dir = (c.contacts[0].point - transform.position).normalized;
+                o_r.AddForce(dir * pushForce, forceMode);
+                print("hej");
+            }
+            else
+            {
+                o_r.AddForce(transform.up * pushForce, forceMode);
+                print("hej");
             }
         }
     }

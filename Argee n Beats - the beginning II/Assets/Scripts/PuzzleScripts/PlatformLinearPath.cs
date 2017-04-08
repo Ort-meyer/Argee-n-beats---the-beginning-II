@@ -26,7 +26,7 @@ public class PlatformLinearPath : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if(Vector3.Distance(o_rigidbody.position, currPath.position) < 0.1f)
+        if(Vector3.Distance(o_rigidbody.position, currPath.position) < 0.5f)
         {
             o_rigidbody.velocity = o_rigidbody.velocity * 0.4f; //slöa ned den
             return;
