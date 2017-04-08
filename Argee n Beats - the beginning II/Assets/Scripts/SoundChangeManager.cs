@@ -26,33 +26,50 @@ public class SoundChangeManager : MonoBehaviour {
 		
 	}
 
-    bool CheckInRange(SoundChange sc)
+    bool CheckInRange(SoundChange sc, float range)
     {
-        return true;
+        if ((new Vector3(sc.transform.position.x, 0.0f, sc.transform.position.z) - new Vector3(transform.position.x, 0.0f, transform.position.z)).magnitude < (range + sc.radius))
+        {
+            return true;
+        }
+        return false;
     }
 
 	// Update is called once per frame
 	void Update () {
 
-        // Update current
-        if (counter < soundChangers.Count)
-        {
-            SoundChange sc = soundChangers[counter];
+        //// Update current
+        //while (counter < soundChangers.Count)
+        //{
+        //    SoundChange sc = soundChangers[counter];
 
-            // check if in range
-            if (CheckInRange(sc))
+        //    // check if in range
+        //    if (CheckInRange(sc, 6.0f))
+        //    {
+        //        sc.ColorByPositionFull(transform.position, 3.0f, 6.0f);
+        //        //sc.ColorByPositionSelected(transform.position, 3.0f, 6.0f);
+        //        break;
+        //    }
+        //    counter++;
+        //}
+
+
+        //counter++;
+        //if (counter > soundChangers.Count)
+        //{
+        //    counter = 0;
+        //}
+
+        int counter = 0;
+        foreach (var item in soundChangers)
+        {
+            if (CheckInRange(item, 1.0f))
             {
-                //sc.ColorByPositionFull(transform.position, 0.25f, 2.0f);
-                sc.ColorByPositionSelected(transform.position, 0.25f, 2.0f);
+                item.ColorByPositionFull(transform.position, 1.0f, 1.0f);
+                counter++;
             }
         }
-        
-
-        counter++;
-        if (counter > soundChangers.Count)
-        {
-            counter = 0;
-        }
+        Debug.Log(counter);
     }
 
     public void Register(SoundChange sc)
