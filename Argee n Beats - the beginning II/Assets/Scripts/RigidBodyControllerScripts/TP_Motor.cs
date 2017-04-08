@@ -19,7 +19,7 @@ public class TP_Motor : MonoBehaviour {
     public float m_dashSpeedImpulse = 50f;
     public float m_dashSpeedFalloff = 100f;
     public bool m_isDashing = false;
-
+    public float m_linearDrag = 0.9f;
     private float m_currentDashSpeed = 0f;
     private float m_dashCooldownTimer = 0;
     private Vector3 m_slideDirection;
@@ -87,7 +87,7 @@ public class TP_Motor : MonoBehaviour {
         // multiply normalised movevec with movespeed
         if (!m_isDashing)
         {
-            m_moveVector *= MoveSpeed()*40;
+            m_moveVector *= MoveSpeed();
         }
         HandleDash();
         //Reapply Vertical Vel MoveVector.y
@@ -102,19 +102,26 @@ public class TP_Motor : MonoBehaviour {
         }
 
         // Move the Character in World space
-        TP_Controller.m_rigidBodyController.velocity = (m_moveVector * Time.deltaTime);
+        //TP_Controller.m_rigidBodyController.velocity = (m_moveVector * Time.deltaTime);
+        TP_Controller.m_rigidBodyController.AddForce(m_moveVector * Time.deltaTime, ForceMode.VelocityChange);
+        HandleDrag();
     }
+    void HandleDrag()
+    {
+        Vector3 velocityInPlane = Vector3.ProjectOnPlane(TP_Controller.m_rigidBodyController.velocity, new Vector3(0, 1, 0));
+        TP_Controller.m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
 
+    }
     void ApplyGravity()
     {
-        if (m_moveVector.y > -m_terminalVel)
-        {
-            m_moveVector = new Vector3(m_moveVector.x, m_moveVector.y - m_gravity * Time.deltaTime, m_moveVector.z);
-        }
-        if (TP_Controller.Instance.IsGrounded() && m_moveVector.y < -1)
-        {
-            m_moveVector = new Vector3(m_moveVector.x, -1, m_moveVector.z);
-        }
+        //if (m_moveVector.y > -m_terminalVel)
+        //{
+        //    m_moveVector = new Vector3(m_moveVector.x, m_moveVector.y - m_gravity * Time.deltaTime, m_moveVector.z);
+        //}
+        //if (TP_Controller.Instance.IsGrounded() && m_moveVector.y < -1)
+        //{
+        //    m_moveVector = new Vector3(m_moveVector.x, -1, m_moveVector.z);
+        //}
     }
 
     bool ApplySlide()
@@ -170,6 +177,12 @@ public class TP_Motor : MonoBehaviour {
         {
             transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
                 Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
+
+            
+
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
+                Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
+
         }
     }
 

@@ -14,8 +14,8 @@ public class TP_Camera : MonoBehaviour {
     public float m_XMouseSense = 5f;
     public float m_YMouseSense = 5f;
     public float m_mouseWheelSense = 5f;
-    public float m_XSmooth = 0.05f;
-    public float m_YSmooth = 0.1f;
+    public float m_XSmooth = 0.001f;
+    public float m_YSmooth = 0.001f;
     public float m_YMinLimit = -40f;
     public float m_YMaxLimit = 80f;
     public float m_occlusionDistanceStep = 0.5f;
@@ -86,7 +86,7 @@ public class TP_Camera : MonoBehaviour {
             t_targetLookAt.transform.localPosition = new Vector3(1.46f, 0.21f, 2.21f);
              m_YMinLimit = -20f;
              m_YMaxLimit = 40f;
-            TP_AimTrajectoryScript.m_instance.ToggleTrajectory(true);
+            //TP_AimTrajectoryScript.m_instance.ToggleTrajectory(true);
             m_XMouseSense = 3f;
             m_YMouseSense = 1f;
             m_aiming = true;
@@ -97,7 +97,7 @@ public class TP_Camera : MonoBehaviour {
             t_targetLookAt.transform.localPosition = new Vector3(0, 0.9f, 0);
             m_YMinLimit = -40f;
             m_YMaxLimit = 80f;
-            TP_AimTrajectoryScript.m_instance.ToggleTrajectory(false);
+            //TP_AimTrajectoryScript.m_instance.ToggleTrajectory(false);
             m_XMouseSense = 5f;
             m_YMouseSense = 5f;
             m_aiming = false;

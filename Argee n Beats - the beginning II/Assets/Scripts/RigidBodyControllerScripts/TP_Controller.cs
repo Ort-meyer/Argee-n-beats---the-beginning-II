@@ -29,9 +29,10 @@ public class TP_Controller : MonoBehaviour {
     {
         float deadZone = 0.1f;
 
-        TP_Motor.m_instance.m_verticalVel = TP_Motor.m_instance.m_moveVector.y;
+        //TP_Motor.m_instance.m_verticalVel = TP_Motor.m_instance.m_moveVector.y;
         TP_Motor.m_instance.m_dashDirection = TP_Motor.m_instance.m_moveVector.normalized;
         TP_Motor.m_instance.m_moveVector = Vector3.zero;
+        TP_Motor.m_instance.m_verticalVel = 0;
         float t_vert = Input.GetAxis("Vertical");
         float t_hori = Input.GetAxis("Horizontal");
         if (TP_Motor.m_instance.m_isDashing)
@@ -50,6 +51,12 @@ public class TP_Controller : MonoBehaviour {
             }
         }
         TP_Animator.m_instance.DetermineCurrentMoveDirection();
+    }
+    void HandleDrag()
+    {
+        Vector3 velocityInPlane = Vector3.ProjectOnPlane(m_rigidBodyController.velocity, new Vector3(0, 1, 0));
+        m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
+
     }
     void HandleActionInput()
     {
