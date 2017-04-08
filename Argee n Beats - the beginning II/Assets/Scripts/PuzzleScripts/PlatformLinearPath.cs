@@ -34,7 +34,7 @@ public class PlatformLinearPath : MonoBehaviour {
         if (initTimes == 0 || currPath == null)
             return;
 
-        if (Vector3.Distance(o_rigidbody.position, currPath.position) < 0.5f)
+        if (Vector3.Distance(o_rigidbody.position, currPath.position) < 0.4f)
         {
             o_rigidbody.velocity = o_rigidbody.velocity * 0.4f; //slöa ned den
             return;
@@ -44,7 +44,7 @@ public class PlatformLinearPath : MonoBehaviour {
 
         if (!useForce)
         {
-            momentum = Vector3.Lerp(momentum, dir, Time.fixedDeltaTime);
+            momentum = Vector3.Lerp(momentum, dir, Time.fixedDeltaTime * 3);
 
             o_rigidbody.MovePosition(o_rigidbody.position + momentum * Time.fixedDeltaTime * speedF); //flytta den från den gamla positionen
         }
