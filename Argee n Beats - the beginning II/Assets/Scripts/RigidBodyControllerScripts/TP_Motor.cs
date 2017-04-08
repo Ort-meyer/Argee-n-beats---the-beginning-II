@@ -103,7 +103,9 @@ public class TP_Motor : MonoBehaviour {
 
         // Move the Character in World space
         //TP_Controller.m_rigidBodyController.velocity = (m_moveVector * Time.deltaTime);
-        TP_Controller.m_rigidBodyController.AddForce(m_moveVector * Time.deltaTime, ForceMode.VelocityChange);
+        Vector3 xzmovement =  new Vector3(m_moveVector.x, 0, m_moveVector.z);
+        TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.deltaTime, ForceMode.VelocityChange);
+        TP_Controller.m_rigidBodyController.AddForce(0, m_moveVector.y, 0, ForceMode.VelocityChange);
         HandleDrag();
     }
     void HandleDrag()

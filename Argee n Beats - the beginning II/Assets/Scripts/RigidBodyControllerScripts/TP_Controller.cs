@@ -7,7 +7,8 @@ public class TP_Controller : MonoBehaviour {
     public static Rigidbody m_rigidBodyController;
     public static TP_Controller Instance;
 
-
+    public float m_jumpCoolDown = 1.0f;
+    private float m_jumpTimer = -0.1f;
 	// Use this for initialization
 	void Awake () {
         m_rigidBodyController = GetComponent<Rigidbody>();
@@ -23,8 +24,16 @@ public class TP_Controller : MonoBehaviour {
         }
         GetLocomotionInput();
         HandleActionInput();
+        UpdateCooldowns();
         TP_Motor.m_instance.UpdateMotor();
 	}
+    void UpdateCooldowns()
+    {
+        if (m_jumpTimer > 0f)
+        {
+            m_jumpTimer -= Time.deltaTime;
+        }
+    }
     void GetLocomotionInput()
     {
         float deadZone = 0.1f;
@@ -60,9 +69,13 @@ public class TP_Controller : MonoBehaviour {
     }
     void HandleActionInput()
     {
-        if (Input.GetButton("Jump"))
-        {
-            Jump();
+       if (Input.GetButton("Jump"))
+       {
+            if (m_jumpTimer < 0f)
+            {
+                Jump();
+                m_jumpTimer = m_jumpCoolDown;
+            }
         }
         if (Input.GetButton("Dash"))
         {

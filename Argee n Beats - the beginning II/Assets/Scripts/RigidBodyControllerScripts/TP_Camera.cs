@@ -35,6 +35,7 @@ public class TP_Camera : MonoBehaviour {
     private float m_preOccludedDistance = 0f;
     private Vector3 m_position = Vector3.zero;
     private Vector3 m_desiredPosition = Vector3.zero;
+    private float m_preAimDistance = 0f;
 
     void Awake()
     {
@@ -66,6 +67,10 @@ public class TP_Camera : MonoBehaviour {
         } while (CheckIfOccluded(count));
 
         UpdatePosition();
+        if (!m_aiming)
+        {
+            m_preAimDistance = m_distance;
+        }
     }
 
     void HandlePlayerInput()
@@ -83,8 +88,13 @@ public class TP_Camera : MonoBehaviour {
         {
             // The RMB is down enter aimmode
             GameObject t_targetLookAt = GameObject.Find("targetLookAt");
-            t_targetLookAt.transform.localPosition = new Vector3(1.46f, 0.21f, 2.21f);
-             m_YMinLimit = -20f;
+            t_targetLookAt.transform.localPosition = new Vector3(1.46f, 0.9f, 0f);
+            m_desiredDistance = 1;
+
+            m_preOccludedDistance = m_desiredDistance;
+            m_distanceSmoothForOcclusion = m_distanceSmooth;
+            //t_targetLookAt.transform.localPosition = new Vector3(1.46f, 0.21f, 2.21f);
+            m_YMinLimit = -20f;
              m_YMaxLimit = 40f;
             //TP_AimTrajectoryScript.m_instance.ToggleTrajectory(true);
             m_XMouseSense = 3f;
@@ -93,6 +103,9 @@ public class TP_Camera : MonoBehaviour {
         }
         else
         {
+            m_distance = m_preAimDistance;
+            m_preOccludedDistance = m_distance;
+            m_distanceSmoothForOcclusion = m_distanceSmooth;
             GameObject t_targetLookAt = GameObject.Find("targetLookAt");
             t_targetLookAt.transform.localPosition = new Vector3(0, 0.9f, 0);
             m_YMinLimit = -40f;
@@ -165,7 +178,6 @@ public class TP_Camera : MonoBehaviour {
                 m_distanceSmoothForOcclusion = m_distanceResumeSmooth;
             }
         }
-
         return r_isOccluded;
     }
 
@@ -247,6 +259,13 @@ public class TP_Camera : MonoBehaviour {
         var posX = Mathf.SmoothDamp(m_position.x, m_desiredPosition.x, ref m_velX, m_XSmooth);
         var posY = Mathf.SmoothDamp(m_position.y, m_desiredPosition.y, ref m_velY, m_YSmooth);
         var posZ = Mathf.SmoothDamp(m_position.z, m_desiredPosition.z, ref m_velZ, m_XSmooth);
+        if (m_aiming)
+        {
+
+           posX = m_desiredPosition.x;
+           posY = m_desiredPosition.y;
+           posZ = m_desiredPosition.z;
+        }
         m_position = new Vector3(posX, posY, posZ);
 
         transform.position = m_position;
