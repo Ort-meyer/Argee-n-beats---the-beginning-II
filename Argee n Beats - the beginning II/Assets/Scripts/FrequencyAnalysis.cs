@@ -27,7 +27,13 @@ public class FrequencyAnalysis : MonoBehaviour
     void Start()
     {
         //m_maxAmplitude = 4; FOr some reason it appears as though this needs to be set here...
-        InvokeRepeating("ResetMic", 0, recordingDuration);
+        //InvokeRepeating("ResetMic", 0, recordingDuration);
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.clip = Microphone.Start(null, true, recordingDuration, 44100);
+        audio.loop = true;
+        while (!(Microphone.GetPosition(null) > 0)) { }
+        Microphone.GetPosition(null);
+        audio.Play();
     }
 
     // Update is called once per frame
@@ -67,6 +73,7 @@ public class FrequencyAnalysis : MonoBehaviour
         m_keyPressRecording = false;
         // Hope this copy works
         m_recordedClip = GetComponent<AudioSource>().clip;
+        ResetMic();
     }
 
     private void ResetMic()
@@ -122,6 +129,7 @@ public class FrequencyAnalysis : MonoBehaviour
         }
 
         float ampl = 0;
+        Debug.Log(sum);
         ampl = sum/ m_maxAmplitude;
         if (ampl > 1)
             ampl = 1;
