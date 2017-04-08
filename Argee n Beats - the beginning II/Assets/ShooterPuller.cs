@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShooterPuller : MonoBehaviour
 {
-    public float m_maxFrequency = 1000;
+    public float m_maxFrequency = 100;
     public float m_fireArc = 0.1f;
     public float m_fireForce = 100;
 
@@ -17,10 +17,12 @@ public class ShooterPuller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //FrequencyAnalysis freqAnalys = GetComponent<FrequencyAnalysis>();
-        //float fireFactor = freqAnalys.m_currentFrequency / m_maxFrequency;
-        //fireFactor -= 0.5f;
-       // fireFactor *= 2;
+        FrequencyAnalysis freqAnalys = GetComponent<FrequencyAnalysis>();
+        float fireFactor = freqAnalys.m_currentFrequency / m_maxFrequency;
+        fireFactor -= 0.5f;
+        fireFactor *= 2;
+        //Debug.Log(fireFactor);
+        Debug.Log(freqAnalys.m_currentFrequency);
 
         GameObject[] movables = GameObject.FindGameObjectsWithTag("DynamicObject");
         foreach (GameObject obj in movables)
@@ -29,10 +31,11 @@ public class ShooterPuller : MonoBehaviour
             Vector3 cameraTarget = Camera.current.transform.forward.normalized;
 
             float dot = Vector3.Dot(lineBetween, cameraTarget);
-            Debug.Log(dot);
+            //Debug.Log(dot);
             if (Vector3.Dot(lineBetween, cameraTarget) > 1-m_fireArc)
             {
-                obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce);
+                if(freqAnalys.m_currentFrequency > 40)
+                obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * fireFactor);
             }
 
         }
