@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TakeDamageOnImpact : MonoBehaviour {
-    public float imapctSpeedThreshold;
+    public float impactSpeedThreshold;
     [Tooltip("Per speed unit over impact speed")]
     public float damage;
     // Use this for initialization
@@ -18,6 +18,15 @@ public class TakeDamageOnImpact : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        
+        float magnitude = collision.relativeVelocity.magnitude;
+        if (magnitude > this.impactSpeedThreshold)
+        {
+            float amountOver = magnitude - this.impactSpeedThreshold;
+            Health health = GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damage * amountOver);
+            }
+        }
     }
 }

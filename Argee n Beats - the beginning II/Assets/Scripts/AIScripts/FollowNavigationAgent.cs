@@ -10,8 +10,13 @@ public class FollowNavigationAgent : MonoBehaviour {
     private Vector3 totalForce;
 	// Use this for initialization
 	void Start () {
-        navigation.GetComponent<NavMeshAgent>().speed = maxSpeed;
+        navigation.GetComponent<NavMeshAgent>().speed = maxSpeed+2.0f;
         navigation.GetComponent<NavMeshAgent>().acceleration = acceleration;
+        AttackBase attacker = GetComponent<AttackBase>();
+        if (attacker != null)
+        {
+            navigation.GetComponent<NavMeshAgent>().stoppingDistance = attacker.attackDistance;
+        }
     }
 
     void OnEnable()
@@ -35,6 +40,12 @@ public class FollowNavigationAgent : MonoBehaviour {
         {
             totalForce += direction * acceleration * Time.deltaTime;
         }
+        if (distance < 0.3)
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            totalForce = Vector3.zero;
+        }
         if (Input.GetKeyDown(KeyCode.K))
         {
             GetComponent<MovementManager>().AddImpulse(-direction * 20 + new Vector3(0,20,0));
@@ -46,6 +57,7 @@ public class FollowNavigationAgent : MonoBehaviour {
         Rigidbody myBody = GetComponent<Rigidbody>();
         
         myBody.AddForce(totalForce, ForceMode.VelocityChange);
+        
         totalForce = Vector3.zero;
         if (myBody.velocity.magnitude > maxSpeed)
         {

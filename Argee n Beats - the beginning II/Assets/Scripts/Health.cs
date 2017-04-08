@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour {
-    public int startingHealth;
+    public float startingHealth;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,12 +14,12 @@ public class Health : MonoBehaviour {
 		
 	}
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         startingHealth -= damage;
-        if (startingHealth <= 0)
+        if (startingHealth <= 0.0f)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
