@@ -25,8 +25,11 @@ public class TP_Controller : MonoBehaviour {
         GetLocomotionInput();
         HandleActionInput();
         UpdateCooldowns();
-        TP_Motor.m_instance.UpdateMotor();
 	}
+    private void FixedUpdate()
+    {
+        TP_Motor.m_instance.UpdateMotor();
+    }
     void UpdateCooldowns()
     {
         if (m_jumpTimer > 0f)
@@ -106,6 +109,21 @@ public class TP_Controller : MonoBehaviour {
     {
         RaycastHit t_info;
         return Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.1f);
+    }
+
+    public bool IsSliding(ref Vector3 o_collisionNormal)
+    {
+        RaycastHit t_info;
+        LayerMask skipme = LayerMask.NameToLayer("Player"); // kanske ta med fiender etc
+
+        int layer = int.MaxValue;
+        int test = 1 << skipme;
+        //layer &=~test;
+        layer -= test;
+        bool hit = Physics.Raycast(transform.position, Vector3.down, out t_info, 4.6f,layer);
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * 4.6f, Color.blue);
+        o_collisionNormal = t_info.normal;
+        return hit;
     }
     void ShootArrow()
     {

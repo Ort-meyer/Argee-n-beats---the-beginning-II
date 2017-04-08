@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4394723667104324}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: targetLookAt
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114034215261719566}
   - component: {fileID: 114866674606939894}
   - component: {fileID: 54425746214871872}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PlaceHolderPlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -147,13 +147,14 @@ MonoBehaviour:
   m_slideSpeed: 8
   m_gravity: 21
   m_terminalVel: 100
-  m_slideThreshold: 0.1
+  m_slideThreshold: 0.9
   m_maxControllableSlideMagnitude: 0.4
   m_dashCoolDown: 1
   m_dashSpeedImpulse: 50
   m_dashSpeedFalloff: 100
   m_isDashing: 0
   m_linearDrag: 0.9
+  slidingForceMultiplier: 100
 --- !u!114 &114866674606939894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,7 +184,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478226696988508}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5

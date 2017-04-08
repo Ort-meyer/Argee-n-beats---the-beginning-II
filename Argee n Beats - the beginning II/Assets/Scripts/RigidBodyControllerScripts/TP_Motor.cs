@@ -23,7 +23,8 @@ public class TP_Motor : MonoBehaviour {
     private float m_currentDashSpeed = 0f;
     private float m_dashCooldownTimer = 0;
     private Vector3 m_slideDirection;
-
+    
+    public float slidingForceMultiplier = 5;
     public Vector3 m_moveVector { get; set; }
 	public float m_verticalVel { get; set; }
     public Vector3 m_dashDirection { get; set; }
@@ -82,7 +83,7 @@ public class TP_Motor : MonoBehaviour {
         }
 
             // Apply Sliding if applicable
-        bool test = ApplySlide();
+        //bool test = ApplySlide();
 
         // multiply normalised movevec with movespeed
         if (!m_isDashing)
@@ -93,25 +94,76 @@ public class TP_Motor : MonoBehaviour {
         //Reapply Vertical Vel MoveVector.y
         m_moveVector = new Vector3(m_moveVector.x, m_verticalVel, m_moveVector.z);
 
-        if (test)
-        {
-
-            //Apply Gravity
-            ApplyGravity();
-
-        }
+        //if (test)
+        //{
+        //
+        //    //Apply Gravity
+        //    ApplyGravity();
+        //
+        //}
 
         // Move the Character in World space
         //TP_Controller.m_rigidBodyController.velocity = (m_moveVector * Time.deltaTime);
         Vector3 xzmovement =  new Vector3(m_moveVector.x, 0, m_moveVector.z);
+        HandleDrag();
         TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.deltaTime, ForceMode.VelocityChange);
         TP_Controller.m_rigidBodyController.AddForce(0, m_moveVector.y, 0, ForceMode.VelocityChange);
-        HandleDrag();
     }
     void HandleDrag()
     {
+        //IF du slidar ner för en vägg. Return. How fix?
+
+        Vector3 t_collisionNormal = Vector3.zero;
+        if (TP_Controller.Instance.IsSliding(ref t_collisionNormal))
+        {
+            
+            RaycastHit t_info;
+            LayerMask skipme = LayerMask.NameToLayer("Player"); // kanske ta med fiender etc
+
+            int layer = int.MaxValue;
+            int test = 1 << skipme;
+            //layer &=~test;
+            layer -= test;
+            bool hit = Physics.Raycast(transform.position, -transform.up, out t_info, 4.6f, layer);
+            //bool hit = Physics.SphereCast(transform.position, 1f, -transform.up, out t_info, 0.6f, layer);
+            //m_slideDirection = new Vector3(t_collisionNormal.x, -t_collisionNormal.y, t_collisionNormal.z);
+            if (t_collisionNormal.y < m_slideThreshold)
+            {
+                //if (m_moveVector.magnitude < 0.01f)
+                //{
+                //    return;
+                //
+                //}
+
+                float slidingForce = (1 - (t_info.normal.y / 0.7f)) * slidingForceMultiplier;
+                TP_Controller.m_rigidBodyController.AddForce(Vector3.down * slidingForce);
+                print("Im sliding");
+                //Vector3 t_velInPlane = Vector3.ProjectOnPlane(TP_Controller.m_rigidBodyController.velocity, t_info.normal);
+                //TP_Controller.m_rigidBodyController.AddForce(-1*Vector3.up* 5,ForceMode.Force);
+                if (TP_Controller.m_rigidBodyController.velocity.y < 0)
+                {
+                    return;
+                }
+                TP_Controller.m_rigidBodyController.AddForce(TP_Controller.m_rigidBodyController.velocity*-1 * TP_Motor.m_instance.m_linearDrag,ForceMode.VelocityChange);
+
+                //TP_Controller.m_rigidBodyController.AddForce(-TP_Controller.m_rigidBodyController.velocity * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
+                //m_slideDirection = new Vector3(t_info.normal.x, -t_info.normal.y, t_info.normal.z);
+                //m_slideDirection = Vector3.ProjectOnPlane(m_slideDirection, t_hitInfo.normal);
+                Debug.DrawRay(t_info.point, m_slideDirection, Color.blue);
+                Debug.DrawRay(transform.position, TP_Controller.m_rigidBodyController.velocity * 100, Color.yellow);
+                Debug.DrawRay(t_info.point, t_info.normal, Color.red);
+                return;
+            }
+        }
         Vector3 velocityInPlane = Vector3.ProjectOnPlane(TP_Controller.m_rigidBodyController.velocity, new Vector3(0, 1, 0));
         TP_Controller.m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
+
+        //if (TP_Controller.Instance.IsGrounded() && !m_jumping)
+        //{
+        //    TP_Controller.m_rigidBodyController.AddForce(-Vector3.up * m_verticalVel * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
+        //}
+        // Jumping is not gonna be used after this so reset it
+        //m_jumping = false;
 
     }
     void ApplyGravity()
