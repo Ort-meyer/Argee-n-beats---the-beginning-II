@@ -133,8 +133,7 @@ public class FrequencyAnalysis : MonoBehaviour
         }
 
         avrage /= m_framesToAvrage;
-        m_currentAmplitude = (int)avrage;
-        //Debug.Log(m_currentAmplitude);
+        m_currentAmplitude = avrage;
         //Debug.Log(sum);
     }
 

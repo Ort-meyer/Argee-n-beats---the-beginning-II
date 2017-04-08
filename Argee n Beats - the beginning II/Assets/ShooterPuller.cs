@@ -33,22 +33,24 @@ public class ShooterPuller : MonoBehaviour
 
             int fireFactor = 0;
             float dot = Vector3.Dot(lineBetween, cameraTarget);
+            float derp = freqAnalys.m_currentAmplitude;
+            Debug.Log(derp);
             //Debug.Log(dot);
             if (freqAnalys.m_currentFrequency > m_threshold)
             {
-                Debug.Log("high");
+                //Debug.Log("high");
                 fireFactor = 1;
             }
             else if (freqAnalys.m_currentFrequency <= m_threshold && freqAnalys.m_currentFrequency > 40)
             {
-                Debug.Log("low");
+                //Debug.Log("low");
                 fireFactor = -1;
-            }
+            } 
 
             if (Vector3.Dot(lineBetween, cameraTarget) > 1-m_fireArc)
             {
                 if(freqAnalys.m_currentFrequency > 40)
-                obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * fireFactor);
+                obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * fireFactor * freqAnalys.m_currentAmplitude);
             }
 
         }
