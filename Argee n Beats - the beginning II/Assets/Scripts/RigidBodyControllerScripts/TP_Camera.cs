@@ -22,6 +22,7 @@ public class TP_Camera : MonoBehaviour {
     public int m_maxOcclusionChecks = 10;
     public float m_distanceResumeSmooth = 1f;
     public bool m_aiming = false;
+    public LayerMask m_occludLayer;
 
     private float m_mouseX = 0f;
     public float m_mouseY = 0f;
@@ -40,6 +41,7 @@ public class TP_Camera : MonoBehaviour {
     void Awake()
     {
         m_instance = this;
+        m_occludLayer = LayerMask.NameToLayer("IgnoreCameraOcclusion");
     }
     
 	// Use this for initialization
@@ -89,7 +91,7 @@ public class TP_Camera : MonoBehaviour {
             // The RMB is down enter aimmode
             GameObject t_targetLookAt = GameObject.Find("targetLookAt");
             t_targetLookAt.transform.localPosition = new Vector3(1.46f, 0.9f, 0f);
-            m_desiredDistance = 1;
+            m_desiredDistance = 1.5f;
 
             m_preOccludedDistance = m_desiredDistance;
             m_distanceSmoothForOcclusion = m_distanceSmooth;
@@ -104,7 +106,10 @@ public class TP_Camera : MonoBehaviour {
         else
         {
             m_distance = m_preAimDistance;
-            m_preOccludedDistance = m_distance;
+            if (m_aiming)
+            {
+                m_preOccludedDistance = m_distance;
+            }
             m_distanceSmoothForOcclusion = m_distanceSmooth;
             GameObject t_targetLookAt = GameObject.Find("targetLookAt");
             t_targetLookAt.transform.localPosition = new Vector3(0, 0.9f, 0);
@@ -200,13 +205,16 @@ public class TP_Camera : MonoBehaviour {
         Debug.DrawLine(t_clipPlanePoints.UpperRight, t_clipPlanePoints.LowerRight);
         Debug.DrawLine(t_clipPlanePoints.LowerRight, t_clipPlanePoints.LowerLeft);
         Debug.DrawLine(t_clipPlanePoints.LowerLeft, t_clipPlanePoints.UpperLeft);
-
-        if (Physics.Linecast(p_from, t_clipPlanePoints.UpperLeft, out t_hitInfo) && t_hitInfo.collider.tag != "Player")
+        int layer = int.MaxValue;
+        int test = 1 << m_occludLayer;
+        //layer &=~test;
+        layer -=test;
+        if (Physics.Linecast(p_from, t_clipPlanePoints.UpperLeft, out t_hitInfo, layer) && t_hitInfo.collider.tag != "Player")
         {
             t_nearestDistance = t_hitInfo.distance;
         }
 
-        if (Physics.Linecast(p_from, t_clipPlanePoints.LowerLeft, out t_hitInfo) && t_hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(p_from, t_clipPlanePoints.LowerLeft, out t_hitInfo, layer) && t_hitInfo.collider.tag != "Player")
         {
             if (t_hitInfo.distance < t_nearestDistance || t_nearestDistance == -1)
             {
@@ -214,21 +222,21 @@ public class TP_Camera : MonoBehaviour {
             }
         }
 
-        if (Physics.Linecast(p_from, t_clipPlanePoints.UpperRight, out t_hitInfo) && t_hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(p_from, t_clipPlanePoints.UpperRight, out t_hitInfo, layer) && t_hitInfo.collider.tag != "Player")
         {
             if (t_hitInfo.distance < t_nearestDistance || t_nearestDistance == -1)
             {
                 t_nearestDistance = t_hitInfo.distance;
             }
         }
-        if (Physics.Linecast(p_from, t_clipPlanePoints.LowerRight, out t_hitInfo) && t_hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(p_from, t_clipPlanePoints.LowerRight, out t_hitInfo, layer) && t_hitInfo.collider.tag != "Player")
         {
             if (t_hitInfo.distance < t_nearestDistance || t_nearestDistance == -1)
             {
                 t_nearestDistance = t_hitInfo.distance;
             }
         }
-        if (Physics.Linecast(p_from, p_to + transform.forward * -Camera.main.nearClipPlane, out t_hitInfo) && t_hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(p_from, p_to + transform.forward * -Camera.main.nearClipPlane, out t_hitInfo, layer) && t_hitInfo.collider.tag != "Player")
         {
             if (t_hitInfo.distance < t_nearestDistance || t_nearestDistance == -1)
             {
