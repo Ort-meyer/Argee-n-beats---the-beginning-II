@@ -107,4 +107,9 @@ public class ParticleSystemManager : MonoBehaviour {
             }
         }
     }
+
+    public void KeepParticleSystemAliveBySound()
+    {
+
+    }
 }
