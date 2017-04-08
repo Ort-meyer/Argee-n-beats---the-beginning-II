@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FollowNavigationAgent : MonoBehaviour {
     public GameObject navigation;
@@ -9,8 +10,16 @@ public class FollowNavigationAgent : MonoBehaviour {
     private Vector3 totalForce;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        navigation.GetComponent<NavMeshAgent>().speed = maxSpeed;
+        navigation.GetComponent<NavMeshAgent>().acceleration = acceleration;
+    }
+
+    void OnEnable()
+    {
+        totalForce = Vector3.zero;
+        navigation.transform.position = this.transform.position;
+        GetComponent<Rigidbody>().angularDrag = 0.05f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,17 +27,25 @@ public class FollowNavigationAgent : MonoBehaviour {
         Vector3 direction = navigation.transform.position - this.transform.position;
         float distance = direction.magnitude;
         direction.Normalize();
+        if (distance > 2.0f)
+        {
+            navigation.transform.position = this.transform.position + direction;
+        }
         if (direction != Vector3.zero)
         {
             totalForce += direction * acceleration * Time.deltaTime;
         }
-
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GetComponent<MovementManager>().AddImpulse(-direction * 20 + new Vector3(0,20,0));
+        }
 	}
 
     void FixedUpdate()
     {
         Rigidbody myBody = GetComponent<Rigidbody>();
-        myBody.AddForce(totalForce, ForceMode.Acceleration);
+        
+        myBody.AddForce(totalForce, ForceMode.VelocityChange);
         totalForce = Vector3.zero;
         if (myBody.velocity.magnitude > maxSpeed)
         {
