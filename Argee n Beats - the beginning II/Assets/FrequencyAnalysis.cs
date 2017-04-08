@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class FrequencyAnalysis : MonoBehaviour
 {
-   //public GameObject m_source1;
-   //public GameObject m_source2;
+    //public GameObject m_source1;
+    //public GameObject m_source2;
 
     private float windowDuration = 0.2f;
 
     private int recordingDuration = 10;
 
     public int m_currentFrequency;
+    public float m_currentAmplitude;
 
     bool recording1;
 
@@ -40,9 +41,10 @@ public class FrequencyAnalysis : MonoBehaviour
         //m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
         //m_source1.GetComponent<AudioSource>().Play();
         GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
-        //GetComponent<AudioSource>().GetOutputData(data, 0);
+        GetComponent<AudioSource>().GetOutputData(amplitudeData, 0);
         AnalyzeSound(data);
-        //AnalyzeAmplitude(amplitudeData);
+        AnalyzeAmplitude(amplitudeData);
+
         //if (recording1 == false)
         //{
         //    m_source1.GetComponent<AudioSource>().GetSpectrumData(data, 0, FFTWindow.Rectangular);
@@ -98,12 +100,18 @@ public class FrequencyAnalysis : MonoBehaviour
             packageData += System.Math.Abs(data[i]);
         }
         m_currentFrequency = highestFreq * (21000 / 1024);
-        Debug.Log(m_currentFrequency);
+        //Debug.Log(m_currentFrequency);
     }
 
     private void AnalyzeAmplitude(float[] data)
     {
-        
+        float sum = 0;
+        for (int i = 0; i < data.Length; i++)
+        {
+            sum += System.Math.Abs(data[i]);
+        }
+        m_currentAmplitude = sum;
+        //Debug.Log(sum);
     }
 
 }
