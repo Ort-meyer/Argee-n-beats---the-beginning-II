@@ -47,65 +47,38 @@ public class DymanicObjectScript : MonoBehaviour {
 
             if (m_enterOrbit)
             {
-                //Kontrollera orbit. försöka
-                // typ reducera kraften på spheren.
-                // sätt ny target vecotr.
-                //float t_gravForce = Mathf.Pow(gameObject.GetComponent<Rigidbody>().velocity.magnitude,2)/ t_vectorBetween.magnitude;
-                //GameObject.Find("GoalTarget").GetComponent<Transform>().position
-
-                //gameObject.GetComponent<Rigidbody>().AddForce((GameObject.Find("GoalTarget").GetComponent<Transform>().position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude*2);
- 
                 if (t_vectorBetween.magnitude<m_radius)
                 {
                     m_enterOrbit = false;
-                    //gameObject.GetComponent<Rigidbody>().AddForce((gameObject.transform.position - t_targetTransform.position) * (-1*Mathf.Log10(t_vectorBetween.magnitude/m_radius)));
-                    //den bragameObject.GetComponent<Rigidbody>().AddForce(1*(t_targetTransform.position - gameObject.transform.position) * (Mathf.Log10(t_vectorBetween.magnitude/m_radius))*150);
-
+             
                     t_totalForce += (m_goalPos - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude * m_veloMultiplier;
                     // den nya bra 3,0t_totalForce += (t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude * m_veloMultiplier;
                     //DEN nyabra 2.0gameObject.GetComponent<Rigidbody>().AddForce((t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude* m_veloMultiplier);
-                    //Den nya bragameObject.GetComponent<Rigidbody>().AddForce((t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude* m_veloMultiplier);
-                    //gameObject.GetComponent<Rigidbody>().AddForce((t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude*2);
-
+              
                 }
                 else
                 {
                     t_totalForce += (m_goalPos - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude * m_veloMultiplier;
-                    //t_totalForce += (t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude * m_veloMultiplier;
-                    //gameObject.GetComponent<Rigidbody>().AddForce((t_targetTransform.position - gameObject.transform.position) * gameObject.GetComponent<Rigidbody>().velocity.magnitude* m_veloMultiplier);
-                    m_enterOrbit = true;
+                   m_enterOrbit = true;
                 }
 
             }
             else
             {
                 t_totalForce += (m_goalPos - gameObject.transform.position) * m_veloMultiplier;
-                //gameObject.GetComponent<Rigidbody>().AddForce((m_goalPos - gameObject.transform.position) * m_veloMultiplier);
 
             }
 
             m_prevVecBetween = t_vectorBetween;
-            // Debug.DrawLine(gameObject.transform.position, m_goalPos);
-
         }
         else
         {
             m_enterOrbit = false;
         }
-        //t_targetRigid.velocity.magnitude- gameObject.GetComponent<Rigidbody>().velocity.magnitude> m_
-        //if (gameObject.GetComponent<Rigidbody>().velocity.magnitude > m_veloMaxSpeed)
-        //print("kulan: " + gameObject.GetComponent<Rigidbody>().velocity.magnitude + " Spelaren: "+ t_targetRigid.velocity.magnitude);
-
         if ((gameObject.GetComponent<Rigidbody>().velocity - t_targetRigid.velocity).magnitude > m_veloMaxSpeed)
             {
-            //print("nu går det undan");
-            ////print(gameObject.GetComponent<Rigidbody>().velocity.magnitude);
-            //print(gameObject.GetComponent<Rigidbody>().velocity.magnitude - t_targetRigid.velocity.magnitude);
             float t_veloFactor = (gameObject.GetComponent<Rigidbody>().velocity - t_targetRigid.velocity).magnitude / m_veloMaxSpeed;
-            //float t_veloFactor = gameObject.GetComponent<Rigidbody>().velocity.magnitude / m_veloMaxSpeed;
             t_totalForce += -1 * (gameObject.GetComponent<Rigidbody>().velocity);
-            // den bra gameObject.GetComponent<Rigidbody>().AddForce(-1 * (gameObject.GetComponent<Rigidbody>().velocity / 1));
-            //gameObject.GetComponent<Rigidbody>().AddForce(-1 * (gameObject.GetComponent<Rigidbody>().velocity / t_veloFactor));
         }
         float t_distBetween = Vector3.Distance(gameObject.transform.position, t_targetTransform.position);
         if (t_distBetween <= m_radiusForOutPusher)
