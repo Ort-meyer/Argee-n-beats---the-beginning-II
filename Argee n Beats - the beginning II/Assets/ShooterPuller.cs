@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ShooterPuller : MonoBehaviour
 {
-    public float m_maxFrequency = 100;
+    public float m_maxFrequency = 700;
     public float m_fireArc = 0.1f;
-    public float m_fireForce = 100;
+    public float m_fireForce = 30;
 
     // Use this for initialization
     void Start()
@@ -21,8 +21,8 @@ public class ShooterPuller : MonoBehaviour
         float fireFactor = freqAnalys.m_currentFrequency / m_maxFrequency;
         fireFactor -= 0.5f;
         fireFactor *= 2;
-        //Debug.Log(fireFactor);
-        Debug.Log(freqAnalys.m_currentFrequency);
+        Debug.Log(fireFactor);
+        //Debug.Log(freqAnalys.m_currentFrequency);
 
         GameObject[] movables = GameObject.FindGameObjectsWithTag("DynamicObject");
         foreach (GameObject obj in movables)
@@ -35,7 +35,7 @@ public class ShooterPuller : MonoBehaviour
             if (Vector3.Dot(lineBetween, cameraTarget) > 1-m_fireArc)
             {
                 if(freqAnalys.m_currentFrequency > 40)
-                obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * fireFactor);
+                obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * Mathf.Sign(fireFactor));
             }
 
         }

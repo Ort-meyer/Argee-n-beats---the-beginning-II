@@ -15,6 +15,12 @@ public class FrequencyAnalysis : MonoBehaviour
     public int m_keyPressRecordDuration = 2;
     private bool m_keyPressRecording = false;
 
+    private float[] m_amplitudeValues = new float[m_framesToAvrage];
+    private float[] m_freqValues = new float[m_framesToAvrage];
+
+    const int m_framesToAvrage = 10;
+    int m_frameIter = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -25,6 +31,11 @@ public class FrequencyAnalysis : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_frameIter++;
+        if (m_frameIter > m_framesToAvrage)
+            m_frameIter = 0;
+
+
         AudioSource audio = GetComponent<AudioSource>();
 
         // User wants to record a sound
@@ -46,6 +57,7 @@ public class FrequencyAnalysis : MonoBehaviour
             AnalyzeAmplitude(amplitudeData);
         }
 
+        //Debug.Log(m_currentFrequency);
     }
 
     private void FinishKeyPressRecording()
@@ -82,7 +94,20 @@ public class FrequencyAnalysis : MonoBehaviour
             }
             packageData += System.Math.Abs(data[i]);
         }
-        m_currentFrequency = highestFreq * (21000 / 1024);
+
+        m_freqValues[m_frameIter] = highestFreq * (21000 / 1024);
+
+        float avrage = 0;
+        // Get the avrage of the past number of frames
+        for (int i = 0; i < m_framesToAvrage; i++)
+        {
+            avrage += m_freqValues[i];
+        }
+
+        avrage /= m_framesToAvrage;
+        m_currentFrequency = (int)avrage;
+
+        //m_currentFrequency = highestFreq * (21000 / 1024);
         //Debug.Log(m_currentFrequency);
     }
 
@@ -93,9 +118,22 @@ public class FrequencyAnalysis : MonoBehaviour
         {
             sum += System.Math.Abs(data[i]);
         }
-        m_currentAmplitude = sum/ m_maxAmplitude;
-        if (m_currentAmplitude > 1)
-            m_currentAmplitude = 1;
+
+        float ampl = 0;
+        ampl = sum/ m_maxAmplitude;
+        if (ampl > 1)
+            ampl = 1;
+        m_amplitudeValues[m_frameIter] = ampl;
+
+        // Get the avrage of the past number of frames
+        float avrage = 0;
+        for (int i = 0; i < m_framesToAvrage; i++)
+        {
+            avrage += m_amplitudeValues[i];
+        }
+
+        avrage /= m_framesToAvrage;
+        m_currentAmplitude = (int)avrage;
         //Debug.Log(m_currentAmplitude);
         //Debug.Log(sum);
     }

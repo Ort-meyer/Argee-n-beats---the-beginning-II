@@ -731,9 +731,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f222da24998b8408af02581658876d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxFrequency: 1000
+  m_maxFrequency: 700
   m_fireArc: 0.1
-  m_fireForce: 100
+  m_fireForce: 20
 --- !u!114 &812235390
 MonoBehaviour:
   m_ObjectHideFlags: 0
