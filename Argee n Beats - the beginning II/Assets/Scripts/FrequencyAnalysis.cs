@@ -14,6 +14,8 @@ public class FrequencyAnalysis : MonoBehaviour
     public int m_currentFrequency;
     public float m_currentAmplitude;
 
+    public float m_maxAmplitude = 4;
+
     bool recording1;
 
     float threshold;
@@ -21,6 +23,7 @@ public class FrequencyAnalysis : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        m_maxAmplitude = 4;
         //m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 100, 44100);
         //m_source1.GetComponent<AudioSource>().loop = true;
         //AudioSource audio = m_source1.GetComponent<AudioSource>();
@@ -110,7 +113,10 @@ public class FrequencyAnalysis : MonoBehaviour
         {
             sum += System.Math.Abs(data[i]);
         }
-        m_currentAmplitude = sum;
+        m_currentAmplitude = sum/ m_maxAmplitude;
+        if (m_currentAmplitude > 1)
+            m_currentAmplitude = 1;
+        //Debug.Log(m_currentAmplitude);
         //Debug.Log(sum);
     }
 
