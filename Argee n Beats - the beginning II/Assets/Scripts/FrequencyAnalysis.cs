@@ -36,6 +36,21 @@ public class FrequencyAnalysis : MonoBehaviour
         audio.Play();
     }
 
+    public bool IsKeyRecording()
+    {
+        return m_keyPressRecording;
+    }
+
+    public void StartRecording()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        // User wants to record a sound
+        m_keyPressRecording = true;
+        audio.Stop();
+        audio.clip = Microphone.Start(null, false, 2, 44100);
+        Invoke("FinishKeyPressRecording", 2 + 0.1f);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -46,14 +61,14 @@ public class FrequencyAnalysis : MonoBehaviour
 
         AudioSource audio = GetComponent<AudioSource>();
 
-        // User wants to record a sound
-        if (Input.GetKeyUp(KeyCode.G))
-        {
-            m_keyPressRecording = true;
-            audio.Stop();
-            audio.clip = Microphone.Start(null, false, 2, 44100);
-            Invoke("FinishKeyPressRecording", 2 + 0.1f);
-        }
+        //// User wants to record a sound
+        //if (Input.GetKeyUp(KeyCode.G))
+        //{
+        //    m_keyPressRecording = true;
+        //    audio.Stop();
+        //    audio.clip = Microphone.Start(null, false, 2, 44100);
+        //    Invoke("FinishKeyPressRecording", 2 + 0.1f);
+        //}
         // Stop analyzing when we're recording from key press
         if (!m_keyPressRecording)
         {

@@ -114,9 +114,14 @@ public class Trigger : MonoBehaviour {
                 for(int i = 0; i < col.Length; i++)
                 {
                     FrequencyAnalysis fA = col[i].GetComponent<FrequencyAnalysis>();
+                    SoundAnalysisNotPlayer fB = col[i].GetComponent<SoundAnalysisNotPlayer>();
                     if(fA != null)
                     {
                         bestAmplitude = Mathf.Max(bestAmplitude, fA.m_momentaryAmplitude);
+                    }
+                    else if(fB != null)
+                    {
+                        bestAmplitude = Mathf.Max(bestAmplitude, fB.m_currentAmplitude);
                     }
                 }
 
