@@ -90,7 +90,7 @@ public class Trigger : MonoBehaviour {
                     FrequencyAnalysis fA = col[i].GetComponent<FrequencyAnalysis>();
                     if (fA != null)
                     {
-                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_currentAmplitude);
+                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_momentaryAmplitude);
                     }
                 }
 
@@ -117,7 +117,7 @@ public class Trigger : MonoBehaviour {
                     FrequencyAnalysis fA = col[i].GetComponent<FrequencyAnalysis>();
                     if(fA != null)
                     {
-                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_currentAmplitude);
+                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_momentaryAmplitude);
                     }
                 }
 
