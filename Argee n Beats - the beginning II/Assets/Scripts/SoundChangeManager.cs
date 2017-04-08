@@ -42,7 +42,8 @@ public class SoundChangeManager : MonoBehaviour {
             // check if in range
             if (CheckInRange(sc))
             {
-                sc.ColorByPosition(transform.position);
+                //sc.ColorByPositionFull(transform.position, 0.25f, 2.0f);
+                sc.ColorByPositionSelected(transform.position, 0.25f, 2.0f);
             }
         }
         
