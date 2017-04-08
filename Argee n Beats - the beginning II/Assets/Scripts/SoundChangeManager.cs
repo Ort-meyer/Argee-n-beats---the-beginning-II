@@ -69,7 +69,7 @@ public class SoundChangeManager : MonoBehaviour {
                 counter++;
             }
         }
-        Debug.Log(counter);
+        //Debug.Log(counter);
     }
 
     public void Register(SoundChange sc)
