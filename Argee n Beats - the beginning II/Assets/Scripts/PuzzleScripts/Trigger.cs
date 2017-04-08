@@ -11,6 +11,8 @@ public class Trigger : MonoBehaviour {
     public bool isTriggered;
     public bool continous = false; //om true så kallar den kommandot hela tiden
     public float collisionExtent = 5;
+
+    [Range(0.0f, 1.0f)]
     public float req_Amplitude = 0.0f;
     public LayerMask collisionMask;
 

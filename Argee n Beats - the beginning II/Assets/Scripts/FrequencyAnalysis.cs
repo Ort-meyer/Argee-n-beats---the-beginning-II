@@ -23,7 +23,7 @@ public class FrequencyAnalysis : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_maxAmplitude = 4;
+        //m_maxAmplitude = 4;
         //m_source1.GetComponent<AudioSource>().clip = Microphone.Start("", false, 100, 44100);
         //m_source1.GetComponent<AudioSource>().loop = true;
         //AudioSource audio = m_source1.GetComponent<AudioSource>();
