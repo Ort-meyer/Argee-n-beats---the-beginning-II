@@ -9,6 +9,8 @@ public class ShooterPuller : MonoBehaviour
     public float m_fireArc = 0.1f;
     public float m_fireForce = 30;
     public int sucking;
+    public bool m_pullingIntoOrbit = false;
+    public bool m_shootingFromOrbit = false;
     public int m_fireMode = 1;
 
     // Use this for initialization
@@ -20,6 +22,8 @@ public class ShooterPuller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_pullingIntoOrbit = false;
+        m_shootingFromOrbit = false;
         FrequencyAnalysis freqAnalys = GetComponent<FrequencyAnalysis>();
         sucking = 0;
         if (freqAnalys.m_currentFrequency > m_threshold)
@@ -50,6 +54,29 @@ public class ShooterPuller : MonoBehaviour
                     obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * sucking);
                 }
             }
+        }
+        // Charge gun
+        else if (m_fireMode == 2)
+        {
+            if (sucking == -1 || sucking == 1)
+            {
+                m_pullingIntoOrbit = true;
+            }
+            if(sucking == 1)
+            {
+                m_shootingFromOrbit = true;
+            }
+        }
+    }
+    void HandleInput()
+    {
+        if(Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            m_fireMode = 1;
+        }
+        else if(Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            m_fireMode = 2;
         }
     }
 }

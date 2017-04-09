@@ -44,7 +44,7 @@ public class OrbitShootScript : MonoBehaviour
                     GameObject thisObj = m_rayCastHits[i].transform.gameObject;
                     m_dynamicObjectScript = (DymanicObjectScript)m_rayCastHits[i].transform.gameObject.GetComponent("DymanicObjectScript");
                     //Kolla om objektet är in orbit så vi kan använda det som projektil.
-                    if (m_dynamicObjectScript.m_inOrbit)// && m_dynamicObjectScript.m_targetableForPower)
+                    if (m_dynamicObjectScript.m_inOrbit && GetComponent<ShooterPuller>().m_shootingFromOrbit)// && m_dynamicObjectScript.m_targetableForPower)
                     {
                         thisObj.transform.position += new Vector3(0, 0.5f, 0);
                         m_rayCastHits[i].transform.gameObject.layer = 11;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DymanicObjectScript : MonoBehaviour
 {
-
+    GameObject m_playerObject;
     OrbitGameobjectScript orbiScript;
     Vector3 m_goalPos;
     bool m_needToSetGoalPos = true;
@@ -25,10 +25,12 @@ public class DymanicObjectScript : MonoBehaviour
     float m_veloMultiplier = 2.0f;
     float m_radiusForOutPusher = 3.0f;
     float m_radiusForDetermineInOrbit = 0.0f;
+    public float m_pullRange = 20.0f;
     // Use this for initialization
     void Start()
     {
         m_radiusForDetermineInOrbit = m_radiusForOutPusher + 5.0f;
+        m_playerObject = GameObject.Find("PlaceHolderPlayerController");
     }
 
 
@@ -46,17 +48,19 @@ public class DymanicObjectScript : MonoBehaviour
         Vector3 t_vectorBetween = -1 * (gameObject.transform.position - t_targetTransform.position);
         Vector3 t_crossResultNorm = Vector3.Cross(t_targetTransform.up, t_vectorBetween).normalized;
         m_goalPos = t_crossResultNorm * m_radius + t_targetTransform.position;
+        ShooterPuller shootScript = m_playerObject.GetComponent<ShooterPuller>();
 
         if (m_targetableForPower)
         {
 
 
-            if (orbiScript.m_usingDragAbility)
+            if (shootScript.m_pullingIntoOrbit && t_vectorBetween.magnitude < m_pullRange)
             {
+                GetComponent<Rigidbody>().useGravity = false;
                 if (t_vectorBetween.magnitude > m_prevVecBetween.magnitude)//|| t_vectorBetween.magnitude < m_radius)
                 {
                     m_enterOrbit = true;
-
+                    
                     m_gravForce = Mathf.Pow(gameObject.GetComponent<Rigidbody>().velocity.magnitude, 2f) / t_vectorBetween.magnitude;
                 }
 
@@ -89,6 +93,7 @@ public class DymanicObjectScript : MonoBehaviour
             }
             else
             {
+                GetComponent<Rigidbody>().useGravity = true;
                 m_enterOrbit = false;
                 transform.gameObject.layer = 1;
             }
