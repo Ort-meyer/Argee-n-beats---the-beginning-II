@@ -17,7 +17,16 @@ public class NavigationAgentManager : MonoBehaviour {
 	void Update () {
         if (target != null && (target.transform.position - this.transform.position).magnitude > agent.stoppingDistance)
         {
-            agent.SetDestination(target.transform.position);
+            //NavMeshHit hit;
+            //NavMesh.SamplePosition(target.transform.position, out hit, 10000, NavMesh.AllAreas);
+            try
+            {
+                agent.SetDestination(target.transform.position);
+            }
+            catch (System.Exception)
+            {
+
+            }
         }
         else if (targetPosition != Vector3.zero)
         {
