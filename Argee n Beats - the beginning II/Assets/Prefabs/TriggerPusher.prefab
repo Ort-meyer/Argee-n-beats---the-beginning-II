@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997396133843980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -84.85, y: -34.57, z: -141.5}
+  m_LocalPosition: {x: -133.08, y: -91.76, z: -138.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4132959617341878}
@@ -231,9 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d141eae0e765cce498665d4cdf36414e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectors: 0
   continous: 1
   collisionExtent: 5
-  req_Amplitude: 0.136
   switchTriggered: 0
   switchCD: 1
   switchTimer: 0
@@ -286,7 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0416171438a124188aa16b6f8bbc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushForce: 10000
+  activated: 0
+  pushAway: 0
+  forceMode: 0
+  pushForce: 200
 --- !u!136 &136895204598160278
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -355,7 +358,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -48851659
+  randomSeed: 1738022889
   InitialModule:
     serializedVersion: 3
     enabled: 1

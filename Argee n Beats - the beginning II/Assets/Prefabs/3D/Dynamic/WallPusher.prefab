@@ -239,9 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d141eae0e765cce498665d4cdf36414e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectors: 0
   continous: 1
   collisionExtent: 5
-  req_Amplitude: 0.2
   switchTriggered: 0
   switchCD: 1
   switchTimer: 0
