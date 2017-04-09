@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 65161799753477832}
   - component: {fileID: 114548254731940082}
   - component: {fileID: 135102254582701630}
+  - component: {fileID: 114050268625116422}
   m_Layer: 0
   m_Name: SmallTree
   m_TagString: DynamicObject
@@ -1360,6 +1361,22 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &114050268625116422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487505703350534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58391b5f95621924e90a2920b509f539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulse: 5
+  damage: 60
+  radius: 3
+  damageRadius: 5
+  explosionPrefab: {fileID: 0}
 --- !u!114 &114149038757531306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1375,6 +1392,7 @@ MonoBehaviour:
   m_inOrbit: 0
   m_addingForceToIt: 0
   m_radius: 15
+  m_pullRange: 20
 --- !u!114 &114548254731940082
 MonoBehaviour:
   m_ObjectHideFlags: 1

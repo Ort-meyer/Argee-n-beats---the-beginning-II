@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114403309759355108}
   - component: {fileID: 135032281494542448}
   - component: {fileID: 114995639208070430}
+  - component: {fileID: 114329844095570904}
   m_Layer: 0
   m_Name: Rock1
   m_TagString: DynamicObject
@@ -819,6 +820,22 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &114329844095570904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1354948553349700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58391b5f95621924e90a2920b509f539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulse: 0
+  damage: 20
+  radius: 0
+  damageRadius: 3
+  explosionPrefab: {fileID: 0}
 --- !u!114 &114403309759355108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -834,6 +851,7 @@ MonoBehaviour:
   m_inOrbit: 0
   m_addingForceToIt: 0
   m_radius: 15
+  m_pullRange: 20
 --- !u!114 &114995639208070430
 MonoBehaviour:
   m_ObjectHideFlags: 1

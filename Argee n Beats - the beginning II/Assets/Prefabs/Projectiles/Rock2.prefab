@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 54669703526332590}
   - component: {fileID: 114597883413004876}
   - component: {fileID: 135768487735811872}
+  - component: {fileID: 114428457250772342}
   m_Layer: 0
   m_Name: Rock2
   m_TagString: Untagged
@@ -818,6 +819,22 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!114 &114428457250772342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1981584554630722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58391b5f95621924e90a2920b509f539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulse: 0
+  damage: 20
+  radius: 0
+  damageRadius: 3
+  explosionPrefab: {fileID: 0}
 --- !u!114 &114597883413004876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -833,6 +850,7 @@ MonoBehaviour:
   m_inOrbit: 0
   m_addingForceToIt: 0
   m_radius: 15
+  m_pullRange: 20
 --- !u!135 &135768487735811872
 SphereCollider:
   m_ObjectHideFlags: 1
