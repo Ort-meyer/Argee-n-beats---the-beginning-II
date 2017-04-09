@@ -114,8 +114,10 @@ public class TP_Controller : MonoBehaviour {
         int test = 1 << skipme;
         //layer &=~test;
         layer -= test;
-        bool hit = Physics.Raycast(transform.position, Vector3.down, out t_info, 4.6f,layer);
-        Debug.DrawLine(transform.position, transform.position + Vector3.down * 4.6f, Color.blue);
+        bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x - 0.02f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);
+
+        //bool hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.2f, layer);
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * (GetComponent<Collider>().bounds.extents.y + 0.2f), Color.blue);
         o_collisionNormal = t_info.normal;
         return hit;
     }

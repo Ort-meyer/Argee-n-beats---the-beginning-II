@@ -230,7 +230,7 @@ MonoBehaviour:
   m_slideSpeed: 8
   m_gravity: 21
   m_terminalVel: 100
-  m_slideThreshold: 0.5
+  m_slideThreshold: 0.7
   m_maxControllableSlideMagnitude: 0.4
   m_dashCoolDown: 1
   m_dashSpeedImpulse: 50

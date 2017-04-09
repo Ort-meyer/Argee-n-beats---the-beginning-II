@@ -100,17 +100,7 @@ public class TP_Motor : MonoBehaviour {
         HandleDash(ref t_moveVector);
         //Reapply Vertical Vel MoveVector.y
         t_moveVector = new Vector3(t_moveVector.x, m_verticalVel, t_moveVector.z);
-
-        //if (test)
-        //{
-        //
-        //    //Apply Gravity
-        //    ApplyGravity();
-        //
-        //}
-
-        // Move the Character in World space
-        //TP_Controller.m_rigidBodyController.velocity = (t_moveVector * Time.deltaTime);
+        
         Vector3 xzmovement =  new Vector3(t_moveVector.x, 0, t_moveVector.z);
         HandleDrag(ref t_moveVector);
         TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.deltaTime, ForceMode.VelocityChange);
@@ -121,7 +111,6 @@ public class TP_Motor : MonoBehaviour {
         Debug.DrawLine(transform.position, transform.position + t_moveVector * 100);
         if(m_isJumping)
         {
-            print("jumping");
             TP_Controller.m_rigidBodyController.AddForce(0, t_moveVector.y, 0, ForceMode.VelocityChange);
             m_isJumping = false;
         }
@@ -160,7 +149,8 @@ public class TP_Motor : MonoBehaviour {
             int test = 1 << skipme;
             //layer &=~test;
             layer -= test;
-            bool hit = Physics.Raycast(transform.position, -transform.up, out t_info, 4.6f, layer);
+            bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x -0.02f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);
+            //bool hit = Physics.Raycast(transform.position, Vector3.down * (GetComponent<Collider>().bounds.extents.y + 0.2f), out t_info, layer);
             //bool hit = Physics.SphereCast(transform.position, 1f, -transform.up, out t_info, 0.6f, layer);
             //m_slideDirection = new Vector3(t_collisionNormal.x, -t_collisionNormal.y, t_collisionNormal.z);
             //print(t_collisionNormal);

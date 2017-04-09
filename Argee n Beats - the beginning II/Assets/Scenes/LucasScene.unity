@@ -155,7 +155,7 @@ Prefab:
     - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
         type: 2}
       propertyPath: m_slideThreshold
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
         type: 2}
