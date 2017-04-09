@@ -165,7 +165,7 @@ public class TP_Motor : MonoBehaviour {
                 
                 Vector3 t_projectedMoveVec = Vector3.ProjectOnPlane(t_moveVector, t_info.normal);
                 t_moveVector = new Vector3(t_projectedMoveVec.x, t_projectedMoveVec.y * m_slideYReducer, t_projectedMoveVec.z);
-                print("Im Sliding " + t_moveVector.y);
+                //print("Im Sliding " + t_moveVector.y);
 
                 if (m_slideYReducer > 0.0001)
                 {
