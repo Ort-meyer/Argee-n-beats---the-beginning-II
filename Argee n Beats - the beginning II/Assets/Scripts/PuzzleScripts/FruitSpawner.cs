@@ -37,7 +37,6 @@ public class FruitSpawner : MonoBehaviour {
 
         while(this != null)
         {
-            yield return new WaitForSeconds(spawnTime);
             Vector3 randomV = new Vector3(Random.Range(-area, area), Random.Range(-area * 0.3f, area * 0.3f), Random.Range(-area, area));
             Vector3 rPos = fruitSpawnPos.position + randomV;
 
@@ -61,6 +60,7 @@ public class FruitSpawner : MonoBehaviour {
             {
                 Destroy(tempO, 10); //explodera dem istället för fan!
             }
+            yield return new WaitForSeconds(spawnTime);
         }
     }
 }
