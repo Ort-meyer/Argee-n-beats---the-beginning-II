@@ -100,9 +100,24 @@ public class Trigger : MonoBehaviour {
                 for (int i = 0; i < col.Length; i++)
                 {
                     FrequencyAnalysis fA = col[i].GetComponent<FrequencyAnalysis>();
-                    if (fA != null)
+                    SoundAnalysisNotPlayer fB = col[i].GetComponent<SoundAnalysisNotPlayer>();
+                    if (fA != null && (affectors == Affectors.Both || affectors == Affectors.Player))
                     {
                         bestAmplitude = Mathf.Max(bestAmplitude, fA.m_momentaryAmplitude);
+                    }
+                    if (fB != null && (affectors == Affectors.Both || affectors == Affectors.NonPlayer))
+                    {
+                        print(Time.time);
+                        bestAmplitude = Mathf.Max(bestAmplitude, fB.m_currentAmplitude);
+                    }
+                    else if (col[i].transform.parent != null)
+                    {
+                        fB = col[i].transform.parent.GetComponent<SoundAnalysisNotPlayer>();
+                        if (fB != null && (affectors == Affectors.Both || affectors == Affectors.NonPlayer))
+                        {
+                            bestAmplitude = Mathf.Max(bestAmplitude, fB.m_currentAmplitude);
+                            print(Time.time);
+                        }
                     }
                 }
 
@@ -164,7 +179,7 @@ public class Trigger : MonoBehaviour {
             {
                 if (psActivated != null)
                 {
-                    psActivated.Simulate(0.0f, true, true);
+                    //psActivated.Simulate(0.0f, true, true);
                     ParticleSystem.EmissionModule psemit = psActivated.emission;
                     //psemit.enabled = true;
                     psActivated.Play();

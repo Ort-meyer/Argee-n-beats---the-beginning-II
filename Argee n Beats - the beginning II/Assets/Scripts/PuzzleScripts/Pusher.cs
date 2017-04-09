@@ -18,8 +18,23 @@ public class Pusher : MonoBehaviour {
             return;
 
         Rigidbody o_r = c.GetComponent<Rigidbody>();
+        MovementManager o_m = c.GetComponent<MovementManager>();
 
-        if(o_r != null)
+        if (o_m != null) //fiende, använd speciell impuls!
+        {
+            float forceFactor = 0.005f;
+            if (pushAway)
+            {
+                Vector3 tSameY = new Vector3(transform.position.x, c.transform.position.y, transform.position.z);
+                Vector3 dir = (c.transform.position - tSameY).normalized;
+                o_m.AddImpulse(dir * pushForce * forceFactor);
+            }
+            else
+            {
+                o_m.AddImpulse(transform.up * pushForce * forceFactor);
+            }
+        }
+        else if (o_r != null)
         {
             if(pushAway)
             {
