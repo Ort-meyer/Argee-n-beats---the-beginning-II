@@ -24,10 +24,15 @@ public class SoundChange : MonoBehaviour {
         texture = new Texture2D(bufferSize, bufferSize);
 
         Renderer rend = GetComponent<Renderer>();
-        rend.material.shader = Shader.Find("Custom/SoundShader");
-        rend.material.SetTexture("_SoundMap", texture);
-        rend.material.SetVector("_SoundMapPosition", new Vector4(transform.position.x, transform.position.y, transform.position.z, 0.0f));
-        rend.material.SetFloat("_SoundMapWidth", radius);
+
+        foreach (var item in rend.materials)
+        {
+            item.shader = Shader.Find("Custom/SoundShader");
+            item.SetTexture("_SoundMap", texture);
+            item.SetVector("_SoundMapPosition", new Vector4(transform.position.x, transform.position.y, transform.position.z, 0.0f));
+            item.SetFloat("_SoundMapWidth", radius);
+        }
+
 
         for (int x = 0; x < bufferSize; x++)
         {

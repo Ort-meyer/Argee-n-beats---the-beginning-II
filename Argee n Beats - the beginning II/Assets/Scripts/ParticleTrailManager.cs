@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParticleTrailManager : MonoBehaviour {
 
     Rigidbody rig;
+    float reduceSpeed = 0.9f;
 
     // Use this for initialization
     void Start () {
@@ -24,18 +25,18 @@ public class ParticleTrailManager : MonoBehaviour {
 
                 float dotVal = Vector3.Dot(norm, rig.velocity.normalized);
 
-                if (Mathf.Abs(dotVal) < 0.5f )
+                if (Mathf.Abs(dotVal) < 0.25f )
                 {
-                    trailRend.time = (0.5f - Mathf.Abs(dotVal))*2.0f;
+                    trailRend.time = (0.25f - Mathf.Abs(dotVal))*6.0f;
                 }
                 else
                 {
-                    trailRend.time = 0;
+                    trailRend.time *= reduceSpeed;
                 }
             }
             else if(trailRend)
             {
-                trailRend.time *= 0.95f;
+                trailRend.time *= reduceSpeed;
             }
         }
 	}
