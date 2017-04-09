@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
+public class PublicVariables
+{
+    [Range(0.0f, 1.0f)]
+    public static float req_Amplitude = 0.15f;
+}
+
 public class Trigger : MonoBehaviour {
     int initTimes = 0;
 
@@ -19,8 +25,8 @@ public class Trigger : MonoBehaviour {
     public bool continous = false; //om true så kallar den kommandot hela tiden, bör vara iklickad om man kör med ljud
     public float collisionExtent = 5;
 
-    [Range(0.0f, 1.0f)]
-    public float req_Amplitude = 0.0f;
+    //[Range(0.0f, 1.0f)]
+    //public float PublicVariables.req_Amplitude = 0.0f;
 
     //switch
     public bool switchTriggered = false; //ändrar state till motsatt istället för satta, som en spak
@@ -89,7 +95,7 @@ public class Trigger : MonoBehaviour {
         if (col.Length > 0)
         {
             float bestAmplitude = -Mathf.Infinity;
-            if (req_Amplitude > 0) //använd amplitud, annars räcker det att du står i collidern
+            if (PublicVariables.req_Amplitude > 0) //använd amplitud, annars räcker det att du står i collidern
             {
                 for (int i = 0; i < col.Length; i++)
                 {
@@ -100,7 +106,7 @@ public class Trigger : MonoBehaviour {
                     }
                 }
 
-                if (bestAmplitude < req_Amplitude) //inte tillräkligt med amplitud
+                if (bestAmplitude < PublicVariables.req_Amplitude) //inte tillräkligt med amplitud
                 {
                     return isTriggered;
                 }
@@ -116,7 +122,7 @@ public class Trigger : MonoBehaviour {
         if (col.Length > 0)
         {
             float bestAmplitude = -Mathf.Infinity;
-            if(req_Amplitude > 0) //använd amplitud, annars räcker det att du står i collidern
+            if(PublicVariables.req_Amplitude > 0) //använd amplitud, annars räcker det att du står i collidern
             {
                 for(int i = 0; i < col.Length; i++)
                 {
@@ -140,7 +146,7 @@ public class Trigger : MonoBehaviour {
                     }
                 }
 
-                if(bestAmplitude < req_Amplitude) //inte tillräkligt med amplitud
+                if(bestAmplitude < PublicVariables.req_Amplitude) //inte tillräkligt med amplitud
                 {
                     return false;
                 }
@@ -160,7 +166,7 @@ public class Trigger : MonoBehaviour {
                 {
                     psActivated.Simulate(0.0f, true, true);
                     ParticleSystem.EmissionModule psemit = psActivated.emission;
-                    psemit.enabled = true;
+                    //psemit.enabled = true;
                     psActivated.Play();
                 }
                 StartTrigger();

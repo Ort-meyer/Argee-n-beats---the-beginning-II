@@ -19,7 +19,7 @@ public class ParticleBySound : MonoBehaviour {
 
         if (alive)
         {
-            if(soundAn.m_currentAmplitude > 0.2f)
+            if(soundAn.m_currentAmplitude > PublicVariables.req_Amplitude)
             {
                 if (pman.IsActive(id) == false)
                 {
