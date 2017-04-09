@@ -50,7 +50,7 @@ public class OrbitShootScript : MonoBehaviour {
                         m_rayCastHits[i].transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         //Skjuta iväg den.
                         m_rayCastHits[i].transform.GetComponent<Rigidbody>().AddForce(m_ray.direction * m_shootForce);
-                        print(m_ray.direction * m_shootForce);
+                        //print(m_ray.direction * m_shootForce);
                     }
                 }
             }
