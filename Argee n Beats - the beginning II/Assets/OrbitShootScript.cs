@@ -31,11 +31,11 @@ public class OrbitShootScript : MonoBehaviour
         //Kolla vilka som är framför gubben med en ray eller en fyrkant. 
         m_ray = new Ray(t_targetTransform.position, t_targetTransform.forward);
         m_rayCastHits = Physics.RaycastAll(m_ray.origin, m_ray.direction, 100.0f);
-        int rayCastHitslength = m_rayCastHits.Length;
         if (m_shootCooldown < m_timer)
         {
             //Debug.DrawLine(m_ray.origin, m_ray.origin + m_ray.direction * 100.0f);
 
+            int rayCastHitslength = m_rayCastHits.Length;
             for (int i = 0; i < rayCastHitslength; i++)
             {
                 // Vill bräjka forloopen om vi har skjutit den här updaten
@@ -61,12 +61,20 @@ public class OrbitShootScript : MonoBehaviour
                         m_rayCastHits[i].transform.GetComponent<Rigidbody>().AddForce(t_launchVector * m_shootForce);
                         m_rayCastHits[i].transform.GetComponent<Collider>().isTrigger = true;
                         m_rayCastHits[i].transform.gameObject.AddComponent<Projectile>();
-                        Projectile proj = m_rayCastHits[i].transform.GetComponent<Projectile>();
-                        proj.radius = 40;
-                        proj.damage = 10;
-                        proj.damageRadius = 4;
-                        proj.impulse = 60;
-                        //print(m_ray.direction * m_shootForce);
+                        ProjectileInfo t_projInfo = m_rayCastHits[i].transform.GetComponent<ProjectileInfo>();
+                        if(t_projInfo==null)
+                        {
+                            print("Picked up something that doesn't have ProjectileInfo");
+                        }
+                        else
+                        {
+                            Projectile proj = m_rayCastHits[i].transform.GetComponent<Projectile>();
+                            proj.radius = t_projInfo.radius;
+                            proj.damage = t_projInfo.damage;
+                            proj.damageRadius = t_projInfo.damageRadius;
+                            proj.impulse = t_projInfo.impulse;
+                            proj.explosionPrefab = t_projInfo.explosionPrefab;
+                        }
                     }
                 }
             }
