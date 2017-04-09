@@ -8,6 +8,8 @@ public class ShooterPuller : MonoBehaviour
     public float m_threshold = 300;
     public float m_fireArc = 0.1f;
     public float m_fireForce = 30;
+    public int sucking;
+    public int m_fireMode = 1;
 
     // Use this for initialization
     void Start()
@@ -19,40 +21,35 @@ public class ShooterPuller : MonoBehaviour
     void Update()
     {
         FrequencyAnalysis freqAnalys = GetComponent<FrequencyAnalysis>();
-        //float fireFactor = freqAnalys.m_currentFrequency / m_maxFrequency;
-        //fireFactor -= 0.5f;
-        //fireFactor *= 2;
-        //Debug.Log(fireFactor);
-        //Debug.Log(freqAnalys.m_currentFrequency);
-
-        GameObject[] movables = GameObject.FindGameObjectsWithTag("DynamicObject");
-        foreach (GameObject obj in movables)
+        sucking = 0;
+        if (freqAnalys.m_currentFrequency > m_threshold)
         {
-            Vector3 lineBetween = (obj.transform.position - transform.position).normalized;
-            Vector3 cameraTarget = Camera.current.transform.forward.normalized;
+            sucking = 1;
+        }
+        else if (freqAnalys.m_currentFrequency <= m_threshold && freqAnalys.m_currentFrequency > 40)
+        {
+            sucking = -1;
 
-            int fireFactor = 0;
-            float dot = Vector3.Dot(lineBetween, cameraTarget);
-            float derp = freqAnalys.m_currentAmplitude;
-            //Debug.Log(derp);
-            //Debug.Log(dot);
-            if (freqAnalys.m_currentFrequency > m_threshold)
+        }
+        
+        GameObject[] movables = GameObject.FindGameObjectsWithTag("DynamicObject");
+        // Normal fire mode
+        if (m_fireMode == 1)
+        {
+            foreach (GameObject obj in movables)
             {
-                //Debug.Log("high");
-                fireFactor = 1;
+                Vector3 lineBetween = (obj.transform.position - transform.position).normalized;
+                Vector3 cameraTarget = Camera.current.transform.forward.normalized;
+                
+                float dot = Vector3.Dot(lineBetween, cameraTarget);
+                float derp = freqAnalys.m_currentAmplitude;
+
+
+                if (Vector3.Dot(lineBetween, cameraTarget) > 1 - m_fireArc)
+                {
+                    obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * sucking);
+                }
             }
-            else if (freqAnalys.m_currentFrequency <= m_threshold && freqAnalys.m_currentFrequency > 40)
-            {
-                //Debug.Log("low");
-                fireFactor = -1;
-            } 
-
-            if (Vector3.Dot(lineBetween, cameraTarget) > 1-m_fireArc)
-            {
-                if(freqAnalys.m_currentFrequency > 40)
-                obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * fireFactor * freqAnalys.m_currentAmplitude);
-            }
-
         }
     }
 }
