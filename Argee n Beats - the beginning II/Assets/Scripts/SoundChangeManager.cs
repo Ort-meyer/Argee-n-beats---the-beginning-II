@@ -9,6 +9,9 @@ public class SoundChangeManager : MonoBehaviour {
     List<SoundChange> soundChangers = new List<SoundChange>();
     int counter = 0;
 
+    float maxAmplitudeRange = 10.0f;
+    float fallofDistance = 5.0f;
+
     void Awake()
     {
         if (scManager == null)
@@ -60,17 +63,20 @@ public class SoundChangeManager : MonoBehaviour {
         //    counter = 0;
         //}
 
+        FrequencyAnalysis freqAn = GetComponent<FrequencyAnalysis>();
+        float rangeMax = freqAn.m_currentAmplitude*maxAmplitudeRange;
+
+        float rangeMin = Mathf.Max(rangeMax - fallofDistance, 0.0f);
         int counter = 0;
         foreach (var item in soundChangers)
         {
-            float rangeV = 3.0f;
-            if (CheckInRange(item, rangeV))
+
+            if (CheckInRange(item, rangeMax))
             {
-                item.ColorByPositionFull(transform.position, rangeV - (rangeV * 0.2f), rangeV);
+                item.ColorByPositionFull(transform.position, rangeMin, rangeMax);
                 counter++;
             }
         }
-        //Debug.Log(counter);
     }
 
     public void Register(SoundChange sc)
