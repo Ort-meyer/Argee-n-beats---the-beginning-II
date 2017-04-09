@@ -12,13 +12,14 @@ public class OrbiterTEST : MonoBehaviour
 
 
     private bool m_inOrbit;
-    private Vector3 m_prevVecBetween;
+    private Vector3 m_prevVecBetween = new Vector3(10000,10000,100000);
     
     
     // Use this for initialization
     void Start()
     {
         m_inOrbit = false;
+        m_prevVecBetween = new Vector3(10000, 10000, 100000);
         //orbitalVectorStart = Quaternion.AngleAxis(orbitalAngleX, new Vector3(1, 0, 0)) * orbitalVectorStart;
         //orbitalVectorUp = Quaternion.AngleAxis(orbitalAngleX, new Vector3(1, 0, 0)) * orbitalVectorUp;
     }
@@ -31,17 +32,17 @@ public class OrbiterTEST : MonoBehaviour
 
         Rigidbody t_myBody = GetComponent<Rigidbody>();
 
-        Vector3 t_vectorBetween = -1 * (gameObject.transform.position - t_targetTransform.position).normalized;
+        Vector3 t_vectorBetween = -1 * (gameObject.transform.position - t_targetTransform.position);
         Vector3 t_crossResultNorm = Vector3.Cross(t_targetTransform.up, t_vectorBetween).normalized;
         Vector3 t_goalPos = t_crossResultNorm * m_orbitRadius + t_targetTransform.position;
 
         Vector3 t_totalForce = new Vector3(0, 0, 0);
 
-        if (t_vectorBetween.magnitude > m_prevVecBetween.magnitude)
+        if (t_vectorBetween.magnitude < m_orbitRadius * 1.1f)
         {
             m_inOrbit = true;
             //m_gravForce = Mathf.Pow(gameObject.GetComponent<Rigidbody>().velocity.magnitude, 2f) / t_vectorBetween.magnitude;
-
+            Debug.Log("der");
         }
 
         if (m_inOrbit)
@@ -64,7 +65,6 @@ public class OrbiterTEST : MonoBehaviour
         else
         {
             t_totalForce += (t_goalPos - gameObject.transform.position).normalized * m_dragForce;
-
         }
         t_myBody.AddForce(t_totalForce);
         m_prevVecBetween = t_vectorBetween;
