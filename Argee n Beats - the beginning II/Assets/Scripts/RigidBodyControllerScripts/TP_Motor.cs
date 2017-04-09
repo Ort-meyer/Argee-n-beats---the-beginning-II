@@ -197,7 +197,7 @@ public class TP_Motor : MonoBehaviour {
 
 
         }
-        print("NotSliding");
+        //print("NotSliding");
 
 
         // Get player velocity part

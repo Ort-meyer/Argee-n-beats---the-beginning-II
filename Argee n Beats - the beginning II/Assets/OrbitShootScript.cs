@@ -24,7 +24,7 @@ public class OrbitShootScript : MonoBehaviour {
         {
             if (m_rayCastHits[i].transform.gameObject.tag == "DynamicObject")
             {
-                print("Okejdå");
+                //print("Okejdå");
             }
         }
         //Kolla om objektet är in orbit så vi kan använda det som projektil.
