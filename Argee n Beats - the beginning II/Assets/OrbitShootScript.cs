@@ -31,11 +31,11 @@ public class OrbitShootScript : MonoBehaviour
         //Kolla vilka som är framför gubben med en ray eller en fyrkant. 
         m_ray = new Ray(t_targetTransform.position, t_targetTransform.forward);
         m_rayCastHits = Physics.RaycastAll(m_ray.origin, m_ray.direction, 100.0f);
+        int rayCastHitslength = m_rayCastHits.Length;
         if (m_shootCooldown < m_timer)
         {
             //Debug.DrawLine(m_ray.origin, m_ray.origin + m_ray.direction * 100.0f);
 
-            int rayCastHitslength = m_rayCastHits.Length;
             for (int i = 0; i < rayCastHitslength; i++)
             {
                 // Vill bräjka forloopen om vi har skjutit den här updaten
@@ -75,6 +75,7 @@ public class OrbitShootScript : MonoBehaviour
                             proj.impulse = t_projInfo.impulse;
                             proj.explosionPrefab = t_projInfo.explosionPrefab;
                         }
+                        //print(m_ray.direction * m_shootForce);
                     }
                 }
             }
