@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33016239124111042}
   - component: {fileID: 23365416490910622}
   - component: {fileID: 64471618159486232}
+  - component: {fileID: 114029712926230162}
   m_Layer: 0
   m_Name: envFence
   m_TagString: Untagged
@@ -95,3 +96,16 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 05ee4d028982da0409b9a6355fe64dbc, type: 3}
+--- !u!114 &114029712926230162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873399433656092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520820fd83bcfe04fb3690eccddd30e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bufferSize: 32
+  radius: 5
