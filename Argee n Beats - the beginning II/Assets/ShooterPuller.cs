@@ -7,7 +7,8 @@ public class ShooterPuller : MonoBehaviour
     public float m_maxFrequency = 700;
     public float m_threshold = 300;
     public float m_fireArc = 0.1f;
-    public float m_fireForce = 120;
+    public float m_fireForce = 500;
+    public float m_dragForce = 120;
     public int sucking;
     public int m_fireMode = 1;
 
@@ -82,6 +83,11 @@ public class ShooterPuller : MonoBehaviour
         {
             m_fireMode = 2;
         }
+    }
+
+    private void StopOrbiting()
+    {
+        m_pullingThingsIntoOrbit = false;
     }
 
 }
