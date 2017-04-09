@@ -287,6 +287,7 @@ public class TP_Motor : MonoBehaviour {
 
     public void Jump()
     {
+        TP_Controller.m_rigidBodyController.velocity = new Vector3(TP_Controller.m_rigidBodyController.velocity.x, 0, TP_Controller.m_rigidBodyController.velocity.z);
         m_verticalVel = m_jumpSpeed;
         m_isJumping = true;
     }
