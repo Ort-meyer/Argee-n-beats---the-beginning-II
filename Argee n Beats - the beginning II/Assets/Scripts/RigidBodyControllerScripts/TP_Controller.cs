@@ -7,6 +7,8 @@ public class TP_Controller : MonoBehaviour {
     public static Rigidbody m_rigidBodyController;
     public static TP_Controller Instance;
 
+    public float m_groundedDelay = 0.5f;
+    private float m_timeSinceGrounded = 0f;
     public float m_jumpCoolDown = 1.0f;
     private float m_jumpTimer = -0.1f;
 	// Use this for initialization
@@ -36,6 +38,7 @@ public class TP_Controller : MonoBehaviour {
         {
             m_jumpTimer -= Time.deltaTime;
         }
+        UpdateGrounded();
     }
     void GetLocomotionInput()
     {
@@ -66,11 +69,12 @@ public class TP_Controller : MonoBehaviour {
     }
     void HandleActionInput()
     {
-       if (Input.GetButton("Jump"))
+       if (Input.GetButton("Jump") && m_timeSinceGrounded > 0)
        {
             if (m_jumpTimer < 0f)
             {
                 Jump();
+                m_timeSinceGrounded = 0f;
                 m_jumpTimer = m_jumpCoolDown;
             }
         }
@@ -99,10 +103,27 @@ public class TP_Controller : MonoBehaviour {
         }
     }
 
+    private void UpdateGrounded()
+    {
+        bool r_hit = IsGrounded();
+        if (r_hit)
+        {
+            m_timeSinceGrounded = m_groundedDelay;
+            //print("Grounded");
+        }
+        else
+        {
+            //print("NotGroudned");
+            m_timeSinceGrounded -= Time.deltaTime;
+        }
+    }
+
     public bool IsGrounded()
     {
         RaycastHit t_info;
-        return Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.1f);
+        bool r_hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.01f);
+        
+        return r_hit;
     }
 
     public bool IsSliding(ref Vector3 o_collisionNormal)

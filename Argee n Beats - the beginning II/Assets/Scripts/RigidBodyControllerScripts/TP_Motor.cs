@@ -32,6 +32,8 @@ public class TP_Motor : MonoBehaviour {
 	public float m_verticalVel { get; set; }
     public Vector3 m_dashDirection { get; set; }
 
+    private bool m_slidedLastFrame = false;
+
     Vector3 playerVelocity = new Vector3(0, 0, 0);
 
     // Use this for initialization
@@ -149,7 +151,7 @@ public class TP_Motor : MonoBehaviour {
             int test = 1 << skipme;
             //layer &=~test;
             layer -= test;
-            bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x -0.02f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);
+            bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x -0.2f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);
             //bool hit = Physics.Raycast(transform.position, Vector3.down * (GetComponent<Collider>().bounds.extents.y + 0.2f), out t_info, layer);
             //bool hit = Physics.SphereCast(transform.position, 1f, -transform.up, out t_info, 0.6f, layer);
             //m_slideDirection = new Vector3(t_collisionNormal.x, -t_collisionNormal.y, t_collisionNormal.z);
@@ -163,25 +165,37 @@ public class TP_Motor : MonoBehaviour {
                 
                 Vector3 t_projectedMoveVec = Vector3.ProjectOnPlane(t_moveVector, t_info.normal);
                 t_moveVector = new Vector3(t_projectedMoveVec.x, t_projectedMoveVec.y * m_slideYReducer, t_projectedMoveVec.z);
-                //print("Im Sliding " + t_moveVector.y);
+                print("Im Sliding " + t_moveVector.y);
 
                 if (m_slideYReducer > 0.0001)
                 {
-                    m_slideYReducer -= 0.01f;
+                    m_slideYReducer -= 0.1f;
                 }
-                float slidingForce = (1 - (t_info.normal.y / 0.7f)) * slidingForceMultiplier;
+                else
+                {
+                    m_slideYReducer = 0f;
+                }
+                float slidingForce = (1 - (t_info.normal.y / m_slideThreshold)) * slidingForceMultiplier;
+                Vector3 temp = TP_Controller.m_rigidBodyController.velocity * -1 * TP_Motor.m_instance.m_linearDrag;
+                Vector3 temp2 =  Vector3.down* Time.deltaTime* slidingForce *slideIncreaser;
+                TP_Controller.m_rigidBodyController.AddForce(TP_Controller.m_rigidBodyController.velocity*-1 * TP_Motor.m_instance.m_linearDrag,ForceMode.VelocityChange);
                 TP_Controller.m_rigidBodyController.AddForce(Vector3.down * Time.deltaTime * slidingForce * slideIncreaser);
                 slideIncreaser += 5;
-                TP_Controller.m_rigidBodyController.AddForce(TP_Controller.m_rigidBodyController.velocity*-1 * TP_Motor.m_instance.m_linearDrag,ForceMode.VelocityChange);
                 
                 Debug.DrawRay(t_info.point, m_slideDirection, Color.blue);
                 Debug.DrawRay(transform.position, TP_Controller.m_rigidBodyController.velocity * 100, Color.yellow);
                 Debug.DrawRay(t_info.point, t_info.normal, Color.red);
+                m_slidedLastFrame = true;
                 return;
             }
             else
             {
                 m_slideYReducer = 1f; slideIncreaser = 1f;
+                if (m_slidedLastFrame == true)
+                {
+                    m_slidedLastFrame = false;
+                    TP_Controller.m_rigidBodyController.AddForce(new Vector3(0, -TP_Controller.m_rigidBodyController.velocity.y * TP_Motor.m_instance.m_linearDrag, 0));
+                }
             }
 
 
@@ -273,11 +287,8 @@ public class TP_Motor : MonoBehaviour {
 
     public void Jump()
     {
-        if (TP_Controller.Instance.IsGrounded())
-        {
-            m_verticalVel = m_jumpSpeed;
-            m_isJumping = true;
-        }
+        m_verticalVel = m_jumpSpeed;
+        m_isJumping = true;
     }
     void SnapAlignCharacterWithCamera()
     {
