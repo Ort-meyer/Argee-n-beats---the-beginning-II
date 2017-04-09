@@ -14,6 +14,11 @@ public class RangedArcFighter : AttackBase {
     void Start () {
         base.BaseStart();
 	}
+
+    void OnEnable()
+    {
+        base.BaseOnEnable();
+    }
 	
 	// Update is called once per frame
 	void Update () {

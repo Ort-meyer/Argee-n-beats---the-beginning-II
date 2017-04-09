@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MovementManager : MonoBehaviour {
     public float noOutsideForceVelcoityThreshold;
@@ -28,9 +29,10 @@ public class MovementManager : MonoBehaviour {
         if (patroleManager != null)
         {
             Vector3 newPos = patroleManager.GetComponent<NextPatrolPoint>().GetNextPatrolePoint();
-            print(newPos);
             followNavigation.navigation.GetComponent<NavigationAgentManager>().SetTargetPosition(newPos);
         }
+
+        AllEnemyTracker.manager.NewEnemy(gameObject);
     }
 	
 	// Update is called once per frame
@@ -74,6 +76,7 @@ public class MovementManager : MonoBehaviour {
             {
                 Vector3 newPos = patroleManager.GetComponent<NextPatrolPoint>().GetNextPatrolePoint();
                 followNavigation.navigation.GetComponent<NavigationAgentManager>().SetTargetPosition(newPos);
+                followNavigation.navigation.GetComponent<NavMeshAgent>().stoppingDistance = 1;
             }
         }
         if (gotOutsideForce == true && GetComponent<Rigidbody>().velocity.magnitude< noOutsideForceVelcoityThreshold)
@@ -85,6 +88,11 @@ public class MovementManager : MonoBehaviour {
             }
         }
 	}
+
+    void OnDestroy()
+    {
+        AllEnemyTracker.manager.KilledEnemy(gameObject);
+    }
 
     void FixedUpdate()
     {
@@ -114,5 +122,21 @@ public class MovementManager : MonoBehaviour {
         attackScript.objectToAttack = target;
         followNavigation.navigation.GetComponent<NavigationAgentManager>().SetTargetObject(target);
         inAgro = true;
+    }
+
+    public void PlayerDead(GameObject player)
+    {
+        if (inAgro && attackScript != null)
+        {
+            if (player == attackScript.objectToAttack)
+            {
+                // The enemy we were chasing is DEAD!!!! Go back to patrolling
+                Vector3 newPos = patroleManager.GetComponent<NextPatrolPoint>().GetNextPatrolePoint();
+                followNavigation.navigation.GetComponent<NavigationAgentManager>().SetTargetPosition(newPos);
+                followNavigation.navigation.GetComponent<NavMeshAgent>().stoppingDistance = 1;
+                attackScript.enabled = false;
+                inAgro = false;
+            }
+        }
     }
 }

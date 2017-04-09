@@ -14,7 +14,7 @@ public class TakeDamageOnImpact : MonoBehaviour {
     private Vector3 lastVelocity;
     // Use this for initialization
     void Start() {
-        print(Vector3.Dot(new Vector3(1, 0, 0), new Vector3(-1, 0, 0)));
+
     }
 
     // Update is called once per frame

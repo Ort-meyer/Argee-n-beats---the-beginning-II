@@ -23,6 +23,18 @@ public class ChargingFighter : AttackBase {
         agent = navigation.GetComponent<NavMeshAgent>(); 
     }
 
+    void OnEnable()
+    {
+        base.BaseOnEnable();
+    }
+
+    void OnDisable()
+    {
+        GetComponent<FollowNavigationAgent>().ResetSpeedAndAcceleration();
+        GetComponent<FollowNavigationAgent>().enabled = true;
+        stunned = false;
+    }
+
     // Update is called once per frame
     void Update()
     {

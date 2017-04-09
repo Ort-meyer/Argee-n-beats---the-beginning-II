@@ -8,9 +8,14 @@ public class MeleeFighter : AttackBase {
 	void Start () {
         base.BaseStart();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void OnEnable()
+    {
+        base.BaseOnEnable();
+    }
+
+    // Update is called once per frame
+    void Update () {
         base.BaseUpdate();
         if (base.CanIAttackTarget())
         {

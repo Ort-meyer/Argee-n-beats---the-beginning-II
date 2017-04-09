@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour {
     public float startingHealth;
+    public bool respawnOnDeath = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +20,19 @@ public class Health : MonoBehaviour {
         startingHealth -= damage;
         if (startingHealth <= 0.0f)
         {
-            Destroy(gameObject);
+            if (respawnOnDeath)
+            {
+                transform.position = CheckpointManager.manager.activeCheckpoint.transform.position;
+                transform.rotation = CheckpointManager.manager.activeCheckpoint.transform.rotation;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            if (gameObject.tag == "Player")
+            {
+                AllEnemyTracker.manager.KilledPlayer(gameObject);
+            }
         }
     }
 }

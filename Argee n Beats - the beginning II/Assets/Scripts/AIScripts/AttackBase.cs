@@ -14,7 +14,10 @@ public class AttackBase : MonoBehaviour {
 	// Use this for initialization
 	protected void BaseStart () {
         attackTimer = 1/attackSpeed;
+    }
 
+    protected void BaseOnEnable()
+    {
         GameObject navigation = GetComponent<FollowNavigationAgent>().navigation;
         if (navigation != null)
         {
