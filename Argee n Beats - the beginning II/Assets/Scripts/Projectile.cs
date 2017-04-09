@@ -13,9 +13,11 @@ public class Projectile : MonoBehaviour {
     public float damageRadius;
     [HideInInspector]
     public GameObject launcher;
+    [HideInInspector]
+    public GameObject explosionPrefab = null;
     // Use this for initialization
     void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
@@ -28,6 +30,10 @@ public class Projectile : MonoBehaviour {
         if (collision.gameObject == launcher)
         {
             return; // We should not be able to hit ourself
+        }
+        if (explosionPrefab != null)
+        {
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         }
         Collider[] allInRadius = Physics.OverlapSphere(transform.position, radius);
         foreach (var item in allInRadius)

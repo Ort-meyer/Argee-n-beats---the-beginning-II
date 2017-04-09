@@ -6,7 +6,7 @@ public class AllEnemyTracker : MonoBehaviour {
     public static AllEnemyTracker manager = null;
     List<GameObject> enemies = new List<GameObject>();
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         if (manager != null)
         {
             Debug.LogError("Two instances of AllEnemyTracker in scene");

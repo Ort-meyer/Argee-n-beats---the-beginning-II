@@ -10,6 +10,7 @@ public class RangedArcFighter : AttackBase {
     public float impulse;
     public float pushRadius;
     public float damageRadius;
+    public GameObject explosionPrefab;
     // Use this for initialization
     void Start () {
         base.BaseStart();
@@ -60,5 +61,6 @@ public class RangedArcFighter : AttackBase {
         projectileScript.radius = pushRadius;
         projectileScript.damageRadius = damageRadius;
         projectileScript.launcher = gameObject;
+        projectileScript.explosionPrefab = explosionPrefab;
     }
 }

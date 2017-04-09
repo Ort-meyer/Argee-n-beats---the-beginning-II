@@ -213,6 +213,8 @@ MonoBehaviour:
   impulse: 40
   pushRadius: 5
   damageRadius: 3
+  explosionPrefab: {fileID: 1818793577362448, guid: 7942f9be589745a4fb806ef29237db01,
+    type: 2}
 --- !u!114 &114252822238392552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  respawnOnDeath: 0
 --- !u!114 &114741183649283982
 MonoBehaviour:
   m_ObjectHideFlags: 1
