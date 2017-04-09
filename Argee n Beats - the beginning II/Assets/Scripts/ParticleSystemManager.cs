@@ -108,8 +108,22 @@ public class ParticleSystemManager : MonoBehaviour {
         }
     }
 
-    public void KeepParticleSystemAliveBySound()
+    public bool IsActive(int id)
     {
+        if (id < particleSystems.Length)
+        {
+            GameObject obj = particleSystems[id];
 
+            if (obj)
+            {
+                ParticleSystem sys = obj.GetComponent<ParticleSystem>();
+                if (sys)
+                {
+                    //sys.Simulate(0.0f, true, true);
+                    return sys.isPlaying;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -95,7 +95,17 @@ public class InputManager : MonoBehaviour {
         foreach (var item in soundAffectors)
         {
             item.StartPlaying();
-            item.GetComponent<ParticleSystemManager>().Activate(1);
+
+            // Activate keepAliver
+            ParticleBySound pbs = item.GetComponent<ParticleBySound>();
+            if (pbs)
+            {
+                pbs.KeepAliveParticleByAmplitude(1);
+            }
+            else
+            {
+                item.GetComponent<ParticleSystemManager>().Activate(1);
+            }
         }
     }
 }
