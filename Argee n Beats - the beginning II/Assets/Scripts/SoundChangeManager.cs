@@ -63,7 +63,7 @@ public class SoundChangeManager : MonoBehaviour {
         int counter = 0;
         foreach (var item in soundChangers)
         {
-            float rangeV = 2.0f;
+            float rangeV = 3.0f;
             if (CheckInRange(item, rangeV))
             {
                 item.ColorByPositionFull(transform.position, rangeV - (rangeV * 0.2f), rangeV);
