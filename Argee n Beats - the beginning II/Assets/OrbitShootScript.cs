@@ -50,6 +50,13 @@ public class OrbitShootScript : MonoBehaviour {
                         m_rayCastHits[i].transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
                         //Skjuta iväg den.
                         m_rayCastHits[i].transform.GetComponent<Rigidbody>().AddForce(m_ray.direction * m_shootForce);
+                        m_rayCastHits[i].transform.GetComponent<Collider>().isTrigger = true;
+                        m_rayCastHits[i].transform.gameObject.AddComponent<Projectile>();
+                        Projectile proj = m_rayCastHits[i].transform.GetComponent<Projectile>();
+                        proj.radius = 40;
+                        proj.damage = 10;
+                        proj.damageRadius = 4;
+                        proj.impulse = 60;
                         //print(m_ray.direction * m_shootForce);
                     }
                 }
