@@ -792,9 +792,10 @@ MonoBehaviour:
   - {fileID: 4912308050971444}
   - {fileID: 4184624416228132}
   - {fileID: 4212500104439872}
+  maxNrFruits: 10
   fruit: {fileID: 1998037915902090, guid: d352bddaef8e0d94d981c5841090764d, type: 2}
   fruitSpawnPos: {fileID: 4492392010111950}
-  spawnTime: 5
+  spawnTime: 2
   area: 4
 --- !u!114 &114874828868690580
 MonoBehaviour:

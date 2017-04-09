@@ -4040,11 +4040,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114101648353490306, guid: 999965e7298239c44877195a41be9b80,
-        type: 2}
-      propertyPath: spawnTime
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 999965e7298239c44877195a41be9b80, type: 2}
   m_IsPrefabParent: 0
