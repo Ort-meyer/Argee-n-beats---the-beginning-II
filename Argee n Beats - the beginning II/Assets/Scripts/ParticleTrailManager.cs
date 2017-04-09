@@ -5,13 +5,10 @@ using UnityEngine;
 public class ParticleTrailManager : MonoBehaviour {
 
     Rigidbody rig;
-    public Vector3 velocity;
-    Vector3 lastPos;
 
     // Use this for initialization
     void Start () {
         rig = GetComponent<Rigidbody>();
-        lastPos = transform.position;
 	}
 	
 	// Update is called once per frame
