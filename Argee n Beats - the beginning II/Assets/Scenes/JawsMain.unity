@@ -2016,6 +2016,16 @@ Prefab:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114488397734396464, guid: 4a40a005ce9d65242bbc01deabe4410a,
+        type: 2}
+      propertyPath: forceMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114488397734396464, guid: 4a40a005ce9d65242bbc01deabe4410a,
+        type: 2}
+      propertyPath: pushForce
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a40a005ce9d65242bbc01deabe4410a, type: 2}
   m_IsPrefabParent: 0

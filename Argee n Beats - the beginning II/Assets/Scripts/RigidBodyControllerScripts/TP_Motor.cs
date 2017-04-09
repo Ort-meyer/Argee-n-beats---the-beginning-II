@@ -31,6 +31,9 @@ public class TP_Motor : MonoBehaviour {
     public Vector3 m_moveVector { get; set; }
 	public float m_verticalVel { get; set; }
     public Vector3 m_dashDirection { get; set; }
+
+    Vector3 playerVelocity = new Vector3(0, 0, 0);
+
     // Use this for initialization
 	void Awake () {
         m_instance = this;
@@ -111,6 +114,10 @@ public class TP_Motor : MonoBehaviour {
         Vector3 xzmovement =  new Vector3(t_moveVector.x, 0, t_moveVector.z);
         HandleDrag(ref t_moveVector);
         TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.deltaTime, ForceMode.VelocityChange);
+
+        // New stuff
+        playerVelocity += xzmovement * Time.deltaTime;
+
         Debug.DrawLine(transform.position, transform.position + t_moveVector * 100);
         if(m_isJumping)
         {
@@ -123,6 +130,21 @@ public class TP_Motor : MonoBehaviour {
             TP_Controller.m_rigidBodyController.AddForce(0, t_moveVector.y * Time.deltaTime, 0, ForceMode.VelocityChange);
         }
     }
+
+    float GetNewPlayerVelAxisVal(float oldVal, float playerVel)
+    {
+        float returnVal = oldVal;
+        if (Mathf.Sign(oldVal) != Mathf.Sign(playerVel))
+        {
+            returnVal = 0;
+        }
+        else if (Mathf.Abs(oldVal) > Mathf.Abs(playerVel))
+        {
+            returnVal = playerVel;
+        }
+        return returnVal;
+    }
+
     void HandleDrag(ref Vector3 t_moveVector)
     {
         //IF du slidar ner för en vägg. Return. How fix?
@@ -175,8 +197,28 @@ public class TP_Motor : MonoBehaviour {
 
         }
         print("NotSliding");
+
+
+        // Get player velocity part
+        // if sing(pX) != sign(x) pX = 0
+        // else if abs(pX) > abs(x), pX = X
+
         Vector3 velocityInPlane = Vector3.ProjectOnPlane(TP_Controller.m_rigidBodyController.velocity, new Vector3(0, 1, 0));
-        TP_Controller.m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
+
+        // Update player vel
+        playerVelocity.x = GetNewPlayerVelAxisVal(playerVelocity.x, velocityInPlane.x);
+        playerVelocity.y = GetNewPlayerVelAxisVal(playerVelocity.y, velocityInPlane.y);
+        playerVelocity.z = GetNewPlayerVelAxisVal(playerVelocity.z, velocityInPlane.z);
+
+
+
+        Vector3 extVel = velocityInPlane - playerVelocity;
+
+
+        //TP_Controller.m_rigidBodyController.AddForce(-velocityInPlane * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
+        TP_Controller.m_rigidBodyController.AddForce(-extVel * 0.05f, ForceMode.VelocityChange);
+        TP_Controller.m_rigidBodyController.AddForce(-playerVelocity * TP_Motor.m_instance.m_linearDrag, ForceMode.VelocityChange);
+        playerVelocity += (-playerVelocity * TP_Motor.m_instance.m_linearDrag);
 
         //if (TP_Controller.Instance.IsGrounded() && !m_jumping)
         //{
