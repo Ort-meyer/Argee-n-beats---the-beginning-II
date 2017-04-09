@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DymanicObjectScript : MonoBehaviour {
+public class DymanicObjectScript : MonoBehaviour
+{
 
     OrbitGameobjectScript orbiScript;
     Vector3 m_goalPos;
@@ -25,14 +26,14 @@ public class DymanicObjectScript : MonoBehaviour {
     float m_radiusForOutPusher = 3.0f;
     float m_radiusForDetermineInOrbit = 0.0f;
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         m_radiusForDetermineInOrbit = m_radiusForOutPusher + 5.0f;
     }
 
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         ////Kollar alla spelarna om Co-op skulle vara en grej
         //for (int i = 0; i < length; i++)
@@ -42,7 +43,7 @@ public class DymanicObjectScript : MonoBehaviour {
         Transform t_targetTransform = GameObject.Find("PlaceHolderPlayerController").GetComponent<Transform>();
         Rigidbody t_targetRigid = GameObject.Find("PlaceHolderPlayerController").GetComponent<Rigidbody>();
         Vector3 t_totalForce = new Vector3();
-        Vector3 t_vectorBetween = -1*(gameObject.transform.position - t_targetTransform.position);
+        Vector3 t_vectorBetween = -1 * (gameObject.transform.position - t_targetTransform.position);
         Vector3 t_crossResultNorm = Vector3.Cross(t_targetTransform.up, t_vectorBetween).normalized;
         m_goalPos = t_crossResultNorm * m_radius + t_targetTransform.position;
 
@@ -55,11 +56,13 @@ public class DymanicObjectScript : MonoBehaviour {
                 if (t_vectorBetween.magnitude > m_prevVecBetween.magnitude)//|| t_vectorBetween.magnitude < m_radius)
                 {
                     m_enterOrbit = true;
+
                     m_gravForce = Mathf.Pow(gameObject.GetComponent<Rigidbody>().velocity.magnitude, 2f) / t_vectorBetween.magnitude;
                 }
 
                 if (m_enterOrbit)
                 {
+                    transform.gameObject.layer = 12;
                     if (t_vectorBetween.magnitude < m_radius)
                     {
                         m_enterOrbit = false;
@@ -87,6 +90,7 @@ public class DymanicObjectScript : MonoBehaviour {
             else
             {
                 m_enterOrbit = false;
+                transform.gameObject.layer = 1;
             }
             if ((gameObject.GetComponent<Rigidbody>().velocity - t_targetRigid.velocity).magnitude > m_veloMaxSpeed)
             {

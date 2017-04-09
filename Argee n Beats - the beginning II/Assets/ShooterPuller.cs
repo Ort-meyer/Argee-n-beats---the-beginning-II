@@ -11,6 +11,8 @@ public class ShooterPuller : MonoBehaviour
     public int sucking;
     public int m_fireMode = 1;
 
+    public bool m_pullingThingsIntoOrbit;
+
     // Use this for initialization
     void Start()
     {
@@ -20,6 +22,7 @@ public class ShooterPuller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_pullingThingsIntoOrbit = false;
         FrequencyAnalysis freqAnalys = GetComponent<FrequencyAnalysis>();
         sucking = 0;
         if (freqAnalys.m_currentFrequency > m_threshold)
@@ -40,7 +43,7 @@ public class ShooterPuller : MonoBehaviour
             {
                 Vector3 lineBetween = (obj.transform.position - transform.position).normalized;
                 Vector3 cameraTarget = Camera.current.transform.forward.normalized;
-                
+
                 float dot = Vector3.Dot(lineBetween, cameraTarget);
                 float derp = freqAnalys.m_currentAmplitude;
 
@@ -50,6 +53,20 @@ public class ShooterPuller : MonoBehaviour
                     obj.GetComponent<Rigidbody>().AddForce(lineBetween * m_fireForce * sucking);
                 }
             }
+        }
+        // Charge up fire mode
+        else if (m_fireMode == 2)
+        {
+            if (sucking == -1)
+            {
+                m_pullingThingsIntoOrbit = true;
+                // Suck/maintain objects
+            }
+            else if (sucking == 1)
+            {
+                // fire shit
+            }
+
         }
     }
 }
