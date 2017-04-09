@@ -8,6 +8,7 @@ public class DymanicObjectScript : MonoBehaviour {
     Vector3 m_goalPos;
     bool m_needToSetGoalPos = true;
     bool m_enterOrbit = false;
+    bool m_inOrbit = false;
     //Gigantisk för att den alltid ska vara större än något
     Vector3 m_prevVecBetween = new Vector3(10000, 10000, 10000);
     float m_gravForce = 1.0f;
@@ -15,10 +16,11 @@ public class DymanicObjectScript : MonoBehaviour {
     float m_veloMaxSpeed = 25.0f;
     float m_veloMultiplier = 2.0f;
     float m_radiusForOutPusher = 3.0f;
+    float m_radiusForDetermineInOrbit = 0.0f;
     // Use this for initialization
     void Start ()
     {
-        
+        m_radiusForDetermineInOrbit = m_radiusForOutPusher + 5.0f;
     }
 
 	
@@ -93,7 +95,15 @@ public class DymanicObjectScript : MonoBehaviour {
         {
             gameObject.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity.normalized * m_veloMaxSpeed;
         }
-            print(-1 * (gameObject.GetComponent<Rigidbody>().velocity).magnitude);
+            //print(-1 * (gameObject.GetComponent<Rigidbody>().velocity).magnitude);
             gameObject.GetComponent<Rigidbody>().AddForce(t_totalForce);
+        if(t_distBetween >= m_radiusForDetermineInOrbit)
+        {
+            m_inOrbit = true;
+        }
+        else
+        {
+            m_inOrbit = false;
+        }
     }
 }

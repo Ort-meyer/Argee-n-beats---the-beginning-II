@@ -163,17 +163,18 @@ public class TP_Motor : MonoBehaviour {
             bool hit = Physics.Raycast(transform.position, -transform.up, out t_info, 4.6f, layer);
             //bool hit = Physics.SphereCast(transform.position, 1f, -transform.up, out t_info, 0.6f, layer);
             //m_slideDirection = new Vector3(t_collisionNormal.x, -t_collisionNormal.y, t_collisionNormal.z);
-            print(t_collisionNormal);
+            //print(t_collisionNormal);
             if (t_collisionNormal.y < m_slideThreshold)
             {
                 //Project movevector on plane that we collided with. If slope (normal y<slidevaluethign)
                 //Multiply Y component of the projected movevector with a variable that is reduced every frame we are not grounded.
 
                 //If on ground. Reset variable that reduces the Y component
-
+                
                 Vector3 t_projectedMoveVec = Vector3.ProjectOnPlane(t_moveVector, t_info.normal);
                 t_moveVector = new Vector3(t_projectedMoveVec.x, t_projectedMoveVec.y * m_slideYReducer, t_projectedMoveVec.z);
-                print("Im Sliding " + t_moveVector.y);
+                //print("Im Sliding " + t_moveVector.y);
+
                 if (m_slideYReducer > 0.0001)
                 {
                     m_slideYReducer -= 0.01f;
@@ -259,7 +260,7 @@ public class TP_Motor : MonoBehaviour {
                 //m_slideDirection = Vector3.ProjectOnPlane(m_slideDirection, t_hitInfo.normal);
                 Debug.DrawRay(t_hitInfo.point, m_slideDirection, Color.blue);
                 Debug.DrawRay(t_hitInfo.point,t_hitInfo.normal, Color.red);
-                print(m_slideDirection + " " + m_slideDirection.magnitude + " " + t_hitInfo.normal);
+                //print(m_slideDirection + " " + m_slideDirection.magnitude + " " + t_hitInfo.normal);
             }
             else
             {
