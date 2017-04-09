@@ -7,6 +7,13 @@ using UnityEngine.EventSystems;
 public class Trigger : MonoBehaviour {
     int initTimes = 0;
 
+    public enum Affectors
+    {
+        Both, NonPlayer, Player,
+    }
+
+    public Affectors affectors = Affectors.Both;
+
     [System.NonSerialized]
     public bool isTriggered;
     public bool continous = false; //om true så kallar den kommandot hela tiden, bör vara iklickad om man kör med ljud
@@ -115,18 +122,18 @@ public class Trigger : MonoBehaviour {
                 {
                     FrequencyAnalysis fA = col[i].GetComponent<FrequencyAnalysis>();
                     SoundAnalysisNotPlayer fB = col[i].GetComponent<SoundAnalysisNotPlayer>();
-                    if(fA != null)
+                    if(fA != null && (affectors == Affectors.Both || affectors == Affectors.Player))
                     {
                         bestAmplitude = Mathf.Max(bestAmplitude, fA.m_momentaryAmplitude);
                     }
-                    if(fB != null)
+                    if(fB != null && (affectors == Affectors.Both || affectors == Affectors.NonPlayer))
                     {
                         bestAmplitude = Mathf.Max(bestAmplitude, fB.m_currentAmplitude);
                     }
                     else if(col[i].transform.parent != null)
                     {
                         fB = col[i].transform.parent.GetComponent<SoundAnalysisNotPlayer>();
-                        if (fB != null)
+                        if (fB != null && (affectors == Affectors.Both || affectors == Affectors.NonPlayer))
                         {
                             bestAmplitude = Mathf.Max(bestAmplitude, fB.m_currentAmplitude);
                         }
