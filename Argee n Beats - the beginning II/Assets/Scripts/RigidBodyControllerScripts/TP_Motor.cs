@@ -194,7 +194,7 @@ public class TP_Motor : MonoBehaviour {
                 if (m_slidedLastFrame == true)
                 {
                     m_slidedLastFrame = false;
-                    TP_Controller.m_rigidBodyController.AddForce(new Vector3(0, -TP_Controller.m_rigidBodyController.velocity.y * TP_Motor.m_instance.m_linearDrag, 0));
+                    TP_Controller.m_rigidBodyController.velocity = new Vector3(TP_Controller.m_rigidBodyController.velocity.x, 0, TP_Controller.m_rigidBodyController.velocity.z);
                 }
             }
 
