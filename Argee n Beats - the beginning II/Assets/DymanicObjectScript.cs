@@ -117,7 +117,7 @@ public class DymanicObjectScript : MonoBehaviour
             }
             //print(-1 * (gameObject.GetComponent<Rigidbody>().velocity).magnitude);
             gameObject.GetComponent<Rigidbody>().AddForce(t_totalForce);
-            if (t_distBetween <= m_radiusForDetermineInOrbit)
+            if (t_distBetween <= m_radiusForDetermineInOrbit * 1.5)
             {
                 m_inOrbit = true;
             }
