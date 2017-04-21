@@ -73,10 +73,18 @@ public class OrbitShootScript : MonoBehaviour
                 Rigidbody fireObjBody = allDynamicObjects[id].GetComponent<Rigidbody>();
                 fireObjBody.useGravity = false;
                 fireObjBody.velocity = Vector3.zero;
+
+
                 //Vector3 fireDirection = transform.forward; // This will be changed if we want auto aim
-                Vector3 fireDirection = Camera.main.transform.forward;
+
+
+
+                //Vector3 fireDirection = Camera.main.transform.forward;
                 // Rotate fire vector so we get a more natural/sensible fire direction
-                fireDirection = Quaternion.AngleAxis(-m_shootDirTiltFromCamera, Vector3.Cross(transform.up, transform.forward)) * fireDirection;
+                //fireDirection = Quaternion.AngleAxis(-m_shootDirTiltFromCamera, Vector3.Cross(transform.up, transform.forward)) * fireDirection;
+
+                Vector3 fireDirection = GetFireDirection(allDynamicObjects[id].transform.position);
+
                 fireObjBody.AddForce(fireDirection * m_shootForce);
                 fireObjBody.GetComponent<Collider>().isTrigger = true; // why?
                 allDynamicObjects[id].AddComponent<Projectile>();
@@ -97,5 +105,22 @@ public class OrbitShootScript : MonoBehaviour
             }
 
         }
+    }
+    
+    Vector3 GetFireDirection(Vector3 p_posOfObjectBeingFired)
+    {
+        LayerMask mask;
+        // Ignore stuff in orbit and fired projectiles (could be made public to be scalable and all that good stuff)
+        mask = (1 << 11);
+        mask |= (1 << 12);
+        Vector3 fireDirection = Camera.main.transform.forward;
+        // Rotate fire vector so we get a more natural/sensible fire direction
+        fireDirection = Quaternion.AngleAxis(-m_shootDirTiltFromCamera, Vector3.Cross(transform.up, transform.forward)) * fireDirection;
+        RaycastHit rayHit;
+        if(Physics.Raycast(transform.position, fireDirection, out rayHit, 1000)) // Hard coded range of ray cast
+        {
+            fireDirection = (rayHit.point - p_posOfObjectBeingFired).normalized;
+        }
+        return fireDirection;
     }
 }
