@@ -18,8 +18,8 @@ TagManager:
   - IgnoreCameraOcclusion
   - Player
   - SoundAffectors
-  - 
-  - 
+  - LeavingOrbit
+  - InOrbit
   - 
   - 
   - 

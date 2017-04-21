@@ -120,10 +120,12 @@ public class DymanicObjectScript : MonoBehaviour
             if (t_distBetween <= m_radiusForDetermineInOrbit * 1.5)
             {
                 m_inOrbit = true;
+                gameObject.layer = 12;
             }
             else
             {
                 m_inOrbit = false;
+                gameObject.layer = 0;
             }
         }
 
