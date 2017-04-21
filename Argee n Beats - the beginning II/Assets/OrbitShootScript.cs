@@ -78,6 +78,7 @@ public class OrbitShootScript : MonoBehaviour
                         float thisDot = Vector3.Dot(vecBetweenNorm, vecTargetNorm);
                         if (thisDot > bestDot)
                         {
+                            bestDot = thisDot;
                             id = i;
                             //fireObject = obj; // This is reference, right?
                         }
