@@ -8,6 +8,7 @@ public class OrbitShootScript : MonoBehaviour
     // Use this for initialization
     public float m_shootForce = 5000.0f;
     public float m_shootCooldown = 1.0f;
+    public float m_shootDirTiltFromCamera = 15.0f;
     float m_timer = 0.0f;
 
     void Start()
@@ -70,10 +71,12 @@ public class OrbitShootScript : MonoBehaviour
 
                 // Reset velocity, remove gravity and fire away! (this is where we'll maybe want it to be a rocket)
                 Rigidbody fireObjBody = allDynamicObjects[id].GetComponent<Rigidbody>();
-                fireObjBody.useGravity = true;
+                fireObjBody.useGravity = false;
                 fireObjBody.velocity = Vector3.zero;
-                Vector3 fireDirection = transform.forward; // This will be changed if we want auto aim
-                fireDirection = Quaternion.AngleAxis(-20, Vector3.Cross(transform.up, transform.forward)) * fireDirection;
+                //Vector3 fireDirection = transform.forward; // This will be changed if we want auto aim
+                Vector3 fireDirection = Camera.main.transform.forward;
+                // Rotate fire vector so we get a more natural/sensible fire direction
+                fireDirection = Quaternion.AngleAxis(-m_shootDirTiltFromCamera, Vector3.Cross(transform.up, transform.forward)) * fireDirection;
                 fireObjBody.AddForce(fireDirection * m_shootForce);
                 fireObjBody.GetComponent<Collider>().isTrigger = true; // why?
                 allDynamicObjects[id].AddComponent<Projectile>();
