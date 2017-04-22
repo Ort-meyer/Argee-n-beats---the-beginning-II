@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4176614445395046}
   - component: {fileID: 114869019281546462}
   - component: {fileID: 65441795595618528}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: TriggerOpenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
