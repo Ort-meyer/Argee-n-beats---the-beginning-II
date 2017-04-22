@@ -53,10 +53,12 @@ public class DymanicObjectScript : MonoBehaviour
         if (m_targetableForPower)
         {
 
-
-            if (shootScript.m_pullingIntoOrbit && t_vectorBetween.magnitude < m_pullRange)
+            // If we're dragging it towards us
+            if ((shootScript.m_pullingIntoOrbit || m_inOrbit) && t_vectorBetween.magnitude < m_pullRange)
             {
+                // Don't use gravity while being pulled
                 GetComponent<Rigidbody>().useGravity = false;
+                
                 if (t_vectorBetween.magnitude > m_prevVecBetween.magnitude)//|| t_vectorBetween.magnitude < m_radius)
                 {
                     m_enterOrbit = true;
@@ -66,6 +68,7 @@ public class DymanicObjectScript : MonoBehaviour
 
                 if (m_enterOrbit)
                 {
+                    m_inOrbit = true;
                     transform.gameObject.layer = 12;
                     if (t_vectorBetween.magnitude < m_radius)
                     {
@@ -91,7 +94,7 @@ public class DymanicObjectScript : MonoBehaviour
 
                 m_prevVecBetween = t_vectorBetween;
             }
-            else
+            else if (!m_inOrbit)
             {
                 GetComponent<Rigidbody>().useGravity = true;
                 m_enterOrbit = false;
@@ -117,16 +120,16 @@ public class DymanicObjectScript : MonoBehaviour
             }
             //print(-1 * (gameObject.GetComponent<Rigidbody>().velocity).magnitude);
             gameObject.GetComponent<Rigidbody>().AddForce(t_totalForce);
-            if (t_distBetween <= m_radiusForDetermineInOrbit * 1.5)
-            {
-                m_inOrbit = true;
-                gameObject.layer = 12;
-            }
-            else
-            {
-                m_inOrbit = false;
-                gameObject.layer = 0;
-            }
+            //if (t_distBetween <= m_radiusForDetermineInOrbit * 1.5)
+            //{
+            //    m_inOrbit = true;
+            //    gameObject.layer = 12;
+            //}
+            //else
+            //{
+            //    m_inOrbit = false;
+            //    gameObject.layer = 0;
+            //}
         }
 
 
