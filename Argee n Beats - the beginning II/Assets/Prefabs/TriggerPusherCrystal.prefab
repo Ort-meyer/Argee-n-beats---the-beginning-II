@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508636683850072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -160.36664, y: 0.81, z: -68.596405}
+  m_LocalPosition: {x: 7.374831, y: 1.17, z: 9.528343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4653051449495308}
@@ -234,13 +234,12 @@ MonoBehaviour:
   affectors: 0
   continous: 1
   collisionExtent: 5
-  req_Amplitude: 0.136
   switchTriggered: 0
   switchCD: 1
   switchTimer: 0
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   psActivated: {fileID: 198480452475649652}
   fEventStart:
     m_PersistentCalls:
@@ -290,7 +289,7 @@ MonoBehaviour:
   activated: 0
   pushAway: 0
   forceMode: 0
-  pushForce: 10000
+  pushForce: 200
 --- !u!136 &136918991656403166
 CapsuleCollider:
   m_ObjectHideFlags: 1
