@@ -50,7 +50,7 @@ public class Pusher : MonoBehaviour {
             if(pushAway)
             {
                 Vector3 tSameY = new Vector3(transform.position.x, c.transform.position.y, transform.position.z);
-                Vector3 dir = (c.transform.position - tSameY).normalized;
+                Vector3 dir = transform.parent.transform.up;//(c.transform.position - tSameY).normalized;
                 //o_r.velocity = Vector3.zero;
                 //print(o_r.velocity);
                 o_r.AddForce(dir * pushForce, forceMode);

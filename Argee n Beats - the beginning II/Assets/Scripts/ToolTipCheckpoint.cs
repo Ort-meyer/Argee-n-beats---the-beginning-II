@@ -18,11 +18,13 @@ public class ToolTipCheckpoint : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (entered == false)
+        if (other.tag == "Player")
         {
-            entered = true;
-            transform.parent.GetComponent<ToolTipManager>().UpdateToolTip();
+            if (entered == false)
+            {
+                entered = true;
+                transform.parent.GetComponent<ToolTipManager>().UpdateToolTip();
+            }
         }
-
     }
 }

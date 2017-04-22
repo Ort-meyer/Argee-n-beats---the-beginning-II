@@ -26,6 +26,9 @@ public class ToolTipManager : MonoBehaviour {
             }
         }
 
+        // sort
+        
+
         toolTips[0].GetComponent<Text>().enabled = true;
 	}
 	
