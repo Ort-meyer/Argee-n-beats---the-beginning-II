@@ -26,6 +26,7 @@ public class DeathZone : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Health healtComp = other.GetComponent<Health>();
+        
         if (healtComp)
         {
             healtComp.TakeDamage(healtComp.startingHealth);
@@ -34,6 +35,15 @@ public class DeathZone : MonoBehaviour
             {
                 youDiedObj.gameObject.GetComponent<Text>().enabled = true;
                 Invoke("DisableHealthGUI", 3.0f);
+            }
+        }
+
+        if (other.transform.parent)
+        {
+            RespawnNoHealth respNoHealth = other.transform.parent.GetComponent<RespawnNoHealth>();
+            if (respNoHealth)
+            {
+                respNoHealth.Respawn();
             }
         }
     }
