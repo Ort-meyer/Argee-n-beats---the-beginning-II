@@ -5,13 +5,22 @@ using UnityEngine;
 public class Pusher : MonoBehaviour {
     public bool activated = false;
     public bool pushAway = false;
-    public ForceMode forceMode = ForceMode.Force;
-
+    ForceMode forceMode = ForceMode.VelocityChange;
+    GameObject m_playerGO;
     public float pushForce = 100;
-	// Use this for initialization
-	void Start () {
+    bool m_playerEligable = true;
+    // Use this for initialization
+    void Start ()
+    {
+        m_playerGO = GameObject.FindGameObjectWithTag("Player").gameObject;
 	}
-	
+	void OnTriggerExit(Collider c)
+    {
+        if(c.gameObject==m_playerGO)
+        {
+            m_playerEligable = true;
+        }
+    }
     void OnTriggerStay(Collider c)
     {
         if (!activated)
@@ -28,10 +37,12 @@ public class Pusher : MonoBehaviour {
                 Vector3 tSameY = new Vector3(transform.position.x, c.transform.position.y, transform.position.z);
                 Vector3 dir = (c.transform.position - tSameY).normalized;
                 o_m.AddImpulse(dir * pushForce * forceFactor);
+                //print(o_r.velocity);
             }
             else
             {
                 o_m.AddImpulse(transform.up * pushForce * forceFactor);
+                //print(o_r.velocity);
             }
         }
         else if (o_r != null)
@@ -40,15 +51,23 @@ public class Pusher : MonoBehaviour {
             {
                 Vector3 tSameY = new Vector3(transform.position.x, c.transform.position.y, transform.position.z);
                 Vector3 dir = (c.transform.position - tSameY).normalized;
+                //o_r.velocity = Vector3.zero;
+                //print(o_r.velocity);
                 o_r.AddForce(dir * pushForce, forceMode);
             }
             else
             {
-                o_r.AddForce(transform.up * pushForce, forceMode);
+                if(c.gameObject==m_playerGO && m_playerEligable)
+                {
+                    o_r.velocity = Vector3.zero;
+                    //print(o_r.velocity);
+                    o_r.AddForce(transform.up * pushForce, forceMode);
+                    m_playerEligable = false;
+                }
             }
         }
     }
-
+    
     public void Toggle(bool b)
     {
         activated = b;
