@@ -9,6 +9,7 @@ public class FrequencyAnalysis : MonoBehaviour
     private int recordingDuration = 5;
 
     public int m_currentFrequency;
+    public float m_minFreqStength = 0.01f;
     public int m_momentaryFrequency;
     public float m_currentAmplitude;
     public float m_momentaryAmplitude;
@@ -110,7 +111,7 @@ public class FrequencyAnalysis : MonoBehaviour
         int highestFreq = 0;
         for (int i = 0; i < data.Length; i++)
         {
-            if (data[i] > highest)
+            if (data[i] > highest && data[i] > m_minFreqStength)
             {
                 highest = data[i];
                 highestFreq = i;
