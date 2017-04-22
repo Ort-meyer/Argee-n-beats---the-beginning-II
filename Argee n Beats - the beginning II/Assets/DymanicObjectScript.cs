@@ -37,6 +37,12 @@ public class DymanicObjectScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(m_inOrbit && Input.GetKey(KeyCode.R))
+        {
+            m_inOrbit = false;
+        }
+
+
         ////Kollar alla spelarna om Co-op skulle vara en grej
         //for (int i = 0; i < length; i++)
         //{
