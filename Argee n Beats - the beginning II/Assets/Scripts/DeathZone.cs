@@ -29,8 +29,12 @@ public class DeathZone : MonoBehaviour
         if (healtComp)
         {
             healtComp.TakeDamage(healtComp.startingHealth);
-            youDiedObj.gameObject.GetComponent<Text>().enabled = true;
-            Invoke("DisableHealthGUI", 3.0f);
+
+            if (other.tag.Equals("Player"))
+            {
+                youDiedObj.gameObject.GetComponent<Text>().enabled = true;
+                Invoke("DisableHealthGUI", 3.0f);
+            }
         }
     }
 }

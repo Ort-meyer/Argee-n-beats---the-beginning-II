@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VoiceIndicator : MonoBehaviour
 {
-    public GameObject indicator;
+    GameObject indicator;
     float maxFrequency = 1000.0f; // TODO get from global
     float minAmplitude = 0.01f;
     FrequencyAnalysis freqAnalysis;
@@ -24,6 +24,7 @@ public class VoiceIndicator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        indicator = GameObject.Find("FrequencyIndicator");
         freqAnalysis = GetComponent<FrequencyAnalysis>();
         GameObject background = indicator.transform.GetChild(0).gameObject;
         //background.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width * 0.9f, background.GetComponent<RectTransform>().sizeDelta.y);
