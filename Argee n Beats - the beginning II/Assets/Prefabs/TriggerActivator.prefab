@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4997610812628532}
   - component: {fileID: 114126892833214152}
   - component: {fileID: 65633622139191780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TriggerActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3328,7 +3328,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1738022889
+  randomSeed: 1530525971
   InitialModule:
     serializedVersion: 3
     enabled: 1
