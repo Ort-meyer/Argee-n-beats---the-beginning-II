@@ -95,6 +95,24 @@ ModelImporter:
     4300030: pCone9
     4300032: pSphere1
     4300034: pCone12
+    6400000: //RootNode
+    6400002: pCone1
+    6400004: pCone10
+    6400006: pCone11
+    6400008: pCone12
+    6400010: pCone2
+    6400012: pCone3
+    6400014: pCone4
+    6400016: pCone5
+    6400018: pCone6
+    6400020: pCone7
+    6400022: pCone8
+    6400024: pCone9
+    6400026: pCylinder18
+    6400028: pCylinder19
+    6400030: pCylinder20
+    6400032: pCylinder21
+    6400034: pSphere1
   materials:
     importMaterials: 1
     materialName: 0
@@ -123,7 +141,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 300
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

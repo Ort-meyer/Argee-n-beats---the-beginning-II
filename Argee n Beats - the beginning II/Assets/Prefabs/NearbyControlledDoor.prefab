@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 23833221087098618}
   - component: {fileID: 64279156896918334}
   m_Layer: 0
-  m_Name: DoorVault
+  m_Name: NearbyControlledDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +243,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
+  m_Convex: 0
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: a60a10aab054d7743a96499db5fa96f7, type: 3}

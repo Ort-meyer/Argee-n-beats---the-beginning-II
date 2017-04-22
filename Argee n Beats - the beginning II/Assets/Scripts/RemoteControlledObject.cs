@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RemoteControlledObject : MonoBehaviour {
-    public Vector3 start;
-    public Vector3 stop;
+    public Transform start;
+    public Transform stop;
     public float speed;
     float fromStart = 0;
     bool triggered;
@@ -18,13 +18,13 @@ public class RemoteControlledObject : MonoBehaviour {
         {
             fromStart += speed * Time.deltaTime;
             fromStart = Mathf.Min(1, fromStart);
-            transform.position = Vector3.Lerp(start, stop, fromStart);
+            transform.position = Vector3.Lerp(start.position, stop.position, fromStart);
         }
         else
         {
             fromStart -= speed * Time.deltaTime;
             fromStart = Mathf.Max(0, fromStart);
-            transform.position = Vector3.Lerp(start, stop, fromStart);
+            transform.position = Vector3.Lerp(start.position, stop.position, fromStart);
         }
 	}
 
