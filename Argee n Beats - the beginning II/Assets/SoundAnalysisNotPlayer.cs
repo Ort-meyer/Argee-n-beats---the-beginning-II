@@ -16,12 +16,29 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
     const int m_framesToAvrage = 10;
     int m_frameIter = 0;
 
+    AudioSource audioData;
+    AudioSource audioOutput;
     // Use this for initialization
     void Start()
     {
         m_playerObject = GameObject.FindGameObjectWithTag("Player"); // TODO change if we have multiplayer :D
         FrequencyAnalysis freAn = m_playerObject.GetComponent<FrequencyAnalysis>();
         m_maxAmplitude = freAn.m_maxAmplitude;
+        AudioSource[] audioS = GetComponents<AudioSource>();
+
+        if (audioS[0].enabled)
+        {
+            audioOutput = audioS[0];
+            audioData = audioS[1];
+            audioData.enabled = true;
+        }
+        else
+        {
+            audioData = audioS[1];
+            audioOutput = audioS[0];
+            audioData.enabled = true;
+        }
+
     }
 
     // Update is called once per frame
@@ -30,21 +47,24 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
         m_frameIter++;
         if (m_frameIter >= m_framesToAvrage)
             m_frameIter = 0;
-        AudioSource audio = GetComponent<AudioSource>();
+        
         float[] data = new float[1024];
         float[] amplitudeData = new float[1024];
-        audio.GetSpectrumData(data, 0, FFTWindow.Rectangular);
-        audio.GetOutputData(amplitudeData, 0);
+        audioData.GetSpectrumData(data, 0, FFTWindow.Rectangular);
+        audioData.GetOutputData(amplitudeData, 0);
         AnalyzeSound(data);
         AnalyzeAmplitude(amplitudeData);
     }
 
     public void StartPlaying()
     {
-        AudioSource audio = GetComponent<AudioSource>();
-        audio.clip = m_playerObject.GetComponent<FrequencyAnalysis>().m_recordedClip;
-        audio.loop = true;
-        audio.Play();
+        audioData.clip = m_playerObject.GetComponent<FrequencyAnalysis>().m_recordedClip;
+        audioData.loop = true;
+        audioData.Play();
+
+        audioOutput.clip = m_playerObject.GetComponent<FrequencyAnalysis>().m_recordedClip;
+        audioOutput.loop = true;
+        audioOutput.Play();
     }
 
     private void AnalyzeSound(float[] data)
