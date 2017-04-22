@@ -147,11 +147,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 82501722946525612, guid: 673abaf83fbf67d4ca9e81e396008015,
+    - target: {fileID: 114155559579352166, guid: 673abaf83fbf67d4ca9e81e396008015,
         type: 2}
-      propertyPath: MaxDistance
-      value: 48483.742
-      objectReference: {fileID: 0}
+      propertyPath: indicator
+      value: 
+      objectReference: {fileID: 1247507201}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 673abaf83fbf67d4ca9e81e396008015, type: 2}
   m_IsPrefabParent: 0
@@ -624,36 +624,3 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 678e47861c6e2134599b4af2925a1928, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1849279146 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1478226696988508, guid: 673abaf83fbf67d4ca9e81e396008015,
-    type: 2}
-  m_PrefabInternal: {fileID: 471202274}
---- !u!114 &1849279162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1849279146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab6f9902e20bc343bc7046817290949, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 1247507201}
-  type: 0
---- !u!114 &1849279163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1849279146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7af4f4b7e5b37a64e907dfc73b4158b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  collisionExtent: 5
