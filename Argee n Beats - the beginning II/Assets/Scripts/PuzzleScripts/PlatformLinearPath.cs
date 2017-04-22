@@ -12,7 +12,7 @@ public class PlatformLinearPath : MonoBehaviour {
 
     public Transform[] paths_t;
     Transform currPath = null;
-    int currIndex = 0;
+    int currIndex = -1;
 	// Use this for initialization
 	void Start () {
         if (o_rigidbody == null)
@@ -57,6 +57,10 @@ public class PlatformLinearPath : MonoBehaviour {
 
     public void MoveTo(int index)
     {
+        if (currIndex == index)
+        {
+            return;
+        }
         currIndex = index;
         currPath = paths_t[currIndex];
         momentum = Vector3.zero;
