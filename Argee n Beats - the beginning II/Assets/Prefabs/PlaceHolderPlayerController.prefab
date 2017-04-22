@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 114982992049407156}
   - component: {fileID: 114981964501906590}
   - component: {fileID: 114155559579352166}
+  - component: {fileID: 114124506019347944}
   m_Layer: 9
   m_Name: PlaceHolderPlayerController
   m_TagString: Player
@@ -325,6 +326,19 @@ MonoBehaviour:
   m_isDashing: 0
   m_linearDrag: 0.9
   slidingForceMultiplier: 100
+--- !u!114 &114124506019347944
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1478226696988508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ee1b8bad7c4a44c93a1e39e1523df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 200
+  respawnOnDeath: 1
 --- !u!114 &114155559579352166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -351,6 +365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_recordedClip: {fileID: 0}
   m_currentFrequency: 0
+  m_minFreqStength: 0.01
   m_momentaryFrequency: 0
   m_currentAmplitude: 0
   m_momentaryAmplitude: 0
