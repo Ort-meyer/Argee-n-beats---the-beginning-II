@@ -56,13 +56,13 @@
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 
-            float f = 1.0f; // desaturate by 20%
+            float f = 0.5f; // desaturate by 20%
             float L = 0.3f*c.r + 0.6f*c.g + 0.1f*c.b;
             fixed4 cNew;
             cNew.r = c.r + f * (L - c.r);
             cNew.g = c.g + f * (L - c.g);
             cNew.b = c.b + f * (L - c.b);
-
+            cNew *= 0.25f;
 
             o.Albedo = c.rgb*soundMapCol + cNew.rgb* (1.0f - soundMapCol);
             //o.Albedo = cNew.rgb;
