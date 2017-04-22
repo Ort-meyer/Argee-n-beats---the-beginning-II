@@ -302,8 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   pushAway: 0
-  forceMode: 0
-  pushForce: 200
+  pushForce: 30
 --- !u!136 &136895204598160278
 CapsuleCollider:
   m_ObjectHideFlags: 1

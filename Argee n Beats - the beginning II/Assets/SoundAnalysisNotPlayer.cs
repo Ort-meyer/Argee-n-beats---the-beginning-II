@@ -19,7 +19,7 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_playerObject = GameObject.Find("PlaceHolderPlayerController"); // TODO change if we have multiplayer :D
+        m_playerObject = GameObject.FindGameObjectWithTag("Player"); // TODO change if we have multiplayer :D
         FrequencyAnalysis freAn = m_playerObject.GetComponent<FrequencyAnalysis>();
         m_maxAmplitude = freAn.m_maxAmplitude;
     }

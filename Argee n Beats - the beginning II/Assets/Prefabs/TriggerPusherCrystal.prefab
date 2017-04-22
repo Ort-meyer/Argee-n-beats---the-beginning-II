@@ -233,7 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   affectors: 0
   continous: 1
-  collisionExtent: 5
   switchTriggered: 0
   switchCD: 1
   switchTimer: 0
@@ -288,8 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   pushAway: 0
-  forceMode: 0
-  pushForce: 200
+  pushForce: 20
 --- !u!136 &136918991656403166
 CapsuleCollider:
   m_ObjectHideFlags: 1
