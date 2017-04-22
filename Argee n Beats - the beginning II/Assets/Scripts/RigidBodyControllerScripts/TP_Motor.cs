@@ -138,9 +138,9 @@ public class TP_Motor : MonoBehaviour {
             {
                 return r_platformVelocity;
             }
-            if (t_info.rigidbody.gameObject.tag == "XZMovingPlatform")
+            if (t_info.rigidbody.gameObject.tag == "MovingPlatform")
             {
-                print("Onmovingplatform");
+                //print("Onmovingplatform");
                 r_platformVelocity = Vector3.ProjectOnPlane(t_info.rigidbody.velocity, new Vector3(0,1,0));
             }
         }
