@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class ToolTipManager : MonoBehaviour {
 
     List<GameObject> toolTips = new List<GameObject>();
+    GameObject toggle;
     int curToolTip = 0;
+    bool finished = false;
+
 	// Use this for initialization
 	void Start () {
         GameObject canvas = GameObject.Find("Canvas");
@@ -17,6 +20,10 @@ public class ToolTipManager : MonoBehaviour {
             {
                 toolTips.Add(child);
             }
+            else if(child.name.Contains("TOGGLE"))
+            {
+                toggle = child;
+            }
         }
 
         toolTips[0].GetComponent<Text>().enabled = true;
@@ -24,12 +31,23 @@ public class ToolTipManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+        if (finished)
+        {
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                if (curToolTip == toolTips.Count)
+                {
+                    curToolTip = 0;
+                }
+                UpdateToolTip();
+            }
+        }
 	}
 
     public void UpdateToolTip()
     {
-        if (curToolTip < toolTips.Count)
+        if (curToolTip < toolTips.Count && curToolTip > -1)
         {
             toolTips[curToolTip].GetComponent<Text>().enabled = false;
             curToolTip++;
@@ -37,6 +55,11 @@ public class ToolTipManager : MonoBehaviour {
             if (curToolTip < toolTips.Count)
             {
                 toolTips[curToolTip].GetComponent<Text>().enabled = true;
+            }
+            else
+            {
+                finished = true;
+                toggle.GetComponent<Text>().enabled = true;
             }
         }
     }
