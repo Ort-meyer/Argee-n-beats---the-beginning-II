@@ -23,7 +23,6 @@ public class Trigger : MonoBehaviour {
     [System.NonSerialized]
     public bool isTriggered;
     public bool continous = false; //om true så kallar den kommandot hela tiden, bör vara iklickad om man kör med ljud
-    public float collisionExtent = 5;
 
     //[Range(0.0f, 1.0f)]
     //public float PublicVariables.req_Amplitude = 0.0f;
@@ -90,8 +89,8 @@ public class Trigger : MonoBehaviour {
 
         switchTimer = Time.time + switchCD;
 
-
-        Collider[] col = Physics.OverlapBox(transform.position, new Vector3(collisionExtent, collisionExtent, collisionExtent), Quaternion.identity, collisionMask);
+        Vector3 extents = GetComponent<BoxCollider>().size;
+        Collider[] col = Physics.OverlapBox(transform.position, extents, transform.rotation, collisionMask);
         if (col.Length > 0)
         {
             float bestAmplitude = -Mathf.Infinity;
@@ -133,7 +132,8 @@ public class Trigger : MonoBehaviour {
 
     public bool GetTriggered()
     {
-        Collider[] col = Physics.OverlapBox(transform.position, new Vector3(collisionExtent, collisionExtent, collisionExtent), Quaternion.identity, collisionMask);
+        Vector3 extents = GetComponent<BoxCollider>().size;
+        Collider[] col = Physics.OverlapBox(transform.position, extents, transform.rotation, collisionMask);
         if (col.Length > 0)
         {
             float bestAmplitude = -Mathf.Infinity;
