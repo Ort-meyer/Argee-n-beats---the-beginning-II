@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fire
   - DynamicObject
+  - XZMovingPlatform
   layers:
   - Default
   - TransparentFX

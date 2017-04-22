@@ -31,7 +31,7 @@ public class TP_Motor : MonoBehaviour {
     public Vector3 m_moveVector { get; set; }
 	public float m_verticalVel { get; set; }
     public Vector3 m_dashDirection { get; set; }
-
+    private Vector3 m_previousMovingPLatVelo = Vector3.zero;
     private bool m_slidedLastFrame = false;
 
     Vector3 playerVelocity = new Vector3(0, 0, 0);
@@ -63,7 +63,7 @@ public class TP_Motor : MonoBehaviour {
     {
         if (m_dashCooldownTimer > 0f)
         {
-            m_dashCooldownTimer -= Time.deltaTime;
+            m_dashCooldownTimer -= Time.fixedDeltaTime;
         }
         if (!m_isDashing)
         {
@@ -71,7 +71,7 @@ public class TP_Motor : MonoBehaviour {
             return;
         }
         t_moveVector += m_dashDirection * m_currentDashSpeed;
-        m_currentDashSpeed -= m_dashSpeedFalloff * Time.deltaTime;
+        m_currentDashSpeed -= m_dashSpeedFalloff * Time.fixedDeltaTime;
         if (m_currentDashSpeed < m_forwardSpeed)
         {
             m_isDashing = false;
@@ -102,13 +102,19 @@ public class TP_Motor : MonoBehaviour {
         HandleDash(ref t_moveVector);
         //Reapply Vertical Vel MoveVector.y
         t_moveVector = new Vector3(t_moveVector.x, m_verticalVel, t_moveVector.z);
-        
+        Vector3 t_test = AddPlatformMovementVelocity();
         Vector3 xzmovement =  new Vector3(t_moveVector.x, 0, t_moveVector.z);
+        TP_Controller.m_rigidBodyController.velocity -= m_previousMovingPLatVelo;
         HandleDrag(ref t_moveVector);
-        TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.deltaTime, ForceMode.VelocityChange);
-
+        //xzmovement += t_test;
+        TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        //TP_Controller.m_rigidBodyController.AddForce(xzmovement * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        TP_Controller.m_rigidBodyController.velocity += t_test;
         // New stuff
-        playerVelocity += xzmovement * Time.deltaTime;
+        playerVelocity += xzmovement * Time.fixedDeltaTime;
+        m_previousMovingPLatVelo = t_test;
+
+
 
         Debug.DrawLine(transform.position, transform.position + t_moveVector * 100);
         if(m_isJumping)
@@ -118,8 +124,28 @@ public class TP_Motor : MonoBehaviour {
         }
         else
         {
-            TP_Controller.m_rigidBodyController.AddForce(0, t_moveVector.y * Time.deltaTime, 0, ForceMode.VelocityChange);
+            TP_Controller.m_rigidBodyController.AddForce(0, t_moveVector.y * Time.fixedDeltaTime, 0, ForceMode.VelocityChange);
         }
+    }
+
+    Vector3 AddPlatformMovementVelocity()
+    {
+        Vector3 r_platformVelocity = Vector3.zero;
+        RaycastHit t_info;
+        if (Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x - 0.2f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.1f)))
+        {
+            if (!t_info.rigidbody)
+            {
+                return r_platformVelocity;
+            }
+            if (t_info.rigidbody.gameObject.tag == "XZMovingPlatform")
+            {
+                print("Onmovingplatform");
+                r_platformVelocity = Vector3.ProjectOnPlane(t_info.rigidbody.velocity, new Vector3(0,1,0));
+            }
+        }
+        return r_platformVelocity;
+
     }
 
     float GetNewPlayerVelAxisVal(float oldVal, float playerVel)
@@ -180,9 +206,9 @@ public class TP_Motor : MonoBehaviour {
                 }
                 float slidingForce = (1 - (t_info.normal.y / m_slideThreshold)) * slidingForceMultiplier;
                 Vector3 temp = TP_Controller.m_rigidBodyController.velocity * -1 * TP_Motor.m_instance.m_linearDrag;
-                Vector3 temp2 =  Vector3.down* Time.deltaTime* slidingForce *slideIncreaser;
+                Vector3 temp2 =  Vector3.down* Time.fixedDeltaTime * slidingForce *slideIncreaser;
                 TP_Controller.m_rigidBodyController.AddForce(TP_Controller.m_rigidBodyController.velocity*-1 * TP_Motor.m_instance.m_linearDrag,ForceMode.VelocityChange);
-                TP_Controller.m_rigidBodyController.AddForce(Vector3.down * Time.deltaTime * slidingForce * slideIncreaser);
+                TP_Controller.m_rigidBodyController.AddForce(Vector3.down * Time.fixedDeltaTime * slidingForce * slideIncreaser);
                 slideIncreaser += 5;
                 
                 Debug.DrawRay(t_info.point, m_slideDirection, Color.blue);

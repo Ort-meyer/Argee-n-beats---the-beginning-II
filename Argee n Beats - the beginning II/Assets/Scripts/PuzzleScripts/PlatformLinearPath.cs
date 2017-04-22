@@ -59,5 +59,6 @@ public class PlatformLinearPath : MonoBehaviour {
     {
         currIndex = index;
         currPath = paths_t[currIndex];
+        momentum = Vector3.zero;
     }
 }
