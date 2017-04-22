@@ -149,9 +149,10 @@ public class TP_Motor : MonoBehaviour {
             LayerMask skipmeToo = LayerMask.NameToLayer("IgnoreSlideCheck");
             int layer = int.MaxValue;
             int test = 1 << skipme;
-            test = test << skipmeToo;
+            int test2 = 1 << skipmeToo;
             //layer &=~test;
             layer -= test;
+            layer -= test2;
             bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x -0.2f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);
             //bool hit = Physics.Raycast(transform.position, Vector3.down * (GetComponent<Collider>().bounds.extents.y + 0.2f), out t_info, layer);
             //bool hit = Physics.SphereCast(transform.position, 1f, -transform.up, out t_info, 0.6f, layer);

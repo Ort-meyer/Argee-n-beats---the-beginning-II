@@ -42,6 +42,7 @@ public class TP_Camera : MonoBehaviour {
     {
         m_instance = this;
         m_occludLayer = LayerMask.NameToLayer("IgnoreCameraOcclusion");
+        //m_occludLayer += LayerMask.NameToLayer("IgnoreSlideCheck");
     }
     
 	// Use this for initialization
@@ -207,8 +208,10 @@ public class TP_Camera : MonoBehaviour {
         Debug.DrawLine(t_clipPlanePoints.LowerLeft, t_clipPlanePoints.UpperLeft);
         int layer = int.MaxValue;
         int test = 1 << m_occludLayer;
+        int test2 = 1 << LayerMask.NameToLayer("IgnoreSlideCheck");
         //layer &=~test;
         layer -=test;
+        layer -= test2;
         if (Physics.Linecast(p_from, t_clipPlanePoints.UpperLeft, out t_hitInfo, layer) && t_hitInfo.collider.tag != "Player")
         {
             t_nearestDistance = t_hitInfo.distance;
