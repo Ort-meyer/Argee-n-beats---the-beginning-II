@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 291414039}
   - component: {fileID: 291414038}
   - component: {fileID: 291414037}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2575,7 +2575,7 @@ GameObject:
   - component: {fileID: 912480049}
   - component: {fileID: 912480048}
   - component: {fileID: 912480047}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2843,7 +2843,7 @@ GameObject:
   - component: {fileID: 974290686}
   - component: {fileID: 974290685}
   - component: {fileID: 974290684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3466,7 +3466,7 @@ GameObject:
   - component: {fileID: 1213271204}
   - component: {fileID: 1213271203}
   - component: {fileID: 1213271202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3798,7 +3798,7 @@ GameObject:
   - component: {fileID: 1270902829}
   - component: {fileID: 1270902828}
   - component: {fileID: 1270902827}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4800,7 +4800,7 @@ GameObject:
   - component: {fileID: 1634613321}
   - component: {fileID: 1634613323}
   - component: {fileID: 1634613322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5190,7 +5190,7 @@ GameObject:
   - component: {fileID: 1740771296}
   - component: {fileID: 1740771295}
   - component: {fileID: 1740771294}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5450,6 +5450,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1046796804247142, guid: 3a8b3131846bb0341a3d8a5af61e6964, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a8b3131846bb0341a3d8a5af61e6964, type: 2}
   m_IsPrefabParent: 0
@@ -5569,7 +5573,7 @@ GameObject:
   - component: {fileID: 1809994450}
   - component: {fileID: 1809994452}
   - component: {fileID: 1809994451}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5820,7 +5824,7 @@ GameObject:
   - component: {fileID: 1925699357}
   - component: {fileID: 1925699359}
   - component: {fileID: 1925699358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Checkpoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5908,6 +5912,11 @@ Prefab:
     - target: {fileID: 1478226696988508, guid: 673abaf83fbf67d4ca9e81e396008015, type: 2}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 114155559579352166, guid: 673abaf83fbf67d4ca9e81e396008015,
+        type: 2}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 673abaf83fbf67d4ca9e81e396008015, type: 2}
@@ -6112,6 +6121,10 @@ Prefab:
     - target: {fileID: 4742974235423736, guid: 67fcc9d08b48f0945a5184821ac3d1d0, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045975665484792, guid: 67fcc9d08b48f0945a5184821ac3d1d0, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67fcc9d08b48f0945a5184821ac3d1d0, type: 2}
