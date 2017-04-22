@@ -30,7 +30,7 @@ public class DymanicObjectScript : MonoBehaviour
     void Start()
     {
         m_radiusForDetermineInOrbit = m_radiusForOutPusher + 5.0f;
-        m_playerObject = GameObject.Find("PlaceHolderPlayerController");
+        m_playerObject = GameObject.FindGameObjectWithTag("Player");
     }
 
 
@@ -41,9 +41,9 @@ public class DymanicObjectScript : MonoBehaviour
         //for (int i = 0; i < length; i++)
         //{
         // Om spelaren använder kraften att dra åt sig saker i orbit.
-        orbiScript = (OrbitGameobjectScript)GameObject.Find("PlaceHolderPlayerController").GetComponent("OrbitGameobjectScript");
-        Transform t_targetTransform = GameObject.Find("PlaceHolderPlayerController").GetComponent<Transform>();
-        Rigidbody t_targetRigid = GameObject.Find("PlaceHolderPlayerController").GetComponent<Rigidbody>();
+        orbiScript = (OrbitGameobjectScript)GameObject.FindGameObjectWithTag("Player").GetComponent<OrbitGameobjectScript>();
+        Transform t_targetTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Rigidbody t_targetRigid = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         Vector3 t_totalForce = new Vector3();
         Vector3 t_vectorBetween = -1 * (gameObject.transform.position - t_targetTransform.position);
         Vector3 t_crossResultNorm = Vector3.Cross(t_targetTransform.up, t_vectorBetween).normalized;

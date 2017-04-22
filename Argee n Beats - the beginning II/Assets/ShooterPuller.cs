@@ -43,7 +43,7 @@ public class ShooterPuller : MonoBehaviour
             foreach (GameObject obj in movables)
             {
                 Vector3 lineBetween = (obj.transform.position - transform.position).normalized;
-                Vector3 cameraTarget = Camera.current.transform.forward.normalized;
+                Vector3 cameraTarget = Camera.main.transform.forward.normalized;
 
                 float dot = Vector3.Dot(lineBetween, cameraTarget);
                 float derp = freqAnalys.m_currentAmplitude;

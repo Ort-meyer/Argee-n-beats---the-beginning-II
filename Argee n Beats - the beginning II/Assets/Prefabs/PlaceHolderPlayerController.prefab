@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 114906186882325266}
   - component: {fileID: 114314315527964102}
   - component: {fileID: 114558313702153566}
+  - component: {fileID: 114566377460353154}
   m_Layer: 9
   m_Name: PlaceHolderPlayerController
   m_TagString: Player
@@ -62,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478226696988508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -148.67, y: -101.2, z: -203.3}
+  m_LocalPosition: {x: -7.7, y: 12.2, z: 11.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4394723667104324}
@@ -362,6 +363,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63ce6023a254ce4a9586988aa9126eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114566377460353154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1478226696988508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f222da24998b8408af02581658876d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxFrequency: 700
+  m_threshold: 300
+  m_fireArc: 0.1
+  m_fireForce: 30
+  sucking: 0
+  m_pullingIntoOrbit: 0
+  m_shootingFromOrbit: 0
+  m_fireMode: 1
 --- !u!114 &114866674606939894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -386,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shootForce: 5000
   m_shootCooldown: 1
+  m_shootDirTiltFromCamera: 15
 --- !u!114 &114898190655130486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,6 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd4284be9cc3754891f5e53e08347c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_groundedDelay: 0.5
   m_jumpCoolDown: 0.1
 --- !u!114 &114906186882325266
 MonoBehaviour:
