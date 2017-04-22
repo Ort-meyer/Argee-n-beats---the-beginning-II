@@ -146,9 +146,10 @@ public class TP_Motor : MonoBehaviour {
             
             RaycastHit t_info;
             LayerMask skipme = LayerMask.NameToLayer("Player"); // kanske ta med fiender etc
-
+            LayerMask skipmeToo = LayerMask.NameToLayer("IgnoreSlideCheck");
             int layer = int.MaxValue;
             int test = 1 << skipme;
+            test = test << skipmeToo;
             //layer &=~test;
             layer -= test;
             bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x -0.2f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);
@@ -160,10 +161,11 @@ public class TP_Motor : MonoBehaviour {
             {
                 //Project movevector on plane that we collided with. If slope (normal y<slidevaluethign)
                 //Multiply Y component of the projected movevector with a variable that is reduced every frame we are not grounded.
-
+                print("Imsliddddiinnng on :" + t_info.transform.name);
                 //If on ground. Reset variable that reduces the Y component
                 
                 Vector3 t_projectedMoveVec = Vector3.ProjectOnPlane(t_moveVector, t_info.normal);
+
                 t_moveVector = new Vector3(t_projectedMoveVec.x, t_projectedMoveVec.y * m_slideYReducer, t_projectedMoveVec.z);
                 //print("Im Sliding " + t_moveVector.y);
 

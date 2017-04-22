@@ -131,8 +131,10 @@ public class TP_Controller : MonoBehaviour {
         RaycastHit t_info;
         LayerMask skipme = LayerMask.NameToLayer("Player"); // kanske ta med fiender etc
 
+        LayerMask skipmeToo = LayerMask.NameToLayer("IgnoreSlideCheck");
         int layer = int.MaxValue;
         int test = 1 << skipme;
+        test = test << skipmeToo;
         //layer &=~test;
         layer -= test;
         bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x - 0.02f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);

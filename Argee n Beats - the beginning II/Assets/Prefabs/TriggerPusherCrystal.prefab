@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4653051449495308}
   - component: {fileID: 198480452475649652}
   - component: {fileID: 199623552582335386}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Activate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4431744244216206}
   - component: {fileID: 198845377742627476}
   - component: {fileID: 199810049018315006}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Idle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114878276969351326}
   - component: {fileID: 136918991656403166}
   - component: {fileID: 54039505428564242}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Pusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4682167492134508}
   - component: {fileID: 114096293016544618}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TriggerPusherCrystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4140496210425760}
   - component: {fileID: 33207252581376996}
   - component: {fileID: 23477441347320064}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: envTreeStump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
