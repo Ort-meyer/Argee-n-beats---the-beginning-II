@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: eff323a515a645943b1904200792943b
-timeCreated: 1492876583
+guid: 904687fe26296de48934960176d12885
+timeCreated: 1492877223
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: SoundTriggerNormal
+    4300000: SoundTriggerCrystal
   materials:
     importMaterials: 1
     materialName: 0
