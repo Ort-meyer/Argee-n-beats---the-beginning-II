@@ -15822,36 +15822,6 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 114155559579352166, guid: 673abaf83fbf67d4ca9e81e396008015,
-        type: 2}
-      propertyPath: type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
-        type: 2}
-      propertyPath: m_forwardSpeed
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
-        type: 2}
-      propertyPath: m_backwardSpeed
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
-        type: 2}
-      propertyPath: m_strafingSpeed
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114034215261719566, guid: 673abaf83fbf67d4ca9e81e396008015,
-        type: 2}
-      propertyPath: YOffsetforCamera
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114867682226707564, guid: 673abaf83fbf67d4ca9e81e396008015,
-        type: 2}
-      propertyPath: m_shootDirTiltFromCamera
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 673abaf83fbf67d4ca9e81e396008015, type: 2}
   m_IsPrefabParent: 0
