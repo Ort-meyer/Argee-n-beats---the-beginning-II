@@ -56,10 +56,10 @@ public class FruitSpawner : MonoBehaviour {
                 }
             }
 
-            if (tempO != null)
-            {
-                Destroy(tempO, 10); //explodera dem istället för fan!
-            }
+            //if (tempO != null)
+            //{
+            //    Destroy(tempO, 10); //explodera dem istället för fan!
+            //}
             yield return new WaitForSeconds(spawnTime);
         }
     }
