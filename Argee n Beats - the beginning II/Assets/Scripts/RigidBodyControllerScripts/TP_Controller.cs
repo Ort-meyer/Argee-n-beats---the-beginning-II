@@ -71,6 +71,7 @@ public class TP_Controller : MonoBehaviour {
                     if (!audioSourceWalkSound.isPlaying)
                     {
                         audioSourceWalkSound.clip = m_walkSound;
+                        audioSourceWalkSound.volume = 0.4f;
                         audioSourceWalkSound.Play();
                     }
                 }
@@ -83,6 +84,7 @@ public class TP_Controller : MonoBehaviour {
                     if (!audioSourceWalkSound.isPlaying)
                     {
                         audioSourceWalkSound.clip = m_walkSound;
+                        audioSourceWalkSound.volume = 0.4f;
                         audioSourceWalkSound.Play();
                     }
                 }
@@ -99,14 +101,17 @@ public class TP_Controller : MonoBehaviour {
                 Jump();
                 m_timeSinceGrounded = 0f;
                 m_jumpTimer = m_jumpCoolDown;
+
                 audioSourceWalkSound.Stop();
                 audioSourceWalkSound.clip = m_jumpSound;
+                audioSourceWalkSound.volume = 0.2f;
                 audioSourceWalkSound.Play();
             }
         }
         if (Input.GetButton("Dash"))
         {
             audioSourceWalkSound.clip = m_walkSound;
+            audioSourceWalkSound.volume = 0.4f;
             audioSourceWalkSound.Play();
             Dash();
         }
