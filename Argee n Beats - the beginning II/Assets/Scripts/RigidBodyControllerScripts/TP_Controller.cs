@@ -22,6 +22,7 @@ public class TP_Controller : MonoBehaviour {
         TP_Camera.UseExistingOrCreateNewMainCamera();
         audioSourceWalkSound = gameObject.AddComponent<AudioSource>();
         audioSourceWalkSound.clip = m_walkSound;
+        audioSourceWalkSound.volume = 0.4f;
     }
 	
 	// Update is called once per frame
