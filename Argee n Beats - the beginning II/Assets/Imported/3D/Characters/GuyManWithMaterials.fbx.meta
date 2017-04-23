@@ -1,0 +1,928 @@
+fileFormatVersion: 2
+guid: 7c9345b2a6ba72b4495992f8e3a3876d
+timeCreated: 1492959701
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: armElbow_left
+    100002: armElbow_right
+    100004: armLower_left1
+    100006: armLower_right
+    100008: armUpper_left
+    100010: armUpper_right
+    100012: chestJNT
+    100014: elbowRightJNT
+    100016: elboyLeftJNT
+    100018: footFront_left
+    100020: footFront_right
+    100022: footHeel_left
+    100024: footHeel_right
+    100026: footLeftCTRL
+    100028: footLeftJNT
+    100030: footRightCTRL
+    100032: footRightJNT
+    100034: footWheel_left
+    100036: footWheel_right
+    100038: //RootNode
+    100040: hand_left
+    100042: hand_right
+    100044: handLeftCTRL
+    100046: handLeftJNT
+    100048: handRightCTRL
+    100050: handRightJNT
+    100052: head
+    100054: headJNT
+    100056: hip
+    100058: hipBall
+    100060: hipBallJNT
+    100062: hipJNT
+    100064: ikHandle1
+    100066: ikHandle2
+    100068: ikHandle3
+    100070: ikHandle6
+    100072: joint1
+    100074: legLower_left
+    100076: legLower_right
+    100078: legLowerLeftJNT
+    100080: legLowerRightJNT
+    100082: legUpperLeftJNT
+    100084: legUpperRightJNT
+    100086: neck
+    100088: neckJNT
+    100090: nurbsCircle4
+    100092: nurbsCircle6
+    100094: nurbsCircle7
+    100096: nurbsCircle8
+    100098: rootJNT
+    100100: shoulderLeftJNT
+    100102: shoulderRightJNT
+    100104: thigh_left
+    100106: thigh_right
+    100108: torso
+    100110: torsoJNT
+    100112: trump
+    100114: trump1
+    100116: trump2
+    100118: trump3
+    100120: trump4
+    100122: trump5
+    100124: trumpeter
+    100126: trumpetJNT
+    100128: trumpetJNT1
+    100130: trumpetJNT2
+    100132: trumpetJNT3
+    100134: trumpetJNT4
+    100136: trumpetRootJNT
+    400000: armElbow_left
+    400002: armElbow_right
+    400004: armLower_left1
+    400006: armLower_right
+    400008: armUpper_left
+    400010: armUpper_right
+    400012: chestJNT
+    400014: elbowRightJNT
+    400016: elboyLeftJNT
+    400018: footFront_left
+    400020: footFront_right
+    400022: footHeel_left
+    400024: footHeel_right
+    400026: footLeftCTRL
+    400028: footLeftJNT
+    400030: footRightCTRL
+    400032: footRightJNT
+    400034: footWheel_left
+    400036: footWheel_right
+    400038: //RootNode
+    400040: hand_left
+    400042: hand_right
+    400044: handLeftCTRL
+    400046: handLeftJNT
+    400048: handRightCTRL
+    400050: handRightJNT
+    400052: head
+    400054: headJNT
+    400056: hip
+    400058: hipBall
+    400060: hipBallJNT
+    400062: hipJNT
+    400064: ikHandle1
+    400066: ikHandle2
+    400068: ikHandle3
+    400070: ikHandle6
+    400072: joint1
+    400074: legLower_left
+    400076: legLower_right
+    400078: legLowerLeftJNT
+    400080: legLowerRightJNT
+    400082: legUpperLeftJNT
+    400084: legUpperRightJNT
+    400086: neck
+    400088: neckJNT
+    400090: nurbsCircle4
+    400092: nurbsCircle6
+    400094: nurbsCircle7
+    400096: nurbsCircle8
+    400098: rootJNT
+    400100: shoulderLeftJNT
+    400102: shoulderRightJNT
+    400104: thigh_left
+    400106: thigh_right
+    400108: torso
+    400110: torsoJNT
+    400112: trump
+    400114: trump1
+    400116: trump2
+    400118: trump3
+    400120: trump4
+    400122: trump5
+    400124: trumpeter
+    400126: trumpetJNT
+    400128: trumpetJNT1
+    400130: trumpetJNT2
+    400132: trumpetJNT3
+    400134: trumpetJNT4
+    400136: trumpetRootJNT
+    4300000: neck
+    4300002: trump
+    4300004: trump1
+    4300006: trump2
+    4300008: trump3
+    4300010: trump4
+    4300012: trump5
+    4300014: footWheel_left
+    4300016: footFront_left
+    4300018: armElbow_left
+    4300020: hipBall
+    4300022: hip
+    4300024: footHeel_right
+    4300026: hand_left
+    4300028: armLower_right
+    4300030: armUpper_right
+    4300032: armLower_left1
+    4300034: hand_right
+    4300036: thigh_right
+    4300038: legLower_right
+    4300040: footWheel_right
+    4300042: armElbow_right
+    4300044: armUpper_left
+    4300046: thigh_left
+    4300048: legLower_left
+    4300050: footHeel_left
+    4300052: footFront_right
+    4300054: torso
+    4300056: head
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: armElbow_left
+    13700002: armElbow_right
+    13700004: armLower_left1
+    13700006: armLower_right
+    13700008: armUpper_left
+    13700010: armUpper_right
+    13700012: footFront_left
+    13700014: footFront_right
+    13700016: footHeel_left
+    13700018: footHeel_right
+    13700020: footWheel_left
+    13700022: footWheel_right
+    13700024: hand_left
+    13700026: hand_right
+    13700028: head
+    13700030: hip
+    13700032: hipBall
+    13700034: legLower_left
+    13700036: legLower_right
+    13700038: neck
+    13700040: thigh_left
+    13700042: thigh_right
+    13700044: torso
+    13700046: trump
+    13700048: trump1
+    13700050: trump2
+    13700052: trump3
+    13700054: trump4
+    13700056: trump5
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 1
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: armElbow_left
+        weight: 0
+      - path: armElbow_right
+        weight: 0
+      - path: armLower_left1
+        weight: 0
+      - path: armLower_right
+        weight: 0
+      - path: armUpper_left
+        weight: 0
+      - path: armUpper_right
+        weight: 0
+      - path: footFront_left
+        weight: 0
+      - path: footFront_right
+        weight: 0
+      - path: footHeel_left
+        weight: 0
+      - path: footHeel_right
+        weight: 0
+      - path: footLeftCTRL
+        weight: 0
+      - path: footRightCTRL
+        weight: 0
+      - path: footWheel_left
+        weight: 0
+      - path: footWheel_right
+        weight: 0
+      - path: hand_left
+        weight: 0
+      - path: hand_right
+        weight: 0
+      - path: handLeftCTRL
+        weight: 0
+      - path: handRightCTRL
+        weight: 0
+      - path: head
+        weight: 0
+      - path: hip
+        weight: 0
+      - path: hipBall
+        weight: 0
+      - path: ikHandle1
+        weight: 0
+      - path: ikHandle2
+        weight: 0
+      - path: ikHandle3
+        weight: 0
+      - path: ikHandle6
+        weight: 0
+      - path: legLower_left
+        weight: 0
+      - path: legLower_right
+        weight: 0
+      - path: neck
+        weight: 0
+      - path: nurbsCircle7
+        weight: 0
+      - path: nurbsCircle8
+        weight: 0
+      - path: rootJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/neckJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/neckJNT/headJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT/elboyLeftJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT/elboyLeftJNT/handLeftJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT/elboyLeftJNT/nurbsCircle4
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT/elbowRightJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT/elbowRightJNT/handRightJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT/elbowRightJNT/nurbsCircle6
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/joint1
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT1
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT2
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT3
+        weight: 0
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT4
+        weight: 0
+      - path: rootJNT/hipJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperLeftJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperLeftJNT/legLowerLeftJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperLeftJNT/legLowerLeftJNT/footLeftJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperRightJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperRightJNT/legLowerRightJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperRightJNT/legLowerRightJNT/footRightJNT
+        weight: 1
+      - path: thigh_left
+        weight: 0
+      - path: thigh_right
+        weight: 0
+      - path: torso
+        weight: 0
+      - path: trumpeter
+        weight: 0
+      - path: trumpeter/trump
+        weight: 0
+      - path: trumpeter/trump1
+        weight: 0
+      - path: trumpeter/trump2
+        weight: 0
+      - path: trumpeter/trump3
+        weight: 0
+      - path: trumpeter/trump4
+        weight: 0
+      - path: trumpeter/trump5
+        weight: 0
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human:
+    - boneName: rootJNT
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: legUpperLeftJNT
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: legUpperRightJNT
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: legLowerLeftJNT
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: legLowerRightJNT
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: footLeftJNT
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: footRightJNT
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hipBallJNT
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: chestJNT
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: neckJNT
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: headJNT
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulderLeftJNT
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: shoulderRightJNT
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: elboyLeftJNT
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: elbowRightJNT
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: handLeftJNT
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: handRightJNT
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: GuyManWithMaterials(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: armElbow_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: armElbow_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -1.2212453e-14, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: armLower_left1
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: armLower_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -7.327472e-15, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: armUpper_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: armUpper_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -2.220446e-15, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footFront_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footFront_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -2.4161742e-17, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footHeel_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footHeel_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footLeftCTRL
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0.17395084, y: 0.086591475, z: -0.0138898045}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footRightCTRL
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: 0.173951, y: 0.086591475, z: -0.0138898045}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footWheel_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: footWheel_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hand_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hand_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: handLeftCTRL
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -1.4705907, y: 1.5161884, z: -0.03743861}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: handRightCTRL
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: 1.4708257, y: 1.5018883, z: -0.04046525}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: head
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hip
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hipBall
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0.0076989406, z: -0.017847808}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle1
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0.17395079, y: 0.08659146, z: -0.0138898045}
+      rotation: {x: 0.51593286, y: 0.51593286, z: -0.4835424, w: -0.4835424}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle2
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: 0.173951, y: 0.0865915, z: -0.0138898}
+      rotation: {x: 0.4835424, y: -0.4835424, z: -0.51593286, w: 0.51593286}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle3
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -1.4705907, y: 1.5161884, z: -0.03743861}
+      rotation: {x: 0.0060654394, y: 0.087774634, z: -0.0068993983, w: 0.99609804}
+      scale: {x: 1, y: 1, z: 1}
+    - name: ikHandle6
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: 1.4708257, y: 1.5018883, z: -0.040465254}
+      rotation: {x: 0.99629766, y: 0.00033050118, z: 0.08559416, w: 0.008029727}
+      scale: {x: 1, y: 1, z: 1}
+    - name: legLower_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: legLower_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: neck
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: nurbsCircle7
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -1.2130505e-14, y: 0.7755477, z: 0.21198931}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: nurbsCircle8
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: 0.0058950987, y: 1.8296474, z: 0.20512758}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: thigh_left
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: thigh_right
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: torso
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trumpeter
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trump
+      parentName: trumpeter
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trump1
+      parentName: trumpeter
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trump2
+      parentName: trumpeter
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trump3
+      parentName: trumpeter
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trump4
+      parentName: trumpeter
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trump5
+      parentName: trumpeter
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: rootJNT
+      parentName: GuyManWithMaterials(Clone)
+      position: {x: -1.2130505e-14, y: 0.95502335, z: -0.040050864}
+      rotation: {x: 0.35215464, y: -0.61317784, z: -0.35215464, w: 0.6131779}
+      scale: {x: 1.0000002, y: 1, z: 0.9999995}
+    - name: hipJNT
+      parentName: rootJNT
+      position: {x: 0.059956983, y: 0.036056984, z: -0.0047756284}
+      rotation: {x: -0.35521707, y: 0.61851025, z: 0.34906533, w: 0.60779876}
+      scale: {x: 1, y: 1, z: 1}
+    - name: legUpperRightJNT
+      parentName: hipJNT
+      position: {x: 0.18616924, y: 0.055041295, z: -0.01805889}
+      rotation: {x: -0.53190196, y: 0.45366248, z: 0.534438, w: -0.47502288}
+      scale: {x: 1.0000004, y: 1.0000004, z: 0.9999998}
+    - name: legLowerRightJNT
+      parentName: legUpperRightJNT
+      position: {x: 0.49201682, y: -0.039789896, z: -0.009360435}
+      rotation: {x: 0.004929006, y: -0.020264804, z: -0.019632638, w: -0.99958974}
+      scale: {x: 1.0000008, y: 1.0000005, z: 1.0000005}
+    - name: footRightJNT
+      parentName: legLowerRightJNT
+      position: {x: 0.3750995, y: 0.09583428, z: 0.008757354}
+      rotation: {x: 0.50106156, y: 0.5209707, z: -0.447299, w: 0.52673566}
+      scale: {x: 0.9999999, y: 1.000001, z: 1.0000002}
+    - name: legUpperLeftJNT
+      parentName: hipJNT
+      position: {x: -0.19497453, y: 0.05504105, z: -0.024717445}
+      rotation: {x: -0.4828743, y: -0.5436485, z: 0.4452946, w: 0.522486}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000002}
+    - name: legLowerLeftJNT
+      parentName: legUpperLeftJNT
+      position: {x: -0.4920168, y: 0.03979097, z: 0.009360225}
+      rotation: {x: 0.004925161, y: -0.02025911, z: -0.019630907, w: -0.9995899}
+      scale: {x: 1.0000019, y: 1.0000014, z: 1.0000013}
+    - name: footLeftJNT
+      parentName: legLowerLeftJNT
+      position: {x: -0.37510002, y: -0.09583468, z: -0.0087572}
+      rotation: {x: -0.5010553, y: -0.5209734, z: 0.4473021, w: -0.5267363}
+      scale: {x: 1.0000002, y: 1.0000011, z: 1.0000006}
+    - name: hipBallJNT
+      parentName: rootJNT
+      position: {x: 0.0048555895, y: 0.043536652, z: -9.46036e-15}
+      rotation: {x: 0.000000029802322, y: -0.000000059604645, z: 0.03814453, w: 0.9992722}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000004}
+    - name: torsoJNT
+      parentName: hipBallJNT
+      position: {x: -0.53680456, y: 0.034004718, z: 0.0011556466}
+      rotation: {x: -0.33119327, y: 0.624703, z: 0.3212772, w: 0.62995094}
+      scale: {x: 1, y: 1, z: 1}
+    - name: chestJNT
+      parentName: torsoJNT
+      position: {x: -0.0030149652, y: 0.2628455, z: -0.12729023}
+      rotation: {x: -0.39118814, y: 0.5882855, z: -0.38250208, w: 0.5954698}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trumpetRootJNT
+      parentName: chestJNT
+      position: {x: 0.034875114, y: 0.099074446, z: 0.0037587564}
+      rotation: {x: 0.027276747, y: -0.012115144, z: -0.1696224, w: 0.9850571}
+      scale: {x: 1, y: 1, z: 1}
+    - name: trumpetJNT2
+      parentName: trumpetRootJNT
+      position: {x: -0.1270427, y: -0.049408104, z: 0.09921736}
+      rotation: {x: 0.000000033527613, y: 0.00000002514571, z: -0.00000012118835,
+        w: 1}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000001}
+    - name: trumpetJNT
+      parentName: trumpetRootJNT
+      position: {x: -0.16896085, y: 2.4572672e-16, z: -1.6075453e-17}
+      rotation: {x: 0.42091125, y: -0.54047465, z: 0.44761848, w: 0.5747683}
+      scale: {x: 0.99999994, y: 0.9999998, z: 1.0000001}
+    - name: joint1
+      parentName: trumpetRootJNT
+      position: {x: -0.17104253, y: 0.021833142, z: -0.045554113}
+      rotation: {x: 0.000000033527613, y: 0.00000002514571, z: -0.00000012118835,
+        w: 1}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000001}
+    - name: trumpetJNT4
+      parentName: trumpetRootJNT
+      position: {x: -0.11666313, y: -0.06540079, z: -0.08277874}
+      rotation: {x: 0.000000033527613, y: 0.00000002514571, z: -0.00000012118835,
+        w: 1}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000001}
+    - name: trumpetJNT3
+      parentName: trumpetRootJNT
+      position: {x: -0.11268558, y: -0.006613358, z: -0.045741707}
+      rotation: {x: 0.000000033527613, y: 0.00000002514571, z: -0.00000012118835,
+        w: 1}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000001}
+    - name: trumpetJNT1
+      parentName: trumpetRootJNT
+      position: {x: -0.1307225, y: -0.020144334, z: 0.04115044}
+      rotation: {x: 0.000000033527613, y: 0.00000002514571, z: -0.00000012118835,
+        w: 1}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000001}
+    - name: neckJNT
+      parentName: chestJNT
+      position: {x: -0.19271693, y: -0.013530284, z: -0.000019344981}
+      rotation: {x: -0.000428766, y: 0.00021830201, z: -0.11727856, w: 0.993099}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+    - name: headJNT
+      parentName: neckJNT
+      position: {x: -0.20508789, y: 1.0810619e-16, z: 2.6957353e-18}
+      rotation: {x: 0.41912442, y: -0.5691453, z: 0.38923088, w: 0.5906841}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000004}
+    - name: shoulderLeftJNT
+      parentName: chestJNT
+      position: {x: -0.008499188, y: 0.0053738332, z: -0.16960898}
+      rotation: {x: 0.32442427, y: -0.62905383, z: 0.3321572, w: 0.6234675}
+      scale: {x: 1, y: 0.99999964, z: 0.99999964}
+    - name: elboyLeftJNT
+      parentName: shoulderLeftJNT
+      position: {x: -0.64943326, y: 0.003921851, z: -0.0052383393}
+      rotation: {x: 0.011610822, y: 0.03693897, z: -0.015685933, w: 0.999127}
+      scale: {x: 0.99999964, y: 1, z: 1}
+    - name: nurbsCircle4
+      parentName: elboyLeftJNT
+      position: {x: -0.6625234, y: -0.014950144, z: 0.005238329}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: handLeftJNT
+      parentName: elboyLeftJNT
+      position: {x: -0.6625233, y: -0.014950141, z: 0.0052383393}
+      rotation: {x: 0.0060653705, y: 0.08777481, z: -0.006899357, w: 0.99609804}
+      scale: {x: 1, y: 0.9999999, z: 1.0000001}
+    - name: shoulderRightJNT
+      parentName: chestJNT
+      position: {x: -0.008166926, y: 0.0058776755, z: 0.16960864}
+      rotation: {x: 0.6359664, y: 0.31504935, z: 0.6231974, w: -0.32850534}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000011}
+    - name: elbowRightJNT
+      parentName: shoulderRightJNT
+      position: {x: 0.649433, y: -0.00392, z: 0.005238}
+      rotation: {x: 0.007934823, y: 0.037578743, z: -0.018734021, w: 0.99908656}
+      scale: {x: 0.99999934, y: 1.000001, z: 1.0000017}
+    - name: nurbsCircle6
+      parentName: elbowRightJNT
+      position: {x: 0.662534, y: 0.014950037, z: -0.00523746}
+      rotation: {x: 0.99613553, y: 0.005775988, z: 0.08763948, w: -0.000009673147}
+      scale: {x: 1, y: 1, z: 1}
+    - name: handRightJNT
+      parentName: elbowRightJNT
+      position: {x: 0.662528, y: 0.01495, z: -0.005238}
+      rotation: {x: 0.000031801872, y: 0.000034607947, z: -0.00036530534, w: 0.99999994}
+      scale: {x: 0.9999997, y: 1.0000005, z: 1.000001}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: a8e1a8f4299f3204aa4cfe0fad062272,
+    type: 3}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
