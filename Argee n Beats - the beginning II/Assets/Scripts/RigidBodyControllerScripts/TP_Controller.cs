@@ -11,12 +11,16 @@ public class TP_Controller : MonoBehaviour {
     private float m_timeSinceGrounded = 0f;
     public float m_jumpCoolDown = 1.0f;
     private float m_jumpTimer = -0.1f;
+    AudioSource audioSourceWalkSound;
+    public AudioClip m_walkSound;
 	// Use this for initialization
 	void Awake () {
         m_rigidBodyController = GetComponent<Rigidbody>();
         Instance = this;
         TP_Camera.UseExistingOrCreateNewMainCamera();
-	}
+        audioSourceWalkSound = gameObject.AddComponent<AudioSource>();
+        audioSourceWalkSound.clip = m_walkSound;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -59,10 +63,24 @@ public class TP_Controller : MonoBehaviour {
             if (t_vert > deadZone || t_vert < -deadZone)
             {
                 TP_Motor.m_instance.m_moveVector += new Vector3(0, 0, t_vert);
+                if (IsGrounded())
+                {
+                    if(!audioSourceWalkSound.isPlaying)
+                    {
+                        audioSourceWalkSound.Play();
+                    }
+                }
             }
             if (t_hori > deadZone || t_hori < -deadZone)
             {
                 TP_Motor.m_instance.m_moveVector += new Vector3(t_hori, 0, 0);
+                if(IsGrounded())
+                {
+                    if (!audioSourceWalkSound.isPlaying)
+                    {
+                        audioSourceWalkSound.Play();
+                    }
+                }
             }
         }
         TP_Animator.m_instance.DetermineCurrentMoveDirection();
@@ -80,6 +98,7 @@ public class TP_Controller : MonoBehaviour {
         }
         if (Input.GetButton("Dash"))
         {
+            audioSourceWalkSound.Play();
             Dash();
         }
         if (Input.GetMouseButton(0))
