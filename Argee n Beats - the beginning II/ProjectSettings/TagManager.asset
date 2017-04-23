@@ -7,6 +7,8 @@ TagManager:
   - Fire
   - DynamicObject
   - MovingPlatform
+  - Pickups
+  - Goal
   layers:
   - Default
   - TransparentFX
