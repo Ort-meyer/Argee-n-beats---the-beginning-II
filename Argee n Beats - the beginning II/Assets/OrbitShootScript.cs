@@ -113,11 +113,13 @@ public class OrbitShootScript : MonoBehaviour
         // Ignore stuff in orbit and fired projectiles (could be made public to be scalable and all that good stuff)
         mask = (1 << 11);
         mask |= (1 << 12);
+        mask |= (1 << 8);
+        mask = ~mask;
         Vector3 fireDirection = Camera.main.transform.forward;
         // Rotate fire vector so we get a more natural/sensible fire direction
         fireDirection = Quaternion.AngleAxis(-m_shootDirTiltFromCamera, Vector3.Cross(transform.up, transform.forward)) * fireDirection;
         RaycastHit rayHit;
-        if(Physics.Raycast(transform.position, fireDirection, out rayHit, 1000)) // Hard coded range of ray cast
+        if (Physics.Raycast(transform.position, fireDirection, out rayHit, 1000, mask)) // Hard coded range of ray cast
         {
             fireDirection = (rayHit.point - p_posOfObjectBeingFired).normalized;
         }
