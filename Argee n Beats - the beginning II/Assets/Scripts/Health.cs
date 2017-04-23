@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
     public float startingHealth;
+    float health = 0;
     public bool respawnOnDeath = false;
     GameObject youDiedObj;
 
     // Use this for initialization
     void Start () {
-		if(gameObject.tag.Equals("Player"))
+        health = startingHealth;
+        if (gameObject.tag.Equals("Player"))
         {
             youDiedObj = GameObject.Find("YOUDIED");
         }
@@ -23,13 +25,14 @@ public class Health : MonoBehaviour {
 
     public void TakeDamage(float damage)
     {
-        startingHealth -= damage;
-        if (startingHealth <= 0.0f)
+        health -= damage;
+        if (health <= 0.0f)
         {
             if (respawnOnDeath)
             {
                 transform.position = CheckpointManager.manager.activeCheckpoint.transform.position;
                 transform.rotation = CheckpointManager.manager.activeCheckpoint.transform.rotation;
+                health = startingHealth;
             }
             else
             {
