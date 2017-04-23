@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class PublicVariables
 {
     [Range(0.0f, 1.0f)]
-    public static float req_Amplitude = 0.05f;
+    public static float req_Amplitude = 0.025f;
 }
 
 public class Trigger : MonoBehaviour {
