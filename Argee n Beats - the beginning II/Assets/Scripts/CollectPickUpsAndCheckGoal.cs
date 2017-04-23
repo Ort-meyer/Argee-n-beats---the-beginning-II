@@ -63,6 +63,6 @@ public class CollectPickUpsAndCheckGoal : MonoBehaviour {
 
     void UpdateText()
     {
-        hudObject.GetComponent<Text>().text = "Crystals: " + m_howManyCollectibles.ToString() + "/" + m_maxCollectibles.ToString();
+        hudObject.GetComponent<Text>().text = "Crystals parts: " + m_howManyCollectibles.ToString() + "/" + m_maxCollectibles.ToString();
     }
 }

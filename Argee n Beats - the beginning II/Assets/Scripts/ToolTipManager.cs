@@ -58,14 +58,19 @@ public class ToolTipManager : MonoBehaviour {
             if (curToolTip < toolTips.Count)
             {
                 toolTips[curToolTip].GetComponent<Text>().enabled = true;
+
+                if (curToolTip == toolTips.Count - 1)
+                {
+                    // Show crystals
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<CollectPickUpsAndCheckGoal>().StartHUD();
+                }
             }
             else
             {
                 finished = true;
                 toggle.GetComponent<Text>().enabled = true;
 
-                // Show crystals
-                GameObject.FindGameObjectWithTag("Player").GetComponent<CollectPickUpsAndCheckGoal>().StartHUD();
+
             }
         }
     }

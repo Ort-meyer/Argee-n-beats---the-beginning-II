@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour {
 
@@ -10,10 +11,21 @@ public class InputManager : MonoBehaviour {
     float range = 2.0f;
     LayerMask collisionMask;
 
+    GameObject recordObj;
+
 	// Use this for initialization
 	void Start () {
         collisionMask = LayerMask.GetMask("SoundAffectors");
         freqAn = GetComponent<FrequencyAnalysis>();
+
+        GameObject canvas = GameObject.Find("Canvas");
+        for (int i = 0; i < canvas.transform.childCount; i++)
+        {
+            if (canvas.transform.GetChild(i).name.Equals("RECORDING"))
+            {
+                recordObj = canvas.transform.GetChild(i).gameObject;
+            }
+        }
 	}
 
     void GetAllCloseSoundeffectors()
@@ -74,6 +86,9 @@ public class InputManager : MonoBehaviour {
         // Update keycodes from input
         if (Input.GetKeyDown(KeyCode.G) && freqAn.IsKeyRecording() == false && soundAffectors.Count > 0)
         {
+            // Start show recording
+            recordObj.GetComponent<Text>().enabled = true;
+
             Debug.Log("Recording");
             // Check if we have any Sound object close()
             freqAn.StartRecording(2);
@@ -107,5 +122,8 @@ public class InputManager : MonoBehaviour {
                 item.GetComponent<ParticleSystemManager>().Activate(1);
             }
         }
+
+        // Stop recording gui
+        recordObj.GetComponent<Text>().enabled = false;
     }
 }
