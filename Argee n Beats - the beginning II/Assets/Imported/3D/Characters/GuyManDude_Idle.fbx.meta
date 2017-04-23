@@ -1,0 +1,402 @@
+fileFormatVersion: 2
+guid: 5fb5176536e25cd46935d8f74f2e99f9
+timeCreated: 1492949595
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: armElbow_left
+    100002: armElbow_right
+    100004: armLower_left1
+    100006: armLower_right
+    100008: armUpper_left
+    100010: armUpper_right
+    100012: chestJNT
+    100014: elbowRightJNT
+    100016: elboyLeftJNT
+    100018: footFront_left
+    100020: footFront_right
+    100022: footHeel_left
+    100024: footHeel_right
+    100026: footLeftJNT
+    100028: footRightJNT
+    100030: footWheel_left
+    100032: footWheel_right
+    100034: //RootNode
+    100036: hand_left
+    100038: hand_right
+    100040: handLeftJNT
+    100042: handRightJNT
+    100044: head
+    100046: headJNT
+    100048: hip
+    100050: hipBall
+    100052: hipBallJNT
+    100054: hipJNT
+    100056: joint1
+    100058: legLower_left
+    100060: legLower_right
+    100062: legLowerLeftJNT
+    100064: legLowerRightJNT
+    100066: legUpperLeftJNT
+    100068: legUpperRightJNT
+    100070: neck
+    100072: neckJNT
+    100074: nurbsCircle4
+    100076: nurbsCircle6
+    100078: rootJNT
+    100080: shoulderLeftJNT
+    100082: shoulderRightJNT
+    100084: thigh_left
+    100086: thigh_right
+    100088: torso
+    100090: torsoJNT
+    100092: trump
+    100094: trump1
+    100096: trump2
+    100098: trump3
+    100100: trump4
+    100102: trump5
+    100104: trumpeter
+    100106: trumpetJNT
+    100108: trumpetJNT1
+    100110: trumpetJNT2
+    100112: trumpetJNT3
+    100114: trumpetJNT4
+    100116: trumpetRootJNT
+    400000: armElbow_left
+    400002: armElbow_right
+    400004: armLower_left1
+    400006: armLower_right
+    400008: armUpper_left
+    400010: armUpper_right
+    400012: chestJNT
+    400014: elbowRightJNT
+    400016: elboyLeftJNT
+    400018: footFront_left
+    400020: footFront_right
+    400022: footHeel_left
+    400024: footHeel_right
+    400026: footLeftJNT
+    400028: footRightJNT
+    400030: footWheel_left
+    400032: footWheel_right
+    400034: //RootNode
+    400036: hand_left
+    400038: hand_right
+    400040: handLeftJNT
+    400042: handRightJNT
+    400044: head
+    400046: headJNT
+    400048: hip
+    400050: hipBall
+    400052: hipBallJNT
+    400054: hipJNT
+    400056: joint1
+    400058: legLower_left
+    400060: legLower_right
+    400062: legLowerLeftJNT
+    400064: legLowerRightJNT
+    400066: legUpperLeftJNT
+    400068: legUpperRightJNT
+    400070: neck
+    400072: neckJNT
+    400074: nurbsCircle4
+    400076: nurbsCircle6
+    400078: rootJNT
+    400080: shoulderLeftJNT
+    400082: shoulderRightJNT
+    400084: thigh_left
+    400086: thigh_right
+    400088: torso
+    400090: torsoJNT
+    400092: trump
+    400094: trump1
+    400096: trump2
+    400098: trump3
+    400100: trump4
+    400102: trump5
+    400104: trumpeter
+    400106: trumpetJNT
+    400108: trumpetJNT1
+    400110: trumpetJNT2
+    400112: trumpetJNT3
+    400114: trumpetJNT4
+    400116: trumpetRootJNT
+    4300000: neck
+    4300002: trump
+    4300004: trump1
+    4300006: trump2
+    4300008: trump3
+    4300010: trump4
+    4300012: trump5
+    4300014: footWheel_left
+    4300016: footFront_left
+    4300018: armElbow_left
+    4300020: hipBall
+    4300022: hip
+    4300024: footHeel_right
+    4300026: hand_left
+    4300028: armLower_right
+    4300030: armUpper_right
+    4300032: armLower_left1
+    4300034: hand_right
+    4300036: thigh_right
+    4300038: legLower_right
+    4300040: footWheel_right
+    4300042: armElbow_right
+    4300044: armUpper_left
+    4300046: thigh_left
+    4300048: legLower_left
+    4300050: footHeel_left
+    4300052: footFront_right
+    4300054: torso
+    4300056: head
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: armElbow_left
+    13700002: armElbow_right
+    13700004: armLower_left1
+    13700006: armLower_right
+    13700008: armUpper_left
+    13700010: armUpper_right
+    13700012: footFront_left
+    13700014: footFront_right
+    13700016: footHeel_left
+    13700018: footHeel_right
+    13700020: footWheel_left
+    13700022: footWheel_right
+    13700024: hand_left
+    13700026: hand_right
+    13700028: head
+    13700030: hip
+    13700032: hipBall
+    13700034: legLower_left
+    13700036: legLower_right
+    13700038: neck
+    13700040: thigh_left
+    13700042: thigh_right
+    13700044: torso
+    13700046: trump
+    13700048: trump1
+    13700050: trump2
+    13700052: trump3
+    13700054: trump4
+    13700056: trump5
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 48
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: armElbow_left
+        weight: 1
+      - path: armElbow_right
+        weight: 1
+      - path: armLower_left1
+        weight: 1
+      - path: armLower_right
+        weight: 1
+      - path: armUpper_left
+        weight: 1
+      - path: armUpper_right
+        weight: 1
+      - path: footFront_left
+        weight: 1
+      - path: footFront_right
+        weight: 1
+      - path: footHeel_left
+        weight: 1
+      - path: footHeel_right
+        weight: 1
+      - path: footWheel_left
+        weight: 1
+      - path: footWheel_right
+        weight: 1
+      - path: hand_left
+        weight: 1
+      - path: hand_right
+        weight: 1
+      - path: head
+        weight: 1
+      - path: hip
+        weight: 1
+      - path: hipBall
+        weight: 1
+      - path: legLower_left
+        weight: 1
+      - path: legLower_right
+        weight: 1
+      - path: neck
+        weight: 1
+      - path: rootJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/neckJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/neckJNT/headJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT/elboyLeftJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT/elboyLeftJNT/handLeftJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderLeftJNT/elboyLeftJNT/nurbsCircle4
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT/elbowRightJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT/elbowRightJNT/handRightJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/shoulderRightJNT/elbowRightJNT/nurbsCircle6
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/joint1
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT1
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT2
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT3
+        weight: 1
+      - path: rootJNT/hipBallJNT/torsoJNT/chestJNT/trumpetRootJNT/trumpetJNT4
+        weight: 1
+      - path: rootJNT/hipJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperLeftJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperLeftJNT/legLowerLeftJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperLeftJNT/legLowerLeftJNT/footLeftJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperRightJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperRightJNT/legLowerRightJNT
+        weight: 1
+      - path: rootJNT/hipJNT/legUpperRightJNT/legLowerRightJNT/footRightJNT
+        weight: 1
+      - path: thigh_left
+        weight: 1
+      - path: thigh_right
+        weight: 1
+      - path: torso
+        weight: 1
+      - path: trumpeter
+        weight: 1
+      - path: trumpeter/trump
+        weight: 1
+      - path: trumpeter/trump1
+        weight: 1
+      - path: trumpeter/trump2
+        weight: 1
+      - path: trumpeter/trump3
+        weight: 1
+      - path: trumpeter/trump4
+        weight: 1
+      - path: trumpeter/trump5
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
