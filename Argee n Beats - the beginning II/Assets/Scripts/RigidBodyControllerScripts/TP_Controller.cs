@@ -14,7 +14,9 @@ public class TP_Controller : MonoBehaviour {
     AudioSource audioSourceWalkSound;
     public AudioClip m_walkSound;
     // Use this for initialization
-    void Awake () {
+    public AudioClip m_jumpSound;
+	// Use this for initialization
+	void Awake () {
         m_rigidBodyController = GetComponent<Rigidbody>();
         Instance = this;
         TP_Camera.UseExistingOrCreateNewMainCamera();
@@ -67,6 +69,7 @@ public class TP_Controller : MonoBehaviour {
                 {
                     if (!audioSourceWalkSound.isPlaying)
                     {
+                        audioSourceWalkSound.clip = m_walkSound;
                         audioSourceWalkSound.Play();
                     }
                 }
@@ -78,6 +81,7 @@ public class TP_Controller : MonoBehaviour {
                 {
                     if (!audioSourceWalkSound.isPlaying)
                     {
+                        audioSourceWalkSound.clip = m_walkSound;
                         audioSourceWalkSound.Play();
                     }
                 }
@@ -94,11 +98,14 @@ public class TP_Controller : MonoBehaviour {
                 Jump();
                 m_timeSinceGrounded = 0f;
                 m_jumpTimer = m_jumpCoolDown;
+                audioSourceWalkSound.Stop();
+                audioSourceWalkSound.clip = m_jumpSound;
+                audioSourceWalkSound.Play();
             }
         }
         if (Input.GetButton("Dash"))
         {
-
+            audioSourceWalkSound.clip = m_walkSound;
             audioSourceWalkSound.Play();
             Dash();
         }
