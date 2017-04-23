@@ -9,11 +9,13 @@ public class Pusher : MonoBehaviour {
     GameObject m_playerGO;
     public float pushForce = 100;
     bool m_playerEligable = true;
+    AudioSource audioSource;
     // Use this for initialization
     void Start ()
     {
         m_playerGO = GameObject.FindGameObjectWithTag("Player").gameObject;
-	}
+        audioSource = GetComponent<AudioSource>();
+    }
 	void OnTriggerExit(Collider c)
     {
         if(c.gameObject==m_playerGO)
@@ -54,6 +56,8 @@ public class Pusher : MonoBehaviour {
                 //o_r.velocity = Vector3.zero;
                 //print(o_r.velocity);
                 o_r.AddForce(dir * pushForce, forceMode);
+
+
             }
             else
             {
@@ -63,8 +67,10 @@ public class Pusher : MonoBehaviour {
                     //print(o_r.velocity);
                     o_r.AddForce(transform.up * pushForce, forceMode);
                     m_playerEligable = false;
+                    audioSource.Play();
                 }
             }
+            
         }
     }
     
