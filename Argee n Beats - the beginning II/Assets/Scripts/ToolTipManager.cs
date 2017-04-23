@@ -63,6 +63,9 @@ public class ToolTipManager : MonoBehaviour {
             {
                 finished = true;
                 toggle.GetComponent<Text>().enabled = true;
+
+                // Show crystals
+                GameObject.FindGameObjectWithTag("Player").GetComponent<CollectPickUpsAndCheckGoal>().StartHUD();
             }
         }
     }
