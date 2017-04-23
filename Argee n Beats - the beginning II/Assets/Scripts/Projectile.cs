@@ -31,6 +31,10 @@ public class Projectile : MonoBehaviour {
         {
             return; // We should not be able to hit ourself
         }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("IgnoreCameraOcclusion"))
+        {
+            return;
+        }
         if (explosionPrefab != null)
         {
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
