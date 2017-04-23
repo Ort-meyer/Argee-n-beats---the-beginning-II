@@ -363,7 +363,7 @@ MonoBehaviour:
   m_groundedDelay: 0.5
   m_jumpCoolDown: 0.1
   m_walkSound: {fileID: 8300000, guid: 459b33e08ad44ea49b0135169b3bb158, type: 3}
-  m_jumpSound: {fileID: 8300000, guid: 0ee4fd2d544c77d47af5ef594003734c, type: 3}
+  m_jumpSound: {fileID: 8300000, guid: 69b53c44532e83240a1496ab58bc21e7, type: 3}
 --- !u!114 &114906186882325266
 MonoBehaviour:
   m_ObjectHideFlags: 1
