@@ -21,7 +21,7 @@ public class OrbitShootScript : MonoBehaviour
     {
         m_timer += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Q) && m_timer > m_shootCooldown)
+        if (Input.GetKey(KeyCode.Mouse0) && m_timer > m_shootCooldown)
         {
 
             /// Get all objects that are in orbit
