@@ -34,7 +34,7 @@ public class TP_Motor : MonoBehaviour {
     private Vector3 m_previousMovingPLatVelo = Vector3.zero;
     private bool m_slidedLastFrame = false;
 
-    Vector3 playerVelocity = new Vector3(0, 0, 0);
+   Vector3 playerVelocity = new Vector3(0, 0, 0);
 
     // Use this for initialization
 	void Awake () {

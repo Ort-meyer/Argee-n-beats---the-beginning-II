@@ -10,13 +10,14 @@ public class TP_Animator : MonoBehaviour {
         LeftForward, RightForward, LeftBackward, RightBackward
     }
 
-
+    private Animator m_animator;
     public static TP_Animator m_instance;
     public Direction m_moveDirection { get; set; }
 
 	void Awake()
     {
         m_instance = this;
+        m_animator = GetComponent<Animator>();
 	}
 
 	void Update()
@@ -47,7 +48,7 @@ public class TP_Animator : MonoBehaviour {
         {
             t_left = true;
         }
-        if (t_forward)
+       if (t_forward)
         {
             if (t_left)
             {
@@ -89,6 +90,13 @@ public class TP_Animator : MonoBehaviour {
         {
             m_moveDirection = Direction.Stationary;
         }
-
+        if (m_moveDirection != Direction.Stationary)
+        {
+            m_animator.Play("Take 001", -1);
+        }
+        else
+        {
+            m_animator.Play("Take 001 0", -1);
+        }
     }
 }
