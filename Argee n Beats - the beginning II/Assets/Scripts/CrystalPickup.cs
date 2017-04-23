@@ -26,7 +26,7 @@ public class CrystalPickup : MonoBehaviour {
                 Collider[] cols = pickUpItem.GetComponentsInChildren<Collider>();
                 foreach (var item in cols)
                 {
-                    item.enabled = true;
+                    //item.enabled = true;
                 }
 
                 Rigidbody rig = pickUpItem.GetComponent<Rigidbody>();
@@ -53,7 +53,7 @@ public class CrystalPickup : MonoBehaviour {
                     Collider[] cols = pickUpItem.GetComponentsInChildren<Collider>();
                     foreach (var item in cols)
                     {
-                        item.enabled = false;
+                        //item.enabled = false;
                     }
 
                     Rigidbody rig = pickUpItem.GetComponent<Rigidbody>();
@@ -61,7 +61,7 @@ public class CrystalPickup : MonoBehaviour {
                     
                     // set parent
                     pickUpItem.transform.parent = transform;
-                    pickUpItem.transform.transform.position = transform.position - transform.forward * 1.0f;
+                    pickUpItem.transform.transform.position = transform.position + transform.forward * 1.5f;
                 }
             }
         }
