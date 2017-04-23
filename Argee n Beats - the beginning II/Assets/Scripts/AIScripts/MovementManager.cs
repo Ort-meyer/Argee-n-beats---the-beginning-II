@@ -87,6 +87,14 @@ public class MovementManager : MonoBehaviour {
                 followNavigation.enabled = true;
             }
         }
+        if (!IsOnGround())
+        {
+            followNavigation.enabled = false;
+        }
+        else if (!gotOutsideForce)
+        {
+            followNavigation.enabled = true;
+        }
 	}
 
     void OnDestroy()
@@ -138,5 +146,18 @@ public class MovementManager : MonoBehaviour {
                 inAgro = false;
             }
         }
+    }
+
+    private bool IsOnGround()
+    {
+        RaycastHit t_info;
+        LayerMask skipme = LayerMask.NameToLayer("IgnoreCameraOcclusion"); // kanske ta med fiender etc
+
+        int layer = int.MaxValue;
+        int test = 1 << skipme;
+        //layer &=~test;
+        layer -= test;
+        bool r_hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.2f, layer);
+        return r_hit;
     }
 }
