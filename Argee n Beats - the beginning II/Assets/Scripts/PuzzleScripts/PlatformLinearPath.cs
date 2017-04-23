@@ -13,23 +13,23 @@ public class PlatformLinearPath : MonoBehaviour {
     public Transform[] paths_t;
     Transform currPath = null;
     int currIndex = -1;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         if (o_rigidbody == null)
         {
             o_rigidbody = GetComponent<Rigidbody>();
         }
 
-        if(useForce)
+        if (useForce)
         {
             o_rigidbody.isKinematic = false;
         }
 
         initTimes++;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate() {
 
         if (initTimes == 0 || currPath == null)
             return;
@@ -53,7 +53,7 @@ public class PlatformLinearPath : MonoBehaviour {
             o_rigidbody.isKinematic = false;
             o_rigidbody.AddForce(dir * speedF);
         }
-	}
+    }
 
     public void MoveTo(int index)
     {
@@ -64,5 +64,24 @@ public class PlatformLinearPath : MonoBehaviour {
         currIndex = index;
         currPath = paths_t[currIndex];
         momentum = Vector3.zero;
+    }
+
+    public bool ReachedCurrentPath()
+    {
+        if (currPath == null)
+        {
+            return true;
+        }
+        float distance = (transform.position - currPath.position).magnitude;
+        print(distance);
+        return distance < 0.5; // A epsilon
+    }
+
+    public void StopMove()
+    {
+        currIndex = -1;
+        currPath = null;
+        momentum = Vector3.zero;
+        return;    
     }
 }
