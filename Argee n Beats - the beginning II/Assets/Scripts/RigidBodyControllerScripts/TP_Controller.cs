@@ -154,7 +154,18 @@ public class TP_Controller : MonoBehaviour {
     public bool IsGrounded()
     {
         RaycastHit t_info;
-        bool r_hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.2f);
+
+        LayerMask skipme = LayerMask.NameToLayer("IgnoreCameraOcclusion"); // kanske ta med fiender etc
+
+        LayerMask skipmeToo = LayerMask.NameToLayer("IgnoreSlideCheck");
+
+        int layer = int.MaxValue;
+        int test = 1 << skipme;
+        int test2 = 1 << skipmeToo;
+        //layer &=~test;
+        layer -= test;
+        layer -= test2;
+        bool r_hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.2f, layer);
         if (t_info.normal.y > TP_Motor.m_instance.m_slideThreshold)
         {
             r_hit = true;
@@ -169,11 +180,16 @@ public class TP_Controller : MonoBehaviour {
         LayerMask skipme = LayerMask.NameToLayer("Player"); // kanske ta med fiender etc
 
         LayerMask skipmeToo = LayerMask.NameToLayer("IgnoreSlideCheck");
+        LayerMask skipmeToo2 = LayerMask.NameToLayer("IgnoreCameraOcclusion");
+
         int layer = int.MaxValue;
         int test = 1 << skipme;
-        test = test << skipmeToo;
+        int test2 = 1 << skipmeToo;
+        int test3 = 1 << skipmeToo2;
         //layer &=~test;
         layer -= test;
+        layer -= test2;
+        layer -= test3;
         bool hit = Physics.SphereCast(transform.position, GetComponent<Collider>().bounds.extents.x - 0.02f, Vector3.down, out t_info, (GetComponent<Collider>().bounds.extents.y + 0.2f), layer);
 
         //bool hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.2f, layer);

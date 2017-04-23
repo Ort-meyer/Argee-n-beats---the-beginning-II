@@ -184,7 +184,7 @@ public class TP_Motor : MonoBehaviour {
             //bool hit = Physics.SphereCast(transform.position, 1f, -transform.up, out t_info, 0.6f, layer);
             //m_slideDirection = new Vector3(t_collisionNormal.x, -t_collisionNormal.y, t_collisionNormal.z);
             //print(t_collisionNormal);
-            if (t_collisionNormal.y < m_slideThreshold)
+            if (hit && t_info.normal.y < m_slideThreshold)
             {
                 //Project movevector on plane that we collided with. If slope (normal y<slidevaluethign)
                 //Multiply Y component of the projected movevector with a variable that is reduced every frame we are not grounded.
