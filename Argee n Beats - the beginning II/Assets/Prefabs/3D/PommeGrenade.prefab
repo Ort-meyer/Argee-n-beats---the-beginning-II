@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58391b5f95621924e90a2920b509f539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impulse: 30
+  impulse: 10
   damage: 30
   radius: 15
   damageRadius: 3
