@@ -50,6 +50,7 @@ public class OrbitShootScript : MonoBehaviour
                         if (thisDot > bestDot)
                         {
                             bestDot = thisDot;
+                            // USELESS COMMENT. REMOVE
                             id = i;
                         }
                     }
