@@ -23,6 +23,7 @@ public class TP_Motor : MonoBehaviour {
     private float m_currentDashSpeed = 0f;
     private float m_dashCooldownTimer = 0;
     private Vector3 m_slideDirection;
+    public float YOffsetforCamera = 0.9f;
 
     private bool m_isJumping = false;
     private float m_slideYReducer = 1;

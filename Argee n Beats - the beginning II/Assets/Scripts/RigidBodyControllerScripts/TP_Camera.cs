@@ -113,7 +113,7 @@ public class TP_Camera : MonoBehaviour {
             }
             m_distanceSmoothForOcclusion = m_distanceSmooth;
             GameObject t_targetLookAt = GameObject.Find("targetLookAt");
-            t_targetLookAt.transform.localPosition = new Vector3(0, 0.9f, 0);
+            t_targetLookAt.transform.localPosition = new Vector3(0f, TP_Motor.m_instance.YOffsetforCamera, 0);
             m_YMinLimit = -40f;
             m_YMaxLimit = 80f;
             //TP_AimTrajectoryScript.m_instance.ToggleTrajectory(false);
