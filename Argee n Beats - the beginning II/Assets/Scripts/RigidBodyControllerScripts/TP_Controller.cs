@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,8 +13,8 @@ public class TP_Controller : MonoBehaviour {
     private float m_jumpTimer = -0.1f;
     AudioSource audioSourceWalkSound;
     public AudioClip m_walkSound;
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
         m_rigidBodyController = GetComponent<Rigidbody>();
         Instance = this;
         TP_Camera.UseExistingOrCreateNewMainCamera();
@@ -65,7 +65,7 @@ public class TP_Controller : MonoBehaviour {
                 TP_Motor.m_instance.m_moveVector += new Vector3(0, 0, t_vert);
                 if (IsGrounded())
                 {
-                    if(!audioSourceWalkSound.isPlaying)
+                    if (!audioSourceWalkSound.isPlaying)
                     {
                         audioSourceWalkSound.Play();
                     }
@@ -74,7 +74,7 @@ public class TP_Controller : MonoBehaviour {
             if (t_hori > deadZone || t_hori < -deadZone)
             {
                 TP_Motor.m_instance.m_moveVector += new Vector3(t_hori, 0, 0);
-                if(IsGrounded())
+                if (IsGrounded())
                 {
                     if (!audioSourceWalkSound.isPlaying)
                     {
@@ -98,6 +98,7 @@ public class TP_Controller : MonoBehaviour {
         }
         if (Input.GetButton("Dash"))
         {
+
             audioSourceWalkSound.Play();
             Dash();
         }
@@ -140,7 +141,11 @@ public class TP_Controller : MonoBehaviour {
     public bool IsGrounded()
     {
         RaycastHit t_info;
-        bool r_hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.01f);
+        bool r_hit = Physics.Raycast(transform.position, Vector3.down, out t_info, GetComponent<Collider>().bounds.extents.y + 0.2f);
+        if (t_info.normal.y > TP_Motor.m_instance.m_slideThreshold)
+        {
+            r_hit = true;
+        }
         
         return r_hit;
     }
