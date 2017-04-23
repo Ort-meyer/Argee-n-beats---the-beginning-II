@@ -590,9 +590,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Tooltip: \rEnemies ahead, be wary! Luckily your voice has some whirling
-    effects on the enviorment, such as exposive fruits!\r\nUse your left mouse button
-    to hurl away objects from your vicinity."
+  m_Text: "Tooltip: \rEnemies ahead, be wary! Use your voice to renew the trees for
+    ammo fruit! Your voice will bring them to spin around you, use your left mouse
+    button to hurl them at your foes!"
 --- !u!114 &114979440133047138
 MonoBehaviour:
   m_ObjectHideFlags: 1
