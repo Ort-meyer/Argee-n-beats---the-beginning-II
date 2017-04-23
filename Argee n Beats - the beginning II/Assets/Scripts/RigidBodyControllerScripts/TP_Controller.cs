@@ -23,6 +23,8 @@ public class TP_Controller : MonoBehaviour {
         audioSourceWalkSound = gameObject.AddComponent<AudioSource>();
         audioSourceWalkSound.clip = m_walkSound;
         audioSourceWalkSound.volume = 0.4f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = !Cursor.visible;
     }
 	
 	// Update is called once per frame
