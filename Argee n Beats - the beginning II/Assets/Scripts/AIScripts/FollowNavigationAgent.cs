@@ -11,7 +11,7 @@ public class FollowNavigationAgent : MonoBehaviour {
     private float standardSpeed;
     private float standardAcceleration;
 
-    private Vector3 totalForce;
+    private Vector3 totalForce = Vector3.zero;
 	// Use this for initialization
 	void Start () {
         navigation.GetComponent<NavMeshAgent>().speed = maxSpeed+2.0f;
@@ -38,26 +38,41 @@ public class FollowNavigationAgent : MonoBehaviour {
         {
             navigation.transform.position = this.transform.position + direction;
         }
-        if (direction != Vector3.zero)
-        {
-            totalForce += direction * acceleration * Time.deltaTime;
-        }
         if (distance < 0.1)
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             totalForce = Vector3.zero;
+            if (GetComponentInChildren<AnimationManagement>() != null)
+            {
+                GetComponentInChildren<AnimationManagement>().ChangeCurrentAnimation(AnimationManagement.ClipType.IDLE);
+            }
         }
+        else if (direction != Vector3.zero)
+        {
+            totalForce += direction * acceleration * Time.deltaTime;
+            if (GetComponentInChildren<AnimationManagement>() != null)
+            {
+                GetComponentInChildren<AnimationManagement>().ChangeCurrentAnimation(AnimationManagement.ClipType.RUNNING);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GetComponent<MovementManager>().AddImpulse(-direction * 20 + new Vector3(0,20,0));
+            GetComponent<MovementManager>().AddImpulse(new Vector3(0.2f,0.5f,0.4f) * 20 + new Vector3(0, 20, 0));
         }
-	}
+    }
 
     void FixedUpdate()
     {
         Rigidbody myBody = GetComponent<Rigidbody>();
-        
+        if (GetComponentInChildren<AnimationManagement>() != null)
+        {
+            if (totalForce != Vector3.zero)
+            {
+                transform.forward = totalForce.normalized;
+            }
+        }
         myBody.AddForce(totalForce, ForceMode.VelocityChange);
         
         totalForce = Vector3.zero;

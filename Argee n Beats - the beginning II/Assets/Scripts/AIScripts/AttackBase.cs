@@ -32,6 +32,11 @@ public class AttackBase : MonoBehaviour {
 
     protected bool CanIAttackTarget()
     {
-        return attackTimer <= 0 && objectToAttack != null && (transform.position - objectToAttack.transform.position).magnitude <= attackDistance;
+        bool canAttack = attackTimer <= 0 && objectToAttack != null && (transform.position - objectToAttack.transform.position).magnitude <= attackDistance;
+        if (GetComponentInChildren<AnimationManagement>() != null && canAttack)
+        {
+            GetComponentInChildren<AnimationManagement>().ChangeCurrentAnimation(AnimationManagement.ClipType.FIGHTING);
+        }
+        return canAttack;
     }
 }
