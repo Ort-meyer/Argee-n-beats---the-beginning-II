@@ -70,7 +70,9 @@ public class FollowNavigationAgent : MonoBehaviour {
         {
             if (totalForce != Vector3.zero)
             {
-                transform.forward = totalForce.normalized;
+                Vector3 newDirection = totalForce.normalized;
+                newDirection = Vector3.ProjectOnPlane(newDirection, new Vector3(0, 1, 0));
+                transform.forward = newDirection;
             }
         }
         myBody.AddForce(totalForce, ForceMode.VelocityChange);

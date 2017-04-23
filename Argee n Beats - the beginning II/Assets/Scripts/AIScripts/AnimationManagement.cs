@@ -26,7 +26,7 @@ public class AnimationManagement : MonoBehaviour {
         {
             activeClip = queuedClip;
             queuedClip = "";
-            GetComponent<Animation>().Play(activeClip);
+            GetComponent<Animation>().CrossFade(activeClip);
         }
     }
 
@@ -39,7 +39,7 @@ public class AnimationManagement : MonoBehaviour {
         else
         {
             activeClip = clips[(int)animation].name;
-            GetComponent<Animation>().Play(activeClip);
+            GetComponent<Animation>().CrossFade(activeClip);
         }
     }
 
