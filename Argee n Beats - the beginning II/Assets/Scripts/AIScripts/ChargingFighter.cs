@@ -86,7 +86,7 @@ public class ChargingFighter : AttackBase {
     
     void OnCollisionEnter(Collision collision)
     {
-        print(Mathf.Abs(Vector3.Dot(new Vector3(0,0, -1), Vector3.up)));
+        //print(Mathf.Abs(Vector3.Dot(new Vector3(0,0, -1), Vector3.up)));
         if (charging && collision.relativeVelocity.magnitude > collisionStunThreshold)
         {
             bool hitWall = false;

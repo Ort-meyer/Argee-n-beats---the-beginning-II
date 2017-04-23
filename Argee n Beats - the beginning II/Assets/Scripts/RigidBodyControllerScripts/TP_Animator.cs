@@ -92,11 +92,11 @@ public class TP_Animator : MonoBehaviour {
         }
         if (m_moveDirection != Direction.Stationary)
         {
-            m_animator.Play("Take 001", -1);
+            m_animator.Play("Run", -1);
         }
         else
         {
-            m_animator.Play("Take 001 0", -1);
+            m_animator.Play("Idle", -1);
         }
     }
 }
