@@ -9,9 +9,11 @@ public class MovementManager : MonoBehaviour {
     public float agroRange;
     public float allertRadius;
     public GameObject patroleManager;
+    public float artificialDrag = .5f;
     Vector3 impulseToAdd;
     bool gotOutsideForce;
     bool shouldAddOutsideForce;
+    bool isOnGround = false;
 
     GameObject[] players;
     FollowNavigationAgent followNavigation;
@@ -38,6 +40,7 @@ public class MovementManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         GameObject attackPlayer = null;
+        isOnGround = IsOnGround();
         if (!inAgro)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
@@ -87,7 +90,7 @@ public class MovementManager : MonoBehaviour {
                 followNavigation.enabled = true;
             }
         }
-        if (!IsOnGround())
+        if (!isOnGround)
         {
             followNavigation.enabled = false;
         }
@@ -104,6 +107,11 @@ public class MovementManager : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (gotOutsideForce && isOnGround)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.AddForce(-rb.velocity.normalized * artificialDrag, ForceMode.VelocityChange);
+        }
         if (shouldAddOutsideForce)
         {
             GetComponent<Rigidbody>().AddForce(impulseToAdd, ForceMode.Impulse);

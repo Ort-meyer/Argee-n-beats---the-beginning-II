@@ -56,11 +56,6 @@ public class FollowNavigationAgent : MonoBehaviour {
                 GetComponentInChildren<AnimationManagement>().ChangeCurrentAnimation(AnimationManagement.ClipType.RUNNING);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            GetComponent<MovementManager>().AddImpulse(new Vector3(0.2f,0.5f,0.4f) * 20 + new Vector3(0, 20, 0));
-        }
     }
 
     void FixedUpdate()
