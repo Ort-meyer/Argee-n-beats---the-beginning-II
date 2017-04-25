@@ -12746,6 +12746,7 @@ MonoBehaviour:
   agroRange: 20
   allertRadius: 20
   patroleManager: {fileID: 0}
+  artificialDrag: 0.5
 --- !u!136 &231224835
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17777,6 +17778,7 @@ MonoBehaviour:
   agroRange: 20
   allertRadius: 20
   patroleManager: {fileID: 0}
+  artificialDrag: 0.5
 --- !u!136 &352006588
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -37969,7 +37971,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: e628abaef65590349965d54d1c421a2b, type: 2}
-  - {fileID: 2100000, guid: fdf314f41288e2e4ebe46e65647b99b0, type: 2}
+  - {fileID: 2100000, guid: 811f999756919a941889d20677381e09, type: 2}
   - {fileID: 2100000, guid: 787a4366ea6abcc4d9a1b86504e0ff0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -42628,6 +42630,7 @@ MonoBehaviour:
   agroRange: 20
   allertRadius: 20
   patroleManager: {fileID: 0}
+  artificialDrag: 0.5
 --- !u!136 &977774095
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -50842,7 +50845,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: e628abaef65590349965d54d1c421a2b, type: 2}
-  - {fileID: 2100000, guid: fdf314f41288e2e4ebe46e65647b99b0, type: 2}
+  - {fileID: 2100000, guid: 811f999756919a941889d20677381e09, type: 2}
   - {fileID: 2100000, guid: 787a4366ea6abcc4d9a1b86504e0ff0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -68821,7 +68824,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: e628abaef65590349965d54d1c421a2b, type: 2}
-  - {fileID: 2100000, guid: fdf314f41288e2e4ebe46e65647b99b0, type: 2}
+  - {fileID: 2100000, guid: 811f999756919a941889d20677381e09, type: 2}
   - {fileID: 2100000, guid: 787a4366ea6abcc4d9a1b86504e0ff0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
