@@ -73,7 +73,6 @@ public class PlatformLinearPath : MonoBehaviour {
             return true;
         }
         float distance = (transform.position - currPath.position).magnitude;
-        print(distance);
         return distance < 0.5; // A epsilon
     }
 

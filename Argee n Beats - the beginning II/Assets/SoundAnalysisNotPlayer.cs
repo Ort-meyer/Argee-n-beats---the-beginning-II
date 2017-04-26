@@ -8,6 +8,7 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
     public GameObject m_playerObject;
     public float m_currentFrequency = 0;
     public float m_currentAmplitude = 0;
+    private float m_amplitudeThreshold; // set by player script
     public float m_maxAmplitude;
 
     private float[] m_amplitudeValues = new float[m_framesToAvrage];
@@ -23,6 +24,7 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
     {
         m_playerObject = GameObject.FindGameObjectWithTag("Player"); // TODO change if we have multiplayer :D
         FrequencyAnalysis freAn = m_playerObject.GetComponent<FrequencyAnalysis>();
+        m_amplitudeThreshold = freAn.m_amplitudeThreshold;
         m_maxAmplitude = freAn.m_maxAmplitude;
         AudioSource[] audioS = GetComponents<AudioSource>();
 
@@ -47,7 +49,10 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
         m_frameIter++;
         if (m_frameIter >= m_framesToAvrage)
             m_frameIter = 0;
-        
+
+        FrequencyAnalysis freAn = m_playerObject.GetComponent<FrequencyAnalysis>();
+        m_amplitudeThreshold = freAn.m_amplitudeThreshold;
+
         float[] data = new float[1024];
         float[] amplitudeData = new float[1024];
         audioData.GetSpectrumData(data, 0, FFTWindow.Rectangular);
@@ -63,6 +68,29 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
         audioData.Play();
 
         audioOutput.clip = m_playerObject.GetComponent<FrequencyAnalysis>().m_recordedClip;
+        //float[] data = new float[ audioOutput.clip.samples];
+        //audioOutput.clip.GetData(data,0);
+
+        //for (int i = 0; i < data.Length; i++)
+        //{
+        //    // Get the avrage of the past number of frames
+        //    float avrage = 0;
+        //    for (int a = i; a < i + m_framesToAvrage; a++)
+        //    {
+        //        if (a < data.Length)
+        //        {
+        //            avrage += data[a];
+        //        }
+        //    }
+        //    avrage /= m_framesToAvrage;
+
+        //    if (avrage < m_amplitudeThreshold)
+        //    {
+        //        data[i] = 0;
+        //    }
+        //}
+        //audioOutput.clip.SetData(data, 0);
+        
         audioOutput.loop = true;
         audioOutput.Play();
     }
@@ -117,7 +145,7 @@ public class SoundAnalysisNotPlayer : MonoBehaviour
         }
 
         avrage /= m_framesToAvrage;
-        m_currentAmplitude = avrage;
+        m_currentAmplitude = avrage > m_amplitudeThreshold ? avrage : 0;
         //Debug.Log(sum);
     }
 

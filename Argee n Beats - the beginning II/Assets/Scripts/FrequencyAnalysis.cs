@@ -12,8 +12,10 @@ public class FrequencyAnalysis : MonoBehaviour
     public float m_minFreqStength = 0.01f;
     public int m_momentaryFrequency;
     public float m_currentAmplitude;
+    public float m_amplitudeThreshold = 0.2f;
+    public float m_amplitudeIncreaseDecreaseValue = 0.05f;
     public float m_momentaryAmplitude;
-    public float m_maxAmplitude = 100;
+    public float m_maxAmplitude = 100; // This value should probably be a bit higher
 
     public int m_keyPressRecordDuration = 2;
     private bool m_keyPressRecording = false;
@@ -142,7 +144,6 @@ public class FrequencyAnalysis : MonoBehaviour
         {
             sum += System.Math.Abs(data[i]);
         }
-
         float ampl = 0;
         //Debug.Log(sum);
         ampl = sum/ m_maxAmplitude;
@@ -159,8 +160,20 @@ public class FrequencyAnalysis : MonoBehaviour
         }
 
         avrage /= m_framesToAvrage;
-        m_currentAmplitude = avrage;
+        m_currentAmplitude = avrage > m_amplitudeThreshold ? avrage : 0;
         //Debug.Log(sum);
+    }
+
+    public void LowerAmplitudeThreshold()
+    {
+        m_amplitudeThreshold -= m_amplitudeIncreaseDecreaseValue;
+        m_amplitudeThreshold = Mathf.Max(0, m_amplitudeThreshold);
+    }
+
+    public void IncreaseAmplitudeThreshold()
+    {
+        m_amplitudeThreshold += m_amplitudeIncreaseDecreaseValue;
+        m_amplitudeThreshold = Mathf.Min(1, m_amplitudeThreshold);
     }
 
 }

@@ -98,8 +98,15 @@ public class InputManager : MonoBehaviour {
 
 
         }
-		
-	}
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            freqAn.LowerAmplitudeThreshold();
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            freqAn.IncreaseAmplitudeThreshold();
+        }
+    }
 
     void FinishRecording()
     {

@@ -102,7 +102,7 @@ public class Trigger : MonoBehaviour {
                     SoundAnalysisNotPlayer fB = col[i].GetComponent<SoundAnalysisNotPlayer>();
                     if (fA != null && (affectors == Affectors.Both || affectors == Affectors.Player))
                     {
-                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_momentaryAmplitude);
+                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_currentAmplitude);
                     }
                     if (fB != null && (affectors == Affectors.Both || affectors == Affectors.NonPlayer))
                     {
@@ -145,7 +145,7 @@ public class Trigger : MonoBehaviour {
                     SoundAnalysisNotPlayer fB = col[i].GetComponent<SoundAnalysisNotPlayer>();
                     if(fA != null && (affectors == Affectors.Both || affectors == Affectors.Player))
                     {
-                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_momentaryAmplitude);
+                        bestAmplitude = Mathf.Max(bestAmplitude, fA.m_currentAmplitude);
                     }
                     if(fB != null && (affectors == Affectors.Both || affectors == Affectors.NonPlayer))
                     {
