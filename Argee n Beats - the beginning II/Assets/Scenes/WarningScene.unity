@@ -326,9 +326,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Make sure your microphone is plugged in!
-
-    Press any key to continue'
+  m_Text: "Make sure your microphone is plugged in!\nYou can increase and decrease
+    the \namplitude threshold with + and - on the keypad.\nPress any key to continue"
 --- !u!222 &570703693
 CanvasRenderer:
   m_ObjectHideFlags: 0
