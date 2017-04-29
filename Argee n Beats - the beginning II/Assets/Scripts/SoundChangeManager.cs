@@ -9,7 +9,7 @@ public class SoundChangeManager : MonoBehaviour {
     List<SoundChange> soundChangers = new List<SoundChange>();
     int counter = 0;
 
-    float maxAmplitudeRange = 15.0f;
+    float maxAmplitudeRange = 45.0f;
     float fallofDistance = 5.0f;
 
     void Awake()

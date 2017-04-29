@@ -11,10 +11,10 @@ public class InstantKillingObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!Physics.Raycast(transform.position, Vector3.up, 20))
-        {
-            GetComponent<Rigidbody>().AddForce(Vector3.up * 10000 * Time.deltaTime);
-        }
+		//if(!Physics.Raycast(transform.position, Vector3.up, 20))
+        //{
+        //    GetComponent<Rigidbody>().AddForce(Vector3.up * 10000 * Time.deltaTime);
+        //}
 	}
     private void OnCollisionEnter(Collision collision)
     {
